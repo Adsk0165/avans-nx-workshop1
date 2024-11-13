@@ -1,0 +1,21 @@
+/* Ensure the body and html take the full height */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Wrapper to make footer stick to bottom */
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+  }
+  
+  /* Content section fills remaining space */
+  .content {
+    flex: 1;
+  }
+  
+  /* Footer styling */
+ 
+  
