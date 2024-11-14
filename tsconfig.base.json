@@ -28,11 +28,11 @@
             "@avans-nx-workshop/backend/user": [
                 "libs/backend/user/src/index.ts"
             ],
-            "@avans-nx-workshop/frontend/common": [
-                "libs/frontend/common/src/index.ts"
-            ],
             "@avans-nx-workshop/features": [
                 "libs/frontend/features/src/index.ts"
+            ],
+            "@avans-nx-workshop/frontend/common": [
+                "libs/frontend/common/src/index.ts"
             ],
             "@avans-nx-workshop/frontend/ui": ["libs/frontend/ui/src/index.ts"],
             "@avans-nx-workshop/share-a-meal/auth": [

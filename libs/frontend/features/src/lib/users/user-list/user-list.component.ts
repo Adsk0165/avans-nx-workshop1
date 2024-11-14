@@ -30,5 +30,8 @@ export class UserListComponent {
         }
     ]  
 
-
+    getUserById(id: string): IUserInfo {
+        console.log('getUserById aangeroepen');
+        return this.users.filter((user) => user._id === id)[0];
+      }
 }

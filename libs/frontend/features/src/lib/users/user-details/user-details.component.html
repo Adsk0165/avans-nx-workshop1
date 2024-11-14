@@ -1,1 +1,13 @@
-<p>user-details works!</p>
+<div *ngIf="user; else noUser">
+    <h1>{{ user.name }}</h1>
+    <p><strong>Email:</strong> {{ user.emailAddress }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+    <p><strong>Gender:</strong> {{ user.gender }}</p>
+    <p><strong>Status:</strong> {{ user.isActive ? 'Active' : 'Inactive' }}</p>
+    <img [src]="user.profileImgUrl" alt="Profile Image">
+  </div>
+  
+  <ng-template #noUser>
+    <p>User not found!</p>
+  </ng-template>
+  
