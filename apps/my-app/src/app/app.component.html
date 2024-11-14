@@ -1,6 +1,9 @@
+<!-- Always visible components -->
 <avans-nx-workshop-header></avans-nx-workshop-header>
 <div class="container">
-<avans-nx-workshop-nav></avans-nx-workshop-nav>    
-<avans-nx-workshop-user-list></avans-nx-workshop-user-list>
+  <avans-nx-workshop-nav></avans-nx-workshop-nav>
+
+  <!-- Dynamic content rendered by router -->
+  <router-outlet></router-outlet>  <!-- This will dynamically change based on routing -->
 </div>
 <avans-nx-workshop-footer></avans-nx-workshop-footer>

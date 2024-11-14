@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/ui/header/header.component';
 import { FooterComponent } from './components/ui/footer/footer.component';
 import { FeaturesModule } from '@avans-nx-workshop/features';
 import { NavComponent } from './components/ui/nav/nav.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NavComponent } from './components/ui/nav/nav.component';
         RouterModule.forRoot(appRoutes, {
             initialNavigation: 'enabledBlocking'
         }),
-        FeaturesModule
+        FeaturesModule,
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,43 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IUserInfo, UserGender, UserRole } from '@avans-nx-workshop/shared/api'; // Import IUserInfo
+import { UserService } from '../user.service';  // Assuming you have a service for fetching users
+import { IUserInfo } from '@avans-nx-workshop/shared/api';
 
 @Component({
   selector: 'avans-nx-workshop-user-details',
   templateUrl: './user-details.component.html',
 })
 export class UserDetailsComponent implements OnInit {
-  user: IUserInfo | undefined;  // Define a property to hold the user data
-  users: IUserInfo[] = [
-    {
-      _id: "1",
-      name: "robin",
-      emailAddress: "r.schellius@avans.nl",
-      role: UserRole.Admin, // Adjust according to your `UserRole` definition
-      gender: UserGender.Male, // Adjust according to your `UserGender` definition
-      password: "secret",
-      isActive: true,
-      profileImgUrl: "url"
-    },
-    {
-      _id: "2",
-      name: "Davide",
-      emailAddress: "d.ambesi@avans.nl",
-      role: UserRole.Admin, // Adjust according to your `UserRole` definition
-      gender: UserGender.Male,
-      password: "secret",
-      isActive: true,
-      profileImgUrl: "url"
-    }
-  ];  // Example list of users
+  user: IUserInfo | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,  // To read route parameters
+    private userService: UserService  // To fetch user data
+  ) {}
 
   ngOnInit(): void {
-    const userId = this.route.snapshot.paramMap.get('id');  // Capture the user ID from the route
-
+    const userId = this.route.snapshot.paramMap.get('id');  // Get the 'id' from the URL
     if (userId) {
-        // Find the user by ID
+      this.userService.getUserById(userId).subscribe(user => {
+        this.user = user;  // Fetch and assign the user data
+      });
     }
   }
 }
