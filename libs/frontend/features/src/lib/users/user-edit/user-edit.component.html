@@ -1,1 +1,27 @@
-<p>user-edit works!</p>
+<h2>Edit User</h2>
+<form>
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" [(ngModel)]="user.name" name="name" type="text" />
+  </div>
+  
+  <div>
+    <label for="emailAddress">Email:</label>
+    <input id="emailAddress" [(ngModel)]="user.emailAddress" name="emailAddress" type="email" />
+  </div>
+  
+  <div>
+    <label for="role">Role:</label>
+    <select id="role" [(ngModel)]="user.role" name="role">
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+    </select>
+  </div>
+  
+  <div>
+    <label for="isActive">Active:</label>
+    <input id="isActive" [(ngModel)]="user.isActive" name="isActive" type="checkbox" />
+  </div>
+
+  <button type="button" (click)="saveChanges()">Save Changes</button>
+</form>

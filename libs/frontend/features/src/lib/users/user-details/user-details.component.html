@@ -5,6 +5,7 @@
     <p><strong>Gender:</strong> {{ user.gender }}</p>
     <p><strong>Status:</strong> {{ user.isActive ? 'Active' : 'Inactive' }}</p>
     <img [src]="user.profileImgUrl" alt="Profile Image">
+    <a [routerLink]="['/edit', user._id]"><button type="button" class="btn btn-primary">edit this user</button></a>
   </div>
   
   <ng-template #noUser>

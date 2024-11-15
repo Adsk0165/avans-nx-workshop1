@@ -31,7 +31,7 @@ export class UserService {
   }
 
   // Update an existing user
-  updateUser(updatedUser: IUserInfo): Observable<IUserInfo> {
+  updateUser(updatedUser: IUserInfo ): Observable<IUserInfo> {
     const index = this.users.findIndex(u => u._id === updatedUser._id);
     if (index !== -1) {
       this.users[index] = updatedUser; // Update the user at the found index
