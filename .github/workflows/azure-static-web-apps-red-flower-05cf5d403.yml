@@ -40,11 +40,15 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./apps" # App source code path
+          app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "dist/apps/my-app" # Built app content directory - optional
           github_id_token: ${{ steps.idtoken.outputs.result }}
+          app_build_command: 'npm run build:my-app'
           ###### End of Repository/Build Configurations ######
+          # Zorg dat je het volgende  script in de ./project.json hebt toegevoegd voor jouw app
+          
+               
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
