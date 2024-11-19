@@ -44,7 +44,7 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "dist/apps/my-app" # Built app content directory - optional
           github_id_token: ${{ steps.idtoken.outputs.result }}
-          app_build_command: 'npm run build:my-app'
+          app_build_command: 'npm run build:my-app --skip-nx-cache'
           ###### End of Repository/Build Configurations ######
           # Zorg dat je het volgende  script in de ./project.json hebt toegevoegd voor jouw app
           
