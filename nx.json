@@ -3,6 +3,15 @@
     "affected": {
         "defaultBase": "master"
     },
+    "tasksRunnerOptions": {
+    "default": {
+    "runner": "@nrwl/workspace/tasks-runners/default",
+    "options": {
+      "cacheableOperations": ["build", "test", "lint"],
+      "localCache": true
+    }
+    }
+    },
     "targetDefaults": {
         "build": {
             "cache": true,
