@@ -3,15 +3,6 @@
     "affected": {
         "defaultBase": "master"
     },
-    "tasksRunnerOptions": {
-    "default": {
-    "runner": "@nrwl/workspace/tasks-runners/default",
-    "options": {
-      "cacheableOperations": ["build", "test", "lint"],
-      "localCache": true
-    }
-    }
-    },
     "targetDefaults": {
         "build": {
             "cache": true,
@@ -69,5 +60,5 @@
             "style": "css"
         }
     },
-    "nxCloudAccessToken": "ZjM2ZDA1YjgtMWY1Ny00M2YxLWFlZmMtNjUxYzk3OWFjYmJmfHJlYWQtd3JpdGU="
+    "neverConnectToCloud": true
 }
