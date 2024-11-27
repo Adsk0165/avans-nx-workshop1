@@ -12,7 +12,7 @@ export class UserListComponent implements OnInit {
     constructor(private userService: UserService) {}  // Inject the UserService
   
     ngOnInit(): void {
-      this.userService.getUsers().subscribe((users) => {
+      this.userService.getUserAsync().subscribe((users) => {
         this.users = users;  // Assign the fetched users to the component's 'users' property
       });
     }

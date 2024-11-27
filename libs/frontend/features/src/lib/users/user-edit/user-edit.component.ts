@@ -37,17 +37,17 @@ export class UserEditComponent implements OnInit {
   private loadUserData(id: string): void {
     this.userService.getUserById(id).subscribe(userData => {
       if (userData) {
-        this.user = userData;  // Only assign if userData is defined
+        this.user = userData; 
       } else {
         console.error("User not found!");
-        // Optionally redirect or handle the "user not found" case
+        
       }
     });
   }
 
   saveChanges(): void {
     this.userService.updateUser(this.user).subscribe(() => {
-      this.router.navigate(['/users']);  // Redirect after save
+      this.router.navigate(['/users']);  
     });
   }
 }

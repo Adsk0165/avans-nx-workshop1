@@ -5,6 +5,9 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import {provideHttpClient } from '@angular/common/http'
+import { UserService } from './users/user.service';
+import { QuizEditComponent } from './quiz/quiz-edit/quiz-edit.component';
 
 @NgModule({
     imports: [CommonModule, RouterModule , FormsModule],
@@ -12,12 +15,17 @@ import { FormsModule } from '@angular/forms';
         UserDetailsComponent,
         UserDetailsComponent,
         UserListComponent,
-        UserEditComponent
+        UserEditComponent,
+        QuizEditComponent
     ],
     exports: [
         UserListComponent, 
         UserDetailsComponent, 
         UserEditComponent
+    ],
+    providers: [
+        UserService,
+        provideHttpClient()
     ]
 })
 export class FeaturesModule {}

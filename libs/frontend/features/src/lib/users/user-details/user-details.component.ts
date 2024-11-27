@@ -8,7 +8,7 @@ import { IUserInfo } from '@avans-nx-workshop/shared/api';
   templateUrl: './user-details.component.html',
 })
 export class UserDetailsComponent implements OnInit {
-  user: IUserInfo | undefined;
+  user?: IUserInfo;
 
   constructor(
     private route: ActivatedRoute, 
@@ -18,7 +18,7 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('id');  
     if (userId) {
-      this.userService.getUserById(userId).subscribe(user => {
+      this.userService.getUserByIdAsync(userId).subscribe(user => {
         this.user = user;  
       });
     }
