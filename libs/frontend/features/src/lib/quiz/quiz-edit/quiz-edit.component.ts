@@ -41,7 +41,7 @@ export class QuizEditComponent implements OnInit {
       if (quiz) {
         // Populate the form with quiz data
         this.quizForm.patchValue({
-          Title: quiz.title,
+          Title: quiz.name,
           difficulty: quiz.difficulty,
           description: quiz.description,
         });

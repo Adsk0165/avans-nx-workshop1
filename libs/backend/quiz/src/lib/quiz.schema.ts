@@ -14,7 +14,7 @@ export class Quiz {
     _id!: string;
 
   @Prop({ required: true })
-  name: string;
+  title: string;
 
   @Prop({ required: true, enum: QuizDifficulty })
   difficulty: QuizDifficulty;
@@ -23,7 +23,7 @@ export class Quiz {
   description: string;
 
   constructor(name: string, difficulty: QuizDifficulty, description: string) {
-    this.name = name;
+    this.title = name;
     this.difficulty = difficulty;
     this.description = description;
   }

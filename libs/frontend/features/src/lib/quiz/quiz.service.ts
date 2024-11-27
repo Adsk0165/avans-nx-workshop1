@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { environment } from '@avans-nx-workshop/shared/util-env';
-import { IQuiz, IQuizInfo } from '@avans-nx-workshop/shared/api';
+import { IQuiz, IQuizIdentity, IQuizInfo } from '@avans-nx-workshop/shared/api';
+import { ApiResponse } from '@avans-nx-workshop/shared/api'
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,24 @@ export class QuizService {
 
   constructor(private http: HttpClient) {}
 
-  getAllQuizzes(): Observable<IQuiz[]> {
-    return this.http.get<IQuiz[]>(this.apiUrl);
+  getAllQuizzes(): Observable<IQuizInfo[]> {
+    return this.http.get<ApiResponse<any>>(environment.dataApiUrl + '/quiz').pipe(
+         tap((response) => console.log(response)),
+         map((response) => response.results),
+         tap((response) => console.log(response)),
+         tap((quizzes) => {
+          quizzes.forEach((quiz) => console.log('Quiz Title:', quiz.name)); // Log only the title
+        })
+        );
   }
+
+  // getUserAsync(): Observable<IUserInfo[]>{
+  //   return this.http.get<ApiResponse<any>>(environment.dataApiUrl + '/user').pipe(
+  //    tap((response) => console.log(response)),
+  //    map((response) => response.results),
+  //    tap((response) => console.log(response))
+  //   );
+ //}
 
   getQuizById(id: string): Observable<IQuiz> {
     return this.http.get<IQuiz>(`${this.apiUrl}/${id}`);

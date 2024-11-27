@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import {provideHttpClient } from '@angular/common/http'
 import { UserService } from './users/user.service';
 import { QuizEditComponent } from './quiz/quiz-edit/quiz-edit.component';
+import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
 
 @NgModule({
     imports: [CommonModule, RouterModule , FormsModule],
@@ -16,7 +17,8 @@ import { QuizEditComponent } from './quiz/quiz-edit/quiz-edit.component';
         UserDetailsComponent,
         UserListComponent,
         UserEditComponent,
-        QuizEditComponent
+        QuizEditComponent,
+        QuizListComponent
     ],
     exports: [
         UserListComponent, 

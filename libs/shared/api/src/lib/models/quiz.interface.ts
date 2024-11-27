@@ -10,7 +10,7 @@ export enum QuizDifficulty {
 
 // Minimal Quiz Info
 export interface IQuizIdentity {
-    title: string;
+    name: string;
     description: string;
     difficulty: QuizDifficulty;
 }
@@ -37,7 +37,7 @@ export interface IQuestion {
 }
 
 // DTOs for Quiz Operations
-export type ICreateQuiz = Pick<IQuiz, 'title' | 'description' | 'difficulty'> & {
+export type ICreateQuiz = Pick<IQuiz, 'name' | 'description' | 'difficulty'> & {
     questions: IQuestion[];
 };
 

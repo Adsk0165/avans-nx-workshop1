@@ -1,0 +1,25 @@
+<table class="table table-border table-hover">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>description</th>
+            <th>difficulty</th>
+            <th>ImageUrl</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let quiz of quizzes">
+            <td>{{quiz._id}}</td>
+            <td>
+                {{ quiz.name }}
+            </td>
+            <td>
+                {{quiz.description}}
+            </td>
+            <td>
+                {{quiz.difficulty}}
+            </td>
+        </tr>
+    </tbody>
+</table>
