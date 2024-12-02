@@ -5,6 +5,7 @@ import {
     Param,
     Post,
     Put,
+    Delete,
     UseGuards
 } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -46,4 +47,9 @@ export class UserController {
     ): Promise<IUserInfo | null> {
         return this.userService.update(id, user);
     }
+
+    @Delete(':id')
+    async deleteUser(@Param('id') id: string): Promise<void> {
+    await this.userService.delete(id);
+  }
 }

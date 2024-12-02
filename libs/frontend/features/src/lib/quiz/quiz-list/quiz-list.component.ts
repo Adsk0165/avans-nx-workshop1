@@ -18,4 +18,19 @@ export class QuizListComponent implements OnInit {
         this.quizzes = quizzes;  // Assign the fetched users to the component's 'users' property
       });
     }
+
+    deleteQuiz(id: string): void {
+      if (confirm('Are you sure you want to delete this quiz?')) {
+          this.quizService.deleteQuiz(id).subscribe({
+              next: () => {
+                  alert('Quiz deleted successfully.');
+                   // Reload the quiz list after deletion
+              },
+              error: (err) => {
+                  console.error('Error deleting quiz:', err);
+                  alert('Failed to delete quiz.');
+              },
+          });
+      }
+  }
 }

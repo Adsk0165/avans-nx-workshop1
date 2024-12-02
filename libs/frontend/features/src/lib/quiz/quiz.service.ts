@@ -19,7 +19,7 @@ export class QuizService {
          map((response) => response.results),
          tap((response) => console.log(response)),
          tap((quizzes) => {
-          quizzes.forEach((quiz) => console.log('Quiz Title:', quiz.name)); // Log only the title
+          quizzes.forEach((quiz) => console.log('Quiz Title:', quiz.title)); // Log only the title
         })
         );
   }
@@ -32,17 +32,28 @@ export class QuizService {
   //   );
  //}
 
-  getQuizById(id: string): Observable<IQuiz> {
-    return this.http.get<IQuiz>(`${this.apiUrl}/${id}`);
-  }
+ getQuizById(id: string): Observable<IQuizInfo | undefined> {
+  return this.http.get<ApiResponse<any>>(`${environment.dataApiUrl}/quiz/${id}`).pipe(
+    tap((response) => console.log('Raw response from API:', response)),
+    map((response) => response.results|| undefined), 
+    tap((user) => {
+      if (!user) {
+        console.error('No user found for the given ID:', id);
+      }
+    })
+  );
+}
 
   createQuiz(quiz: Partial<IQuiz>): Observable<IQuiz> {
     return this.http.post<IQuiz>(this.apiUrl, quiz);
   }
 
-  updateQuiz(id: string, quiz: Partial<IQuiz>): Observable<IQuiz> {
-    return this.http.put<IQuiz>(`${this.apiUrl}/${id}`, quiz);
+  updateQuiz(quiz: Partial<IQuizInfo>): Observable<IQuizInfo> {
+    const quizid = quiz._id;
+    return this.http.put<IQuizInfo>(`${environment.dataApiUrl}/quiz/${quizid}`, quiz);
   }
+
+ 
 
   deleteQuiz(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);

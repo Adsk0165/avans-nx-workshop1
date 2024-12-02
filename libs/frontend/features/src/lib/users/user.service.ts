@@ -1,7 +1,7 @@
 // user.service.ts
 
 import { EnvironmentInjector, Injectable } from '@angular/core';
-import { map, Observable, of, take, tap } from 'rxjs';  
+import { catchError, map, Observable, of, take, tap } from 'rxjs';  
 import { ApiResponse, IUserInfo, UserGender, UserRole } from '@avans-nx-workshop/shared/api';  
 import { HttpClient } from '@angular/common/http';
 import {environment} from '@avans-nx-workshop/shared/util-env'
@@ -52,13 +52,26 @@ export class UserService {
 //     return of(user); 
 //   }
 
+deleteUser(userId: string): Observable<void> {
+return this.http.delete<void>(`${environment.dataApiUrl}/user/${userId}`);
+}
   
-  updateUser(updatedUser: IUserInfo ): Observable<IUserInfo> {
+  updateUserNoAsync(updatedUser: IUserInfo ): Observable<IUserInfo> {
     const index = this.users!.findIndex(u => u._id === updatedUser._id);
     if (index !== -1) {
       this.users![index] = updatedUser; 
     }
     return of(updatedUser); 
+  }
+  
+
+  createUser(user: Partial<IUserInfo>): Observable<IUserInfo> {
+    return this.http.post<IUserInfo>(environment.dataApiUrl + '/user',user)
+  }
+
+  updateUser(user: Partial<IUserInfo>): Observable<IUserInfo> {
+    const userId = user._id; // Use the user's ID to construct the endpoint
+    return this.http.put<IUserInfo>(`${environment.dataApiUrl}/user/${userId}`, user);
   }
 
   

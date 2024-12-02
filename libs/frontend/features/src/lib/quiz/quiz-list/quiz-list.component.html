@@ -2,24 +2,29 @@
     <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>description</th>
-            <th>difficulty</th>
-            <th>ImageUrl</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Difficulty</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let quiz of quizzes">
-            <td>{{quiz._id}}</td>
+            <td>{{ quiz._id }}</td>
             <td>
-                {{ quiz.name }}
+                <a [routerLink]="['/quiz', quiz._id]">
+                    {{ quiz.title }}
+                </a>
             </td>
+            <td>{{ quiz.description }}</td>
+            <td>{{ quiz.difficulty }}</td>
             <td>
-                {{quiz.description}}
-            </td>
-            <td>
-                {{quiz.difficulty}}
+                <button (click)="deleteQuiz(quiz._id)" class="btn btn-danger">Remove</button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<button type="button" class="btn btn-secondary" style="margin-top: 10px; text-decoration: none !important;">
+    <a [routerLink]="['/quiz/new']">Add Quiz</a>
+</button>

@@ -1,24 +1,36 @@
 <table class="table table-border table-hover">
     <thead>
-        <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>isActive</th>
-            <th>ImageUrl</th>
-        </tr>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>isActive</th>
+        <th>Image URL</th>
+        <th>Actions</th> <!-- Added an Actions column -->
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users">
-            <td>{{user._id}}</td>
-            <td>
-            <a [routerLink]="['/user', user._id]">
-                {{ user.name }}
-            </a>
-            </td>
-            <td>{{user.emailAddress}}</td>
-            <td>{{user.isActive}}</td>
-            <td>{{user.profileImgUrl}}</td>
-        </tr>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ user._id }}</td>
+        <td>
+          <a [routerLink]="['/user', user._id]">
+            {{ user.name }}
+          </a>
+        </td>
+        <td>{{ user.emailAddress }}</td>
+        <td>{{ user.isActive }}</td>
+        <td>{{ user.profileImgUrl }}</td>
+        <td>
+          <button (click)="deleteUser(user._id, i)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
+  
+  <button 
+    type="button" 
+    class="btn btn-secondary" 
+    style="margin-top: 10px; text-decoration: none !important;">
+    <a [routerLink]="['/users/new']" style="text-decoration: none; color: white;">Add User</a>
+  </button>
+  

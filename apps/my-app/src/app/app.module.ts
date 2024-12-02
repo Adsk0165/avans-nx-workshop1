@@ -10,6 +10,7 @@ import { FooterComponent } from './components/ui/footer/footer.component';
 import { FeaturesModule } from '@avans-nx-workshop/features';
 import { NavComponent } from './components/ui/nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule  } from '@angular/forms'
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
             initialNavigation: 'enabledBlocking'
         }),
         FeaturesModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

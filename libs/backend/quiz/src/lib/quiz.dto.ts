@@ -4,7 +4,7 @@ import { QuizDifficulty } from './quiz.schema';
 export class CreateQuizDto {
   @IsString()
   @IsNotEmpty()
-  name: string | undefined;
+  title: string | undefined;
 
   @IsEnum(QuizDifficulty)
   difficulty: QuizDifficulty | undefined;
@@ -16,7 +16,7 @@ export class CreateQuizDto {
 
 export class UpdateQuizDto {
   @IsString()
-  name?: string | undefined;
+  title?: string | undefined;
 
   @IsEnum(QuizDifficulty)
   difficulty?: QuizDifficulty;

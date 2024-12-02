@@ -1,9 +1,29 @@
-<p>quiz works</p>
+<h2>Edit Quiz</h2>
+<form>
+  <div>
+    <label for="title">title:</label>
+    <input id="title" [(ngModel)]="quiz.title" name="title" type="text" />
+  </div>
 
-<form #quizEditForm="ngForm">
-    <div class="row">
-        <div class="col-6">
-          <input type="text" class="form-control" placeholder="Quiz titel">
-        </div>
-      </div>
+  <div>
+    <label for="name">title:</label>
+    <input id="name" [(ngModel)]="quiz.title" name="name" type="text" />
+  </div>
+  
+  <div>
+    <label for="emailAddress">description:</label>
+    <input id="emailAddress" [(ngModel)]="quiz.description" name="emailAddress" type="email" />
+  </div>
+  
+  <div>
+    <label for="role">difficulty:</label>
+    <select id="role" [(ngModel)]="quiz.difficulty" name="role">
+      <option value="Easy">Easy</option>
+      <option value="Medium">Medium</option>
+      <option value="Hard">Hard</option>
+    </select>
+  </div>
+
+
+  <button type="button" (click)="saveChanges()">Save Changes</button>
 </form>

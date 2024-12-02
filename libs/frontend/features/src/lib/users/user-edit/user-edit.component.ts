@@ -35,7 +35,7 @@ export class UserEditComponent implements OnInit {
   }
 
   private loadUserData(id: string): void {
-    this.userService.getUserById(id).subscribe(userData => {
+    this.userService.getUserByIdAsync(id).subscribe(userData => {
       if (userData) {
         this.user = userData; 
       } else {
@@ -46,8 +46,16 @@ export class UserEditComponent implements OnInit {
   }
 
   saveChanges(): void {
-    this.userService.updateUser(this.user).subscribe(() => {
-      this.router.navigate(['/users']);  
+    this.userService.updateUser(this.user).subscribe({
+      next: () => {
+        alert('User updated successfully!');
+        this.router.navigate(['/users']);  
+      },
+      error: (err) => {
+        console.error("Error updating user:", err);
+        alert('Could not update user.');
+      },
     });
   }
+
 }

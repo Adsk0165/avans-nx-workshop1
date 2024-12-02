@@ -16,4 +16,21 @@ export class UserListComponent implements OnInit {
         this.users = users;  // Assign the fetched users to the component's 'users' property
       });
     }
+
+    deleteUser(userId: string, index: number): void {
+      if (confirm('Are you sure you want to delete this user?')) {
+        this.userService.deleteUser(userId).subscribe({
+          next: () => {
+            // Remove the user from the list
+            this.users.splice(index, 1);
+            alert('User deleted successfully!');
+          },
+          error: (err: any) => {
+            console.error('Error deleting user:', err);
+            alert('Failed to delete user.');
+          },
+        });
+      }
+    }
+  
 }

@@ -1,64 +1,60 @@
 import { Component, OnInit } from '@angular/core';
+import { IUserInfo, UserRole, UserGender, IQuizInfo, QuizDifficulty, IQuiz } from "@avans-nx-workshop/shared/api";
+import { QuizService } from '../quiz.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IQuiz } from '@avans-nx-workshop/shared/api';
-import { QuizService } from '@avans-nx-workshop/features';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'quiz-edit-component',
-  templateUrl: 'quiz-edit.component.html',
+  selector: 'avans-nx-workshop-quiz-edit',
+  templateUrl: './quiz-edit.component.html',
+  styles: []
 })
 export class QuizEditComponent implements OnInit {
-  quizForm: FormGroup;
-  quizId: string | null = null;
+  quizzes: IQuizInfo[] = [];
+  quiz: IQuizInfo = {
+    title: '',
+    description: '',
+    difficulty: QuizDifficulty.Easy, // default role
+    isActive: false,
+    _id: '',
+    createdAt: undefined,
+    updatedAt: undefined
+  };
 
   constructor(
-    private quizService: QuizService,
+    private quizservice: QuizService,
     private route: ActivatedRoute,
-    private router: Router,
-    private formBuilder: FormBuilder
-  ) {
-    // Initialize the form group
-    this.quizForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      difficulty: ['', Validators.required],
-      description: ['', Validators.required],
-    });
-  }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Get the quiz ID from the route parameters
-    this.quizId = this.route.snapshot.paramMap.get('id');
-
-    if (this.quizId) {
-      this.loadQuiz(this.quizId);
+    const quizid = this.route.snapshot.paramMap.get('id');
+    if (quizid) {
+      this.loadUserData(quizid);
     }
   }
 
-  loadQuiz(id: string): void {
-    this.quizService.getQuizById(id).subscribe((quiz) => {
-      if (quiz) {
-        // Populate the form with quiz data
-        this.quizForm.patchValue({
-          Title: quiz.name,
-          difficulty: quiz.difficulty,
-          description: quiz.description,
-        });
+  private loadUserData(id: string): void {
+    this.quizservice.getQuizById(id).subscribe(quizData => {
+      if (quizData) {
+        this.quiz = quizData; 
+      } else {
+        console.error("User not found!");
+        
       }
     });
   }
 
-  saveQuiz(): void {
-    if (this.quizForm.valid && this.quizId) {
-      const updatedQuiz: IQuiz = {
-        ...this.quizForm.value,
-        _id: this.quizId,
-      };
-
-      this.quizService.updateQuiz(updatedQuiz._id,updatedQuiz).subscribe(() => {
-        this.router.navigate(['/quizzes']); // Redirect to the quiz list or another page
-      });
-    }
+  saveChanges(): void {
+    this.quizservice.updateQuiz(this.quiz).subscribe({
+      next: () => {
+        alert('User updated successfully!');
+        this.router.navigate(['/quizzes']);  
+      },
+      error: (err) => {
+        console.error("Error updating user:", err);
+        alert('Could not update user.');
+      },
+    });
   }
+
 }

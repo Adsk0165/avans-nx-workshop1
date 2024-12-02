@@ -9,6 +9,9 @@ import {provideHttpClient } from '@angular/common/http'
 import { UserService } from './users/user.service';
 import { QuizEditComponent } from './quiz/quiz-edit/quiz-edit.component';
 import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
+import { UserAddComponent } from './users/user-add/user-add.component';
+import { QuizAddComponent } from './quiz/quiz-create/quiz-create.component';
+import { QuizDetailsComponent } from './quiz/quiz-details/quiz-details.component';
 
 @NgModule({
     imports: [CommonModule, RouterModule , FormsModule],
@@ -18,12 +21,18 @@ import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
         UserListComponent,
         UserEditComponent,
         QuizEditComponent,
-        QuizListComponent
+        QuizListComponent,
+        UserAddComponent,
+        QuizDetailsComponent,
+        QuizAddComponent
+    
     ],
     exports: [
         UserListComponent, 
         UserDetailsComponent, 
-        UserEditComponent
+        UserEditComponent,
+        UserAddComponent,
+        
     ],
     providers: [
         UserService,

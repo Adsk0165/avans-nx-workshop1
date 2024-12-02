@@ -48,4 +48,13 @@ export class UserService {
         this.logger.log(`Update user ${user.name}`);
         return this.userModel.findByIdAndUpdate({ _id }, user);
     }
+
+    async delete(_id: string): Promise<{ message: string }> {
+        this.logger.log(`Deleting user with id ${_id}`);
+        const result = await this.userModel.deleteOne({ _id }).exec();
+        if (result.deletedCount === 0) {
+            throw new HttpException(`User with id ${_id} not found`, 404);
+        }
+        return { message: `User with id ${_id} deleted successfully` };
+    }
 }
