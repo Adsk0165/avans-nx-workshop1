@@ -19,7 +19,7 @@ async function bootstrap() {
     app.setGlobalPrefix(globalPrefix);
 
     const corsOptions: CorsOptions = {};
-    app.enableCors(corsOptions);
+    app.enableCors();
 
     app.useGlobalInterceptors(new ApiResponseInterceptor());
     app.useGlobalPipes(new ValidationPipe());
