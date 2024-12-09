@@ -45,16 +45,14 @@ export class QuizService {
 }
 
   createQuiz(quiz: Partial<IQuiz>): Observable<IQuiz> {
-    return this.http.post<IQuiz>(this.apiUrl, quiz);
+    return this.http.post<IQuiz>(this.apiUrl + "/generate-from-api", quiz);
   }
 
   updateQuiz(quiz: Partial<IQuizInfo>): Observable<IQuizInfo> {
     const quizid = quiz._id;
     return this.http.put<IQuizInfo>(`${environment.dataApiUrl}/quiz/${quizid}`, quiz);
   }
-
- 
-
+  
   deleteQuiz(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

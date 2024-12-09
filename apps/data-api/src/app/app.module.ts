@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { environment } from '@avans-nx-workshop/shared/util-env';
 import { Logger } from '@nestjs/common';
 import { QuizModule } from '../../../../libs/backend/quiz/src'
+import {QuestionModule} from '@avans-nx-workshop/libs/backend/question'
 
 @Module({
     imports: [
@@ -24,7 +25,8 @@ import { QuizModule } from '../../../../libs/backend/quiz/src'
             }
         }),
         UsersModule,
-        QuizModule
+        QuizModule,
+        QuestionModule
     ],
     controllers: [],
     providers: []

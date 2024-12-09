@@ -1,34 +1,34 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get,Put,Delete, Param } from '@nestjs/common';
 import { QuizService } from './quiz.service';
-import { CreateQuizDto, UpdateQuizDto } from './quiz.dto';
+import { CreateQuizDto } from './quiz.dto';
 import { Quiz } from './quiz.schema';
 
 @Controller('quiz')
 export class QuizController {
   constructor(private readonly quizService: QuizService) {}
 
-  @Post()
-  async create(@Body() createQuizDto: CreateQuizDto): Promise<Quiz> {
-    return this.quizService.create(createQuizDto);
+  @Post('generate-from-api')
+  async generateQuizFromAPI(@Body() createQuizDto: CreateQuizDto): Promise<Quiz> {
+    return this.quizService.createQuizWithAPIQuestions(createQuizDto);
   }
 
   @Get()
-  async findAll(): Promise<Quiz[]> {
-    return this.quizService.findAll();
+  async getAllQuizzes() {
+    return this.quizService.getAllQuizzes();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Quiz> {
-    return this.quizService.findOne(id);
+  async getQuizById(@Param('id') id: string) {
+    return this.quizService.getQuizById(id);
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() updateQuizDto: UpdateQuizDto): Promise<Quiz> {
-    return this.quizService.update(id, updateQuizDto);
+  async updateQuiz(@Param('id') id: string, @Body() updateQuizDto: Partial<CreateQuizDto>) {
+    return this.quizService.updateQuiz(id, updateQuizDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string): Promise<void> {
-    return this.quizService.remove(id);
+  async deleteQuiz(@Param('id') id: string) {
+    return this.quizService.deleteQuiz(id);
   }
 }

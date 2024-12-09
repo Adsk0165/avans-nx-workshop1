@@ -34,7 +34,12 @@
             "@avans-nx-workshop/frontend/common": [
                 "libs/frontend/common/src/index.ts"
             ],
-            "@avans-nx-workshop/frontend/ui": ["libs/frontend/ui/src/index.ts"],
+            "@avans-nx-workshop/libs/backend/question": [
+                "libs/backend/question/src/index.ts"
+            ],
+            "@avans-nx-workshop/libs/backend/vraag": [
+                "libs/backend/vraag/src/index.ts"
+            ],
             "@avans-nx-workshop/quiz": ["libs/backend/quiz/src/index.ts"],
             "@avans-nx-workshop/share-a-meal/auth": [
                 "libs/share-a-meal/auth/src/index.ts"

@@ -5,6 +5,8 @@ import { User as UserModel, UserDocument } from './user.schema';
 import { IUser, IUserInfo } from '@avans-nx-workshop/shared/api';
 // import { Meal, MealDocument } from '@avans-nx-workshop/backend/features';
 import { CreateUserDto, UpdateUserDto } from '@avans-nx-workshop/backend/dto';
+import { promises } from 'dns';
+import { ICreateUser } from '@avans-nx-workshop/shared/api';
 
 @Injectable()
 export class UserService {
@@ -37,6 +39,21 @@ export class UserService {
             .exec();
         return item;
     }
+
+    create1(userData: ICreateUser): Promise<IUserInfo> {
+        // Create a new user document without setting the _id (MongoDB will handle that)
+        const user = new this.userModel({
+          name: userData.name,
+          emailAddress: userData.emailAddress,
+          password: userData.password,
+          profileImgUrl: '',  // Optional field (you can set a default or null if not needed)
+           // Default value
+          isActive: true, // Default active status
+        });
+      
+        return user.save(); // MongoDB will auto-generate the _id field
+      }
+      
 
     async create(user: CreateUserDto): Promise<IUserInfo> {
         this.logger.log(`Create user ${user.name}`);

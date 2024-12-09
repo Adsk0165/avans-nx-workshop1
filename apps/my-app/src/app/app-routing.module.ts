@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { QuizListComponent } from '@avans-nx-workshop/features';
 import { UserAddComponent } from '@avans-nx-workshop/features';
+import { LoginComponent, RegisterComponent } from '@avans-nx-workshop/frontend/common';
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent },
   {path: 'edit/:id', component: UserEditComponent},
@@ -17,7 +18,9 @@ const routes: Routes = [
   { path: 'quizedit/:id', component: QuizEditComponent},
   { path: 'quizzes', component: QuizListComponent},
   {path: 'users/new', component: UserAddComponent},
-  {path: 'quiz/:id', component: QuizDetailsComponent}
+  {path: 'quiz/:id', component: QuizDetailsComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

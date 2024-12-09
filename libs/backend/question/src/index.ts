@@ -1,0 +1,5 @@
+export * from './lib/question.module'
+export * from './lib/question.controller'
+export * from './lib/question.dto'
+export * from './lib/question.schema'
+export * from './lib/question.service'

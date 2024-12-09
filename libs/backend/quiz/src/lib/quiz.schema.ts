@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IsMongoId } from 'class-validator';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 export enum QuizDifficulty {
   Easy = 'Easy',
@@ -11,7 +11,7 @@ export enum QuizDifficulty {
 @Schema()
 export class Quiz {
   @IsMongoId()
-    _id!: string;
+  _id!: string;
 
   @Prop({ required: true })
   title: string;
@@ -22,15 +22,16 @@ export class Quiz {
   @Prop({ required: true })
   description: string;
 
+  // Array of references to Question documents
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Question' }] })
+  questions: Types.ObjectId[] | undefined;
+
   constructor(name: string, difficulty: QuizDifficulty, description: string) {
     this.title = name;
     this.difficulty = difficulty;
     this.description = description;
   }
 }
-
-
-
 
 export type QuizDocument = Quiz & Document;
 

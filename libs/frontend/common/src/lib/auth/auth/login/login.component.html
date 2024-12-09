@@ -1,0 +1,48 @@
+<div class="auth-container">
+  <h2 class="auth-header">Login</h2>
+
+  <!-- Form for Login -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="emailAddress" class="form-label">Email Address</label>
+      <input
+        id="emailAddress"
+        formControlName="emailAddress"
+        type="emailAddress"
+        class="form-control"
+        placeholder="Enter your email"
+        [class.is-invalid]="loginForm.get('emailAddress')?.invalid && submitted"
+      />
+      <div *ngIf="loginForm.get('email')?.invalid && submitted" class="invalid-feedback">
+        Please enter a valid email address.
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password" class="form-label">Password</label>
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        class="form-control"
+        placeholder="Enter your password"
+        [class.is-invalid]="loginForm.get('password')?.invalid && submitted"
+      />
+      <div *ngIf="loginForm.get('password')?.invalid && submitted" class="invalid-feedback">
+        Password must be between 3 and 15 characters long.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid || submitted">
+      Login
+    </button>
+  </form>
+
+  <!-- Optional Redirect Link to Register Page -->
+  <div class="auth-footer">
+    <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+  </div>
+</div>

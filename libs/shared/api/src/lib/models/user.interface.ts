@@ -37,7 +37,13 @@ export interface IUserInfo extends IUserRegistration {
     role: UserRole;
     gender: UserGender;
     isActive: boolean;
+    token?: string; 
 }
+
+export interface IAuthenticatedUser extends IUserInfo {
+    token: string; // Required after login
+}
+
 
 /**
  * All user information, incl. domain entities

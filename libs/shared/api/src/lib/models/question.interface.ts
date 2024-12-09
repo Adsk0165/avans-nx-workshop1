@@ -1,6 +1,25 @@
-export interface IQuestion {
-    questionText: string; // The text of the question
-    options: string[]; // Possible answers for the question
-    correctAnswerIndex: number; // The index of the correct answer in the options array
-    explanation?: string; // Optional explanation for the correct answer
+import { Id } from './id.type';
+
+export enum QuestionDifficulty {
+  Easy = 'Easy',
+  Medium = 'Medium',
+  Hard = 'Hard',
 }
+
+export interface IQuestion {
+  _id: Id;
+  title: string;
+  description: string;
+  options: string[]; 
+  correctAnswer: string;
+  difficulty: QuestionDifficulty;
+  tags?: string[]; 
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export type ICreateQuestion = Pick<
+  IQuestion,
+  'title' | 'description' | 'options' | 'correctAnswer' | 'difficulty' | 'tags'
+>;
+export type IUpdateQuestion = Partial<ICreateQuestion>;

@@ -11,8 +11,8 @@ import { FeaturesModule } from '@avans-nx-workshop/features';
 import { NavComponent } from './components/ui/nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule  } from '@angular/forms'
-
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {FrontendCommonModule} from '@avans-nx-workshop/frontend/common'
 @NgModule({
     declarations: [
         AppComponent,
@@ -29,7 +29,9 @@ import { ReactiveFormsModule  } from '@angular/forms'
         }),
         FeaturesModule,
         AppRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule,
+        FrontendCommonModule
     ],
     providers: [],
     bootstrap: [AppComponent]
