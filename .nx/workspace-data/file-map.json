@@ -1,0 +1,1705 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.2.2",
+  "pathMappings": {
+    "@avans-nx-workshop/backend/auth": [
+      "libs/backend/auth/src/index.ts"
+    ],
+    "@avans-nx-workshop/backend/dto": [
+      "libs/backend/dto/src/index.ts"
+    ],
+    "@avans-nx-workshop/backend/features": [
+      "libs/backend/features/src/index.ts"
+    ],
+    "@avans-nx-workshop/backend/neo4j": [
+      "libs/backend/neo4j/src/index.ts"
+    ],
+    "@avans-nx-workshop/backend/user": [
+      "libs/backend/user/src/index.ts"
+    ],
+    "@avans-nx-workshop/features": [
+      "libs/frontend/features/src/index.ts"
+    ],
+    "@avans-nx-workshop/frontend/common": [
+      "libs/frontend/common/src/index.ts"
+    ],
+    "@avans-nx-workshop/libs/backend/question": [
+      "libs/backend/question/src/index.ts"
+    ],
+    "@avans-nx-workshop/libs/backend/vraag": [
+      "libs/backend/vraag/src/index.ts"
+    ],
+    "@avans-nx-workshop/quiz": [
+      "libs/backend/quiz/src/index.ts"
+    ],
+    "@avans-nx-workshop/share-a-meal/auth": [
+      "libs/share-a-meal/auth/src/index.ts"
+    ],
+    "@avans-nx-workshop/share-a-meal/common": [
+      "libs/share-a-meal/common/src/index.ts"
+    ],
+    "@avans-nx-workshop/share-a-meal/features": [
+      "libs/share-a-meal/features/src/index.ts"
+    ],
+    "@avans-nx-workshop/share-a-meal/ui": [
+      "libs/share-a-meal/ui/src/index.ts"
+    ],
+    "@avans-nx-workshop/share-a-meal/user": [
+      "libs/share-a-meal/user/src/index.ts"
+    ],
+    "@avans-nx-workshop/shared/api": [
+      "libs/shared/api/src/index.ts"
+    ],
+    "@avans-nx-workshop/shared/util-env": [
+      "libs/shared/util-env/src/index.ts"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".github/workflows/azure-static-web-apps-red-flower-05cf5d403.yml",
+        "hash": "5477879974108806077"
+      },
+      {
+        "file": ".eslintignore",
+        "hash": "7663861978715868291"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "13886031015971695223"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "13768341756370933221"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "12333515226966617182"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "8491837053101957257"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "3395189204293871444"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": "README.md",
+        "hash": "1955868086715526908"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "6192629144332209564"
+      },
+      {
+        "file": "migrations.json",
+        "hash": "14011026923100632137"
+      },
+      {
+        "file": "nx.json",
+        "hash": "14084715383009907566"
+      },
+      {
+        "file": "libs/share-a-meal/readme.txt",
+        "hash": "8731589497805983804"
+      },
+      {
+        "file": "Nx-workshop.postman_collection.json",
+        "hash": "7975152560232430547"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "18315524891129148814"
+      },
+      {
+        "file": "package.json",
+        "hash": "2968864746173549937"
+      }
+    ],
+    "projectFileMap": {
+      "rcmnd-api": [
+        {
+          "file": "apps/rcmnd-api/.env",
+          "hash": "10204480241532389462"
+        },
+        {
+          "file": "apps/rcmnd-api/.eslintrc.json",
+          "hash": "13800677001662881425"
+        },
+        {
+          "file": "apps/rcmnd-api/jest.config.ts",
+          "hash": "4799419067996328130"
+        },
+        {
+          "file": "apps/rcmnd-api/project.json",
+          "hash": "4542380656080258925"
+        },
+        {
+          "file": "apps/rcmnd-api/src/app/app.controller.spec.ts",
+          "hash": "9499997688052526633"
+        },
+        {
+          "file": "apps/rcmnd-api/src/app/app.controller.ts",
+          "hash": "9005150069945785676"
+        },
+        {
+          "file": "apps/rcmnd-api/src/app/app.module.ts",
+          "hash": "3492701680234226929",
+          "deps": [
+            "neo4j"
+          ]
+        },
+        {
+          "file": "apps/rcmnd-api/src/app/app.service.spec.ts",
+          "hash": "8587461140686713758"
+        },
+        {
+          "file": "apps/rcmnd-api/src/app/app.service.ts",
+          "hash": "9967902337593410053"
+        },
+        {
+          "file": "apps/rcmnd-api/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/rcmnd-api/src/main.ts",
+          "hash": "2813640680959726837",
+          "deps": [
+            "dto"
+          ]
+        },
+        {
+          "file": "apps/rcmnd-api/tsconfig.app.json",
+          "hash": "3171572500325445971"
+        },
+        {
+          "file": "apps/rcmnd-api/tsconfig.json",
+          "hash": "3490524966360018312"
+        },
+        {
+          "file": "apps/rcmnd-api/tsconfig.spec.json",
+          "hash": "11550347367511341917"
+        },
+        {
+          "file": "apps/rcmnd-api/webpack.config.js",
+          "hash": "10619490397189790225"
+        }
+      ],
+      "features": [
+        {
+          "file": "libs/frontend/features/.eslintrc.json",
+          "hash": "9293852775400125686"
+        },
+        {
+          "file": "libs/frontend/features/README.md",
+          "hash": "9246777289339377121"
+        },
+        {
+          "file": "libs/frontend/features/jest.config.ts",
+          "hash": "675170498047466924"
+        },
+        {
+          "file": "libs/frontend/features/project.json",
+          "hash": "6440707396456724368"
+        },
+        {
+          "file": "libs/frontend/features/src/index.ts",
+          "hash": "12179804395691830826"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/features.module.ts",
+          "hash": "15444810534222420541"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz-create/quiz-create.component.html",
+          "hash": "6535182030512568981"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz-create/quiz-create.component.ts",
+          "hash": "15994429418707234810",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz-details/quiz-details.component.html",
+          "hash": "12403602643072465440"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz-details/quiz-details.component.ts",
+          "hash": "16480523303786163715",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz-edit/quiz-edit.component.html",
+          "hash": "4716479392047596144"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz-edit/quiz-edit.component.ts",
+          "hash": "10663789065849176460",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz-list/quiz-list.component.html",
+          "hash": "15471215835571343008"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz-list/quiz-list.component.ts",
+          "hash": "7624122270869064216",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/quiz/quiz.service.ts",
+          "hash": "1706754666406524678",
+          "deps": [
+            "util-env",
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-add/user-add.component.html",
+          "hash": "11363442624534806753"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-add/user-add.component.ts",
+          "hash": "12492751268349152465",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-details/user-details.component.html",
+          "hash": "968927924182341481"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-details/user-details.component.spec.ts",
+          "hash": "11136590702041865018"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-details/user-details.component.ts",
+          "hash": "12635438937850349018",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-edit/user-edit.component.html",
+          "hash": "18259102690283297835"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-edit/user-edit.component.spec.ts",
+          "hash": "5340154644524321637"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-edit/user-edit.component.ts",
+          "hash": "3041615734675685434",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-list/user-list.component.html",
+          "hash": "6017633195237260377"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-list/user-list.component.spec.ts",
+          "hash": "13831544502946103292"
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user-list/user-list.component.ts",
+          "hash": "10467389520151608728",
+          "deps": [
+            "api",
+            "frontend-common",
+            "util-env"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/lib/users/user.service.ts",
+          "hash": "14647818481827682251",
+          "deps": [
+            "api",
+            "util-env"
+          ]
+        },
+        {
+          "file": "libs/frontend/features/src/test-setup.ts",
+          "hash": "4022486634036225089"
+        },
+        {
+          "file": "libs/frontend/features/tsconfig.json",
+          "hash": "16345539577515900790"
+        },
+        {
+          "file": "libs/frontend/features/tsconfig.lib.json",
+          "hash": "3924040990733920241"
+        },
+        {
+          "file": "libs/frontend/features/tsconfig.spec.json",
+          "hash": "17344764448552449211"
+        }
+      ],
+      "question": [
+        {
+          "file": "libs/backend/.eslintrc.json",
+          "hash": "16921288866599104771"
+        },
+        {
+          "file": "libs/backend/README.md",
+          "hash": "11560424261485225164"
+        },
+        {
+          "file": "libs/backend/jest.config.ts",
+          "hash": "5549933003974799002"
+        },
+        {
+          "file": "libs/backend/project.json",
+          "hash": "5388614801366241075"
+        },
+        {
+          "file": "libs/backend/tsconfig.json",
+          "hash": "3157823844900905278"
+        },
+        {
+          "file": "libs/backend/tsconfig.lib.json",
+          "hash": "12509280388318657009"
+        },
+        {
+          "file": "libs/backend/tsconfig.spec.json",
+          "hash": "7582695473675793029"
+        }
+      ],
+      "my-app": [
+        {
+          "file": "apps/my-app/.eslintrc.json",
+          "hash": "16921288866599104771"
+        },
+        {
+          "file": "apps/my-app/jest.config.ts",
+          "hash": "10560745020348657418"
+        },
+        {
+          "file": "apps/my-app/project.json",
+          "hash": "17844881717522725630"
+        },
+        {
+          "file": "apps/my-app/src/app/app-routing.module.ts",
+          "hash": "2039716469886285437",
+          "deps": [
+            "features",
+            "frontend-common"
+          ]
+        },
+        {
+          "file": "apps/my-app/src/app/app.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/my-app/src/app/app.component.html",
+          "hash": "9194826513847177656"
+        },
+        {
+          "file": "apps/my-app/src/app/app.component.spec.ts",
+          "hash": "16552214556190607030"
+        },
+        {
+          "file": "apps/my-app/src/app/app.component.ts",
+          "hash": "8962849016339534036"
+        },
+        {
+          "file": "apps/my-app/src/app/app.module.ts",
+          "hash": "15426214039336918823",
+          "deps": [
+            "features",
+            "frontend-common"
+          ]
+        },
+        {
+          "file": "apps/my-app/src/app/app.routes.ts",
+          "hash": "6185150965714414910"
+        },
+        {
+          "file": "apps/my-app/src/app/apps/my-app/src/app/components/about/about/about.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/my-app/src/app/apps/my-app/src/app/components/about/about/about.component.html",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/my-app/src/app/apps/my-app/src/app/components/about/about/about.component.spec.ts",
+          "hash": "4645092341534886670"
+        },
+        {
+          "file": "apps/my-app/src/app/apps/my-app/src/app/components/about/about/about.component.ts",
+          "hash": "5763378257632999567"
+        },
+        {
+          "file": "apps/my-app/src/app/apps/my-app/src/app/components/ui/header/header/header.component.css",
+          "hash": "7262262817504916994"
+        },
+        {
+          "file": "apps/my-app/src/app/apps/my-app/src/app/components/ui/header/header/header.component.html",
+          "hash": "2724186789143627290"
+        },
+        {
+          "file": "apps/my-app/src/app/apps/my-app/src/app/components/ui/header/header/header.component.spec.ts",
+          "hash": "11244335324890373769"
+        },
+        {
+          "file": "apps/my-app/src/app/apps/my-app/src/app/components/ui/header/header/header.component.ts",
+          "hash": "16077828167722088619"
+        },
+        {
+          "file": "apps/my-app/src/app/components/about/about.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/my-app/src/app/components/about/about.component.html",
+          "hash": "3475689374673858741"
+        },
+        {
+          "file": "apps/my-app/src/app/components/about/about.component.spec.ts",
+          "hash": "17440542566064980902"
+        },
+        {
+          "file": "apps/my-app/src/app/components/about/about.component.ts",
+          "hash": "17315895799646609763"
+        },
+        {
+          "file": "apps/my-app/src/app/components/dashboard/dashboard.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/my-app/src/app/components/dashboard/dashboard.component.html",
+          "hash": "6914970205712499974"
+        },
+        {
+          "file": "apps/my-app/src/app/components/dashboard/dashboard.component.spec.ts",
+          "hash": "372904983311555979"
+        },
+        {
+          "file": "apps/my-app/src/app/components/dashboard/dashboard.component.ts",
+          "hash": "5822017329399421589"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/footer/footer.component.css",
+          "hash": "14452516565836123140"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/footer/footer.component.html",
+          "hash": "34748622960532654"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/footer/footer.component.spec.ts",
+          "hash": "5415067141700310432"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/footer/footer.component.ts",
+          "hash": "16816541161398792483"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/header/header.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/header/header.component.html",
+          "hash": "14062112210269683387"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/header/header.component.spec.ts",
+          "hash": "8969091359403404970"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/header/header.component.ts",
+          "hash": "18393518873985312049"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/nav/nav.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/nav/nav.component.html",
+          "hash": "8491181487228834517"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/nav/nav.component.spec.ts",
+          "hash": "10525195935311671403"
+        },
+        {
+          "file": "apps/my-app/src/app/components/ui/nav/nav.component.ts",
+          "hash": "15656840312686576242"
+        },
+        {
+          "file": "apps/my-app/src/app/nx-welcome.component.ts",
+          "hash": "11782024568485204002"
+        },
+        {
+          "file": "apps/my-app/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/my-app/src/assets/erdtriviapp1.png",
+          "hash": "5939289273038756721"
+        },
+        {
+          "file": "apps/my-app/src/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/my-app/src/index.html",
+          "hash": "5210615640202781182"
+        },
+        {
+          "file": "apps/my-app/src/main.ts",
+          "hash": "14278623725003675853"
+        },
+        {
+          "file": "apps/my-app/src/styles.css",
+          "hash": "2917954890128038984"
+        },
+        {
+          "file": "apps/my-app/src/test-setup.ts",
+          "hash": "18384032036193434871"
+        },
+        {
+          "file": "apps/my-app/tsconfig.app.json",
+          "hash": "10832768672368521252"
+        },
+        {
+          "file": "apps/my-app/tsconfig.editor.json",
+          "hash": "3782190314296404468"
+        },
+        {
+          "file": "apps/my-app/tsconfig.json",
+          "hash": "8118050493832768378"
+        },
+        {
+          "file": "apps/my-app/tsconfig.spec.json",
+          "hash": "7582695473675793029"
+        }
+      ],
+      "frontend-common": [
+        {
+          "file": "libs/frontend/common/.eslintrc.json",
+          "hash": "9293852775400125686"
+        },
+        {
+          "file": "libs/frontend/common/README.md",
+          "hash": "4725660529030276320"
+        },
+        {
+          "file": "libs/frontend/common/jest.config.ts",
+          "hash": "15370230488895700547"
+        },
+        {
+          "file": "libs/frontend/common/project.json",
+          "hash": "1716584896565414047"
+        },
+        {
+          "file": "libs/frontend/common/src/index.ts",
+          "hash": "2990181319430017307"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/auth.css",
+          "hash": "4487071881203325998"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/auth.guards.ts",
+          "hash": "14889473965379788248"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/auth.service.spec.ts",
+          "hash": "12719955948933464181"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/auth.service.ts",
+          "hash": "2277814265745803387",
+          "deps": [
+            "api",
+            "util-env"
+          ]
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/login/login.component.html",
+          "hash": "2212767813398148340"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/login/login.component.spec.ts",
+          "hash": "4145016090702130975"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/login/login.component.ts",
+          "hash": "3246993340533785801"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/register/register.component.html",
+          "hash": "16522375015357307396"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/register/register.component.spec.ts",
+          "hash": "4770738436420899428"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/register/register.component.ts",
+          "hash": "7769369753395438784",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/frontend/common/src/lib/auth/auth/role.authguard.ts",
+          "hash": "5836769918618486342",
+          "deps": [
+            "util-env"
+          ]
+        },
+        {
+          "file": "libs/frontend/common/src/lib/frontend-common.module.ts",
+          "hash": "287358977050298441"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/alert/alert.component.html",
+          "hash": "5965296435972581187"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/alert/alert.component.ts",
+          "hash": "3248237826861470216"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/alert/alert.service.ts",
+          "hash": "11041029185090826682"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/common/entity.model.ts",
+          "hash": "88496929498546259"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/common/entity.service.ts",
+          "hash": "11141331933135369983"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/modal/modal.confirm-yes-no.component.ts",
+          "hash": "4174525211795702828"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/modal/modal.leave-yes-no.component.ts",
+          "hash": "10468576149231065820"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/shared.module.ts",
+          "hash": "7536874039092103805"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/spinner/spinner.component.css",
+          "hash": "14045645502829544578"
+        },
+        {
+          "file": "libs/frontend/common/src/lib/shared/shared/spinner/spinner.component.ts",
+          "hash": "2519994759077707031"
+        },
+        {
+          "file": "libs/frontend/common/src/test-setup.ts",
+          "hash": "4022486634036225089"
+        },
+        {
+          "file": "libs/frontend/common/tsconfig.json",
+          "hash": "16345539577515900790"
+        },
+        {
+          "file": "libs/frontend/common/tsconfig.lib.json",
+          "hash": "3924040990733920241"
+        },
+        {
+          "file": "libs/frontend/common/tsconfig.spec.json",
+          "hash": "17344764448552449211"
+        }
+      ],
+      "api": [
+        {
+          "file": "libs/shared/api/.eslintrc.json",
+          "hash": "9703569748258640057"
+        },
+        {
+          "file": "libs/shared/api/README.md",
+          "hash": "16991573359934460317"
+        },
+        {
+          "file": "libs/shared/api/jest.config.ts",
+          "hash": "13191683439927968697"
+        },
+        {
+          "file": "libs/shared/api/project.json",
+          "hash": "14674537182950455393"
+        },
+        {
+          "file": "libs/shared/api/src/index.ts",
+          "hash": "5198521623559047694"
+        },
+        {
+          "file": "libs/shared/api/src/lib/models/api-response.interface.ts",
+          "hash": "2394178694358583508"
+        },
+        {
+          "file": "libs/shared/api/src/lib/models/auth.interface.ts",
+          "hash": "2344568373568603112"
+        },
+        {
+          "file": "libs/shared/api/src/lib/models/id.type.ts",
+          "hash": "4221549683740961460"
+        },
+        {
+          "file": "libs/shared/api/src/lib/models/meal.interface.ts",
+          "hash": "16963523837302253019"
+        },
+        {
+          "file": "libs/shared/api/src/lib/models/question.interface.ts",
+          "hash": "16487077731613605285"
+        },
+        {
+          "file": "libs/shared/api/src/lib/models/quiz.interface.ts",
+          "hash": "7754428440674502019"
+        },
+        {
+          "file": "libs/shared/api/src/lib/models/user.interface.ts",
+          "hash": "14967143251214067917"
+        },
+        {
+          "file": "libs/shared/api/tsconfig.json",
+          "hash": "17620277411238932170"
+        },
+        {
+          "file": "libs/shared/api/tsconfig.lib.json",
+          "hash": "5554291030212586824"
+        },
+        {
+          "file": "libs/shared/api/tsconfig.spec.json",
+          "hash": "9110660443763673899"
+        }
+      ],
+      "share-a-meal-web": [
+        {
+          "file": "apps/share-a-meal-web/.eslintrc.json",
+          "hash": "12118854377797659445"
+        },
+        {
+          "file": "apps/share-a-meal-web/jest.config.ts",
+          "hash": "2667253891853561832"
+        },
+        {
+          "file": "apps/share-a-meal-web/project.json",
+          "hash": "6021475482155891052"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/app.component.html",
+          "hash": "14096303333607304980"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/app.component.ts",
+          "hash": "10064478920892536205"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/app.config.ts",
+          "hash": "8993342557759126848"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/app.routes.ts",
+          "hash": "1640601350016319054"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/components/about/about.component.html",
+          "hash": "16089002778921768123"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/components/about/about.component.spec.ts",
+          "hash": "8855752337671383617"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/components/about/about.component.ts",
+          "hash": "12127380471888693726"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/components/dashboard/dashboard.component.html",
+          "hash": "13178263766354848654"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/app/components/dashboard/dashboard.component.ts",
+          "hash": "3591264399526952365"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/assets/Entity-Relationship-Diagram.png",
+          "hash": "10440411800400986942"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/index.html",
+          "hash": "1306304337514846625"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/main.ts",
+          "hash": "7323565367452876306",
+          "deps": [
+            "util-env"
+          ]
+        },
+        {
+          "file": "apps/share-a-meal-web/src/styles.css",
+          "hash": "6917432578050628436"
+        },
+        {
+          "file": "apps/share-a-meal-web/src/test-setup.ts",
+          "hash": "12935735732682149507"
+        },
+        {
+          "file": "apps/share-a-meal-web/tailwind.config.js",
+          "hash": "17076277411316600840"
+        },
+        {
+          "file": "apps/share-a-meal-web/tsconfig.app.json",
+          "hash": "12911920861351469827"
+        },
+        {
+          "file": "apps/share-a-meal-web/tsconfig.editor.json",
+          "hash": "17511610827034788226"
+        },
+        {
+          "file": "apps/share-a-meal-web/tsconfig.json",
+          "hash": "12094030803572703611"
+        },
+        {
+          "file": "apps/share-a-meal-web/tsconfig.spec.json",
+          "hash": "2927375835638640771"
+        }
+      ],
+      "backend-features-meal": [
+        {
+          "file": "libs/backend/features/.eslintrc.json",
+          "hash": "6714755695949221080"
+        },
+        {
+          "file": "libs/backend/features/README.md",
+          "hash": "18275204239590074421"
+        },
+        {
+          "file": "libs/backend/features/jest.config.ts",
+          "hash": "6833458223260120369"
+        },
+        {
+          "file": "libs/backend/features/project.json",
+          "hash": "13448506469274162901"
+        },
+        {
+          "file": "libs/backend/features/src/index.ts",
+          "hash": "641654458597471534"
+        },
+        {
+          "file": "libs/backend/features/src/lib/backend-features-meal.module.ts",
+          "hash": "9635404358838343594",
+          "deps": [
+            "users",
+            "auth"
+          ]
+        },
+        {
+          "file": "libs/backend/features/src/lib/ingredients/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "libs/backend/features/src/lib/meal/meal.controller.spec.ts",
+          "hash": "14574725803315319323"
+        },
+        {
+          "file": "libs/backend/features/src/lib/meal/meal.controller.ts",
+          "hash": "3954703770260532282",
+          "deps": [
+            "api",
+            "dto",
+            "auth"
+          ]
+        },
+        {
+          "file": "libs/backend/features/src/lib/meal/meal.schema.ts",
+          "hash": "9363304217768443082",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/backend/features/src/lib/meal/meal.service.ts",
+          "hash": "9842371511509794237",
+          "deps": [
+            "api",
+            "dto",
+            "users"
+          ]
+        },
+        {
+          "file": "libs/backend/features/tsconfig.json",
+          "hash": "2557874373890351669"
+        },
+        {
+          "file": "libs/backend/features/tsconfig.lib.json",
+          "hash": "14157418033892287268"
+        },
+        {
+          "file": "libs/backend/features/tsconfig.spec.json",
+          "hash": "4939860449784718704"
+        }
+      ],
+      "data-api-e2e": [
+        {
+          "file": "apps/data-api-e2e/.eslintrc.json",
+          "hash": "13800677001662881425"
+        },
+        {
+          "file": "apps/data-api-e2e/jest.config.ts",
+          "hash": "11289544556175763105"
+        },
+        {
+          "file": "apps/data-api-e2e/project.json",
+          "hash": "14487847278478867191"
+        },
+        {
+          "file": "apps/data-api-e2e/src/data-api/api-meal.spec.ts",
+          "hash": "12634385605556572883"
+        },
+        {
+          "file": "apps/data-api-e2e/src/support/global-setup.ts",
+          "hash": "2568409276037275290"
+        },
+        {
+          "file": "apps/data-api-e2e/src/support/global-teardown.ts",
+          "hash": "5275447082211835490"
+        },
+        {
+          "file": "apps/data-api-e2e/src/support/test-setup.ts",
+          "hash": "10984585515912236441"
+        },
+        {
+          "file": "apps/data-api-e2e/tsconfig.json",
+          "hash": "15443990093475294480"
+        },
+        {
+          "file": "apps/data-api-e2e/tsconfig.spec.json",
+          "hash": "14954872453723519891"
+        }
+      ],
+      "share-a-meal-web-e2e": [
+        {
+          "file": "apps/share-a-meal-web-e2e/.eslintrc.json",
+          "hash": "9199987846761270635"
+        },
+        {
+          "file": "apps/share-a-meal-web-e2e/cypress.config.ts",
+          "hash": "16639359929265687390"
+        },
+        {
+          "file": "apps/share-a-meal-web-e2e/project.json",
+          "hash": "15924191116928498889"
+        },
+        {
+          "file": "apps/share-a-meal-web-e2e/src/e2e/app.cy.ts",
+          "hash": "7534840248335012081"
+        },
+        {
+          "file": "apps/share-a-meal-web-e2e/src/fixtures/example.json",
+          "hash": "11785586596216172004"
+        },
+        {
+          "file": "apps/share-a-meal-web-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/share-a-meal-web-e2e/src/support/commands.ts",
+          "hash": "5397443931564808659"
+        },
+        {
+          "file": "apps/share-a-meal-web-e2e/src/support/e2e.ts",
+          "hash": "1054106023200826784"
+        },
+        {
+          "file": "apps/share-a-meal-web-e2e/tsconfig.json",
+          "hash": "4332380883180617610"
+        }
+      ],
+      "ui": [
+        {
+          "file": "libs/frontend/ui/.eslintrc.json",
+          "hash": "9293852775400125686"
+        },
+        {
+          "file": "libs/frontend/ui/README.md",
+          "hash": "17507811124529675953"
+        },
+        {
+          "file": "libs/frontend/ui/jest.config.ts",
+          "hash": "7708082680495695516"
+        },
+        {
+          "file": "libs/frontend/ui/project.json",
+          "hash": "16473757094332102946"
+        },
+        {
+          "file": "libs/frontend/ui/src/index.ts",
+          "hash": "4363461478511886578"
+        },
+        {
+          "file": "libs/frontend/ui/src/lib/ui.module.ts",
+          "hash": "12164550067170034361"
+        },
+        {
+          "file": "libs/frontend/ui/src/test-setup.ts",
+          "hash": "4022486634036225089"
+        },
+        {
+          "file": "libs/frontend/ui/tsconfig.json",
+          "hash": "16345539577515900790"
+        },
+        {
+          "file": "libs/frontend/ui/tsconfig.lib.json",
+          "hash": "3924040990733920241"
+        },
+        {
+          "file": "libs/frontend/ui/tsconfig.spec.json",
+          "hash": "17344764448552449211"
+        }
+      ],
+      "rcmnd-api-e2e": [
+        {
+          "file": "apps/rcmnd-api-e2e/.eslintrc.json",
+          "hash": "13800677001662881425"
+        },
+        {
+          "file": "apps/rcmnd-api-e2e/jest.config.ts",
+          "hash": "14918991315131840020"
+        },
+        {
+          "file": "apps/rcmnd-api-e2e/project.json",
+          "hash": "2771499577721644088"
+        },
+        {
+          "file": "apps/rcmnd-api-e2e/src/rcmnd-api/rcmnd-api.spec.ts",
+          "hash": "110394728024017389"
+        },
+        {
+          "file": "apps/rcmnd-api-e2e/src/support/global-setup.ts",
+          "hash": "2568409276037275290"
+        },
+        {
+          "file": "apps/rcmnd-api-e2e/src/support/global-teardown.ts",
+          "hash": "5275447082211835490"
+        },
+        {
+          "file": "apps/rcmnd-api-e2e/src/support/test-setup.ts",
+          "hash": "10984585515912236441"
+        },
+        {
+          "file": "apps/rcmnd-api-e2e/tsconfig.json",
+          "hash": "15443990093475294480"
+        },
+        {
+          "file": "apps/rcmnd-api-e2e/tsconfig.spec.json",
+          "hash": "14954872453723519891"
+        }
+      ],
+      "common": [
+        {
+          "file": "libs/share-a-meal/common/.eslintrc.json",
+          "hash": "17229790698468906239"
+        },
+        {
+          "file": "libs/share-a-meal/common/README.md",
+          "hash": "2200719060512274419"
+        },
+        {
+          "file": "libs/share-a-meal/common/jest.config.ts",
+          "hash": "2102817330726165690"
+        },
+        {
+          "file": "libs/share-a-meal/common/project.json",
+          "hash": "957423432266287724"
+        },
+        {
+          "file": "libs/share-a-meal/common/src/index.ts",
+          "hash": "2430881540356233151"
+        },
+        {
+          "file": "libs/share-a-meal/common/src/lib/common.module.ts",
+          "hash": "11815243917219490442"
+        },
+        {
+          "file": "libs/share-a-meal/common/src/lib/entity/entity.model.ts",
+          "hash": "10968608312086735584"
+        },
+        {
+          "file": "libs/share-a-meal/common/src/lib/entity/entity.service.ts",
+          "hash": "5320745814065222843",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/share-a-meal/common/src/test-setup.ts",
+          "hash": "12935735732682149507"
+        },
+        {
+          "file": "libs/share-a-meal/common/tsconfig.json",
+          "hash": "8526453262384300416"
+        },
+        {
+          "file": "libs/share-a-meal/common/tsconfig.lib.json",
+          "hash": "6020606002228403423"
+        },
+        {
+          "file": "libs/share-a-meal/common/tsconfig.spec.json",
+          "hash": "7159729809249402441"
+        }
+      ],
+      "quiz": [
+        {
+          "file": "libs/backend/quiz/.eslintrc.json",
+          "hash": "14803369877490046397"
+        },
+        {
+          "file": "libs/backend/quiz/README.md",
+          "hash": "10200355028866966104"
+        },
+        {
+          "file": "libs/backend/quiz/jest.config.ts",
+          "hash": "13418484807561335081"
+        },
+        {
+          "file": "libs/backend/quiz/project.json",
+          "hash": "3210993370485560833"
+        },
+        {
+          "file": "libs/backend/quiz/src/index.ts",
+          "hash": "620224519441209424"
+        },
+        {
+          "file": "libs/backend/quiz/src/lib/quiz.controller.ts",
+          "hash": "518187840341480411",
+          "deps": [
+            "auth"
+          ]
+        },
+        {
+          "file": "libs/backend/quiz/src/lib/quiz.dto.ts",
+          "hash": "4519864185908131313"
+        },
+        {
+          "file": "libs/backend/quiz/src/lib/quiz.module.ts",
+          "hash": "7583435870865874206",
+          "deps": [
+            "users"
+          ]
+        },
+        {
+          "file": "libs/backend/quiz/src/lib/quiz.schema.ts",
+          "hash": "1363187569301385592"
+        },
+        {
+          "file": "libs/backend/quiz/src/lib/quiz.service.ts",
+          "hash": "39778384150286057"
+        },
+        {
+          "file": "libs/backend/quiz/tsconfig.json",
+          "hash": "2557874373890351669"
+        },
+        {
+          "file": "libs/backend/quiz/tsconfig.lib.json",
+          "hash": "5754459057639250434"
+        },
+        {
+          "file": "libs/backend/quiz/tsconfig.spec.json",
+          "hash": "2579164740543429247"
+        }
+      ],
+      "users": [
+        {
+          "file": "libs/backend/user/.eslintrc.json",
+          "hash": "14803369877490046397"
+        },
+        {
+          "file": "libs/backend/user/README.md",
+          "hash": "15006167837473288106"
+        },
+        {
+          "file": "libs/backend/user/jest.config.ts",
+          "hash": "12447656778709370055"
+        },
+        {
+          "file": "libs/backend/user/project.json",
+          "hash": "9172701930356347591"
+        },
+        {
+          "file": "libs/backend/user/src/index.ts",
+          "hash": "18201255863368591681"
+        },
+        {
+          "file": "libs/backend/user/src/lib/user/user-exists.guard.ts",
+          "hash": "15590245430234254791"
+        },
+        {
+          "file": "libs/backend/user/src/lib/user/user.controller.spec.ts",
+          "hash": "16553284843351070695"
+        },
+        {
+          "file": "libs/backend/user/src/lib/user/user.controller.ts",
+          "hash": "15910198447223408856",
+          "deps": [
+            "api",
+            "dto"
+          ]
+        },
+        {
+          "file": "libs/backend/user/src/lib/user/user.schema.spec.ts",
+          "hash": "252429985294783900"
+        },
+        {
+          "file": "libs/backend/user/src/lib/user/user.schema.ts",
+          "hash": "9830815625636106632",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/backend/user/src/lib/user/user.service.spec.ts",
+          "hash": "10832785061875187159"
+        },
+        {
+          "file": "libs/backend/user/src/lib/user/user.service.ts",
+          "hash": "159495998928778362",
+          "deps": [
+            "api",
+            "dto"
+          ]
+        },
+        {
+          "file": "libs/backend/user/src/lib/users.module.ts",
+          "hash": "11547217722149552254"
+        },
+        {
+          "file": "libs/backend/user/tsconfig.json",
+          "hash": "2557874373890351669"
+        },
+        {
+          "file": "libs/backend/user/tsconfig.lib.json",
+          "hash": "8780014692793799543"
+        },
+        {
+          "file": "libs/backend/user/tsconfig.spec.json",
+          "hash": "2579164740543429247"
+        }
+      ],
+      "libs/backend/question": [
+        {
+          "file": "libs/backend/question/.eslintrc.json",
+          "hash": "9711169714124487252"
+        },
+        {
+          "file": "libs/backend/question/README.md",
+          "hash": "2951533066169057375"
+        },
+        {
+          "file": "libs/backend/question/jest.config.ts",
+          "hash": "5603740189382875778"
+        },
+        {
+          "file": "libs/backend/question/project.json",
+          "hash": "14814749410235767596"
+        },
+        {
+          "file": "libs/backend/question/src/index.ts",
+          "hash": "290902487425620495"
+        },
+        {
+          "file": "libs/backend/question/src/lib/question.controller.ts",
+          "hash": "17464962047859525116",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/backend/question/src/lib/question.dto.ts",
+          "hash": "2616946810439088062"
+        },
+        {
+          "file": "libs/backend/question/src/lib/question.module.ts",
+          "hash": "12746682912749940426"
+        },
+        {
+          "file": "libs/backend/question/src/lib/question.schema.ts",
+          "hash": "14860564444761514903"
+        },
+        {
+          "file": "libs/backend/question/src/lib/question.service.ts",
+          "hash": "6677632740154822588",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/backend/question/tsconfig.json",
+          "hash": "5104698134121866722"
+        },
+        {
+          "file": "libs/backend/question/tsconfig.lib.json",
+          "hash": "8011469165096590032"
+        },
+        {
+          "file": "libs/backend/question/tsconfig.spec.json",
+          "hash": "17939497822568500127"
+        }
+      ],
+      "data-api": [
+        {
+          "file": "apps/data-api/.eslintrc.json",
+          "hash": "13800677001662881425"
+        },
+        {
+          "file": "apps/data-api/jest.config.ts",
+          "hash": "4536376685111812873"
+        },
+        {
+          "file": "apps/data-api/project.json",
+          "hash": "9844984168826012667"
+        },
+        {
+          "file": "apps/data-api/src/app/app.module.ts",
+          "hash": "17841621991252548891",
+          "deps": [
+            "backend-features-meal",
+            "users",
+            "auth",
+            "util-env",
+            "quiz",
+            "libs/backend/question"
+          ]
+        },
+        {
+          "file": "apps/data-api/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/data-api/src/main.ts",
+          "hash": "11529433133808023758",
+          "deps": [
+            "dto"
+          ]
+        },
+        {
+          "file": "apps/data-api/tsconfig.app.json",
+          "hash": "3171572500325445971"
+        },
+        {
+          "file": "apps/data-api/tsconfig.json",
+          "hash": "3490524966360018312"
+        },
+        {
+          "file": "apps/data-api/tsconfig.spec.json",
+          "hash": "11550347367511341917"
+        },
+        {
+          "file": "apps/data-api/webpack.config.js",
+          "hash": "10619490397189790225"
+        }
+      ],
+      "my-app-e2e": [
+        {
+          "file": "apps/my-app-e2e/.eslintrc.json",
+          "hash": "2268504342791978563"
+        },
+        {
+          "file": "apps/my-app-e2e/cypress.config.ts",
+          "hash": "13758650857735414517"
+        },
+        {
+          "file": "apps/my-app-e2e/project.json",
+          "hash": "8861499231352072629"
+        },
+        {
+          "file": "apps/my-app-e2e/src/e2e/app.cy.ts",
+          "hash": "1400024305452055270"
+        },
+        {
+          "file": "apps/my-app-e2e/src/fixtures/example.json",
+          "hash": "8244047265829016264"
+        },
+        {
+          "file": "apps/my-app-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/my-app-e2e/src/support/commands.ts",
+          "hash": "4709268516280968380"
+        },
+        {
+          "file": "apps/my-app-e2e/src/support/e2e.ts",
+          "hash": "1054106023200826784"
+        },
+        {
+          "file": "apps/my-app-e2e/tsconfig.json",
+          "hash": "16101841879267239062"
+        }
+      ],
+      "dto": [
+        {
+          "file": "libs/backend/dto/.eslintrc.json",
+          "hash": "9703569748258640057"
+        },
+        {
+          "file": "libs/backend/dto/README.md",
+          "hash": "5420247177774348253"
+        },
+        {
+          "file": "libs/backend/dto/jest.config.ts",
+          "hash": "15288410825264951670"
+        },
+        {
+          "file": "libs/backend/dto/project.json",
+          "hash": "17943282435336697978"
+        },
+        {
+          "file": "libs/backend/dto/src/index.ts",
+          "hash": "15043456617444633386"
+        },
+        {
+          "file": "libs/backend/dto/src/lib/api-response.interceptor.ts",
+          "hash": "4413852877977130650",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/backend/dto/src/lib/dto.module.ts",
+          "hash": "3746550704427429597"
+        },
+        {
+          "file": "libs/backend/dto/src/lib/filters/all-exceptions.filter.ts",
+          "hash": "17757286261167662653"
+        },
+        {
+          "file": "libs/backend/dto/src/lib/filters/http-exception.filter.ts",
+          "hash": "13522118304722049534"
+        },
+        {
+          "file": "libs/backend/dto/src/lib/meal.dto.ts",
+          "hash": "10455830625994291462",
+          "deps": [
+            "api"
+          ]
+        },
+        {
+          "file": "libs/backend/dto/src/lib/user.dto.ts",
+          "hash": "17176159729947919542",
+          "deps": [
+            "api",
+            "backend-features-meal"
+          ]
+        },
+        {
+          "file": "libs/backend/dto/tsconfig.json",
+          "hash": "1098465750514412960"
+        },
+        {
+          "file": "libs/backend/dto/tsconfig.lib.json",
+          "hash": "2198184121120557529"
+        },
+        {
+          "file": "libs/backend/dto/tsconfig.spec.json",
+          "hash": "9110660443763673899"
+        }
+      ],
+      "auth": [
+        {
+          "file": "libs/backend/auth/.eslintrc.json",
+          "hash": "14803369877490046397"
+        },
+        {
+          "file": "libs/backend/auth/README.md",
+          "hash": "2714506683984300359"
+        },
+        {
+          "file": "libs/backend/auth/jest.config.ts",
+          "hash": "7393473880814802537"
+        },
+        {
+          "file": "libs/backend/auth/project.json",
+          "hash": "10900080738138481029"
+        },
+        {
+          "file": "libs/backend/auth/src/index.ts",
+          "hash": "8171256524500497217"
+        },
+        {
+          "file": "libs/backend/auth/src/lib/auth.module.ts",
+          "hash": "13672625618093882281",
+          "deps": [
+            "users"
+          ]
+        },
+        {
+          "file": "libs/backend/auth/src/lib/auth/auth.controller.ts",
+          "hash": "9119232248160480625",
+          "deps": [
+            "api",
+            "dto",
+            "users"
+          ]
+        },
+        {
+          "file": "libs/backend/auth/src/lib/auth/auth.guards.ts",
+          "hash": "17462623100211495969",
+          "deps": [
+            "users"
+          ]
+        },
+        {
+          "file": "libs/backend/auth/src/lib/auth/auth.service.ts",
+          "hash": "7542937570367128318",
+          "deps": [
+            "users",
+            "api",
+            "dto"
+          ]
+        },
+        {
+          "file": "libs/backend/auth/src/lib/decorators/decorators.ts",
+          "hash": "10477944848985380888"
+        },
+        {
+          "file": "libs/backend/auth/tsconfig.json",
+          "hash": "2557874373890351669"
+        },
+        {
+          "file": "libs/backend/auth/tsconfig.lib.json",
+          "hash": "5754459057639250434"
+        },
+        {
+          "file": "libs/backend/auth/tsconfig.spec.json",
+          "hash": "2579164740543429247"
+        }
+      ],
+      "neo4j": [
+        {
+          "file": "libs/backend/neo4j/.eslintrc.json",
+          "hash": "9711169714124487252"
+        },
+        {
+          "file": "libs/backend/neo4j/README.md",
+          "hash": "1931175694511016404"
+        },
+        {
+          "file": "libs/backend/neo4j/jest.config.ts",
+          "hash": "5112817739183331882"
+        },
+        {
+          "file": "libs/backend/neo4j/project.json",
+          "hash": "1358699683992919469"
+        },
+        {
+          "file": "libs/backend/neo4j/src/index.ts",
+          "hash": "2525531413006645940"
+        },
+        {
+          "file": "libs/backend/neo4j/src/lib/neo4j-backend.module.ts",
+          "hash": "5157628902254834377"
+        },
+        {
+          "file": "libs/backend/neo4j/src/lib/neo4j-users.service.ts",
+          "hash": "10111601820006766033"
+        },
+        {
+          "file": "libs/backend/neo4j/src/lib/neo4j.controller.ts",
+          "hash": "281241572722780520"
+        },
+        {
+          "file": "libs/backend/neo4j/tsconfig.json",
+          "hash": "15394874861207803846"
+        },
+        {
+          "file": "libs/backend/neo4j/tsconfig.lib.json",
+          "hash": "8011469165096590032"
+        },
+        {
+          "file": "libs/backend/neo4j/tsconfig.spec.json",
+          "hash": "11234809548007883289"
+        }
+      ],
+      "util-env": [
+        {
+          "file": "libs/shared/util-env/.eslintrc.json",
+          "hash": "14803369877490046397"
+        },
+        {
+          "file": "libs/shared/util-env/README.md",
+          "hash": "2112931372318948153"
+        },
+        {
+          "file": "libs/shared/util-env/jest.config.ts",
+          "hash": "342988293264216826"
+        },
+        {
+          "file": "libs/shared/util-env/project.json",
+          "hash": "15452634207470704008"
+        },
+        {
+          "file": "libs/shared/util-env/src/index.ts",
+          "hash": "11014614310189321618"
+        },
+        {
+          "file": "libs/shared/util-env/src/lib/environment.development.ts",
+          "hash": "1460944365757903385"
+        },
+        {
+          "file": "libs/shared/util-env/src/lib/environment.interface.ts",
+          "hash": "4035306777083653522"
+        },
+        {
+          "file": "libs/shared/util-env/src/lib/environment.production.ts",
+          "hash": "6593298893952491783"
+        },
+        {
+          "file": "libs/shared/util-env/src/lib/environment.ts",
+          "hash": "5393838213765970968"
+        },
+        {
+          "file": "libs/shared/util-env/tsconfig.json",
+          "hash": "14111577273029206292"
+        },
+        {
+          "file": "libs/shared/util-env/tsconfig.lib.json",
+          "hash": "1536065702764093820"
+        },
+        {
+          "file": "libs/shared/util-env/tsconfig.spec.json",
+          "hash": "11234809548007883289"
+        }
+      ]
+    }
+  }
+}
