@@ -1,3 +1,4 @@
+import { UserService } from '@avans-nx-workshop/backend/user';
 import {
     CanActivate,
     ExecutionContext,
@@ -12,7 +13,7 @@ import { Request } from 'express';
 export class AuthGuard implements CanActivate {
     private readonly logger = new Logger(AuthGuard.name);
 
-    constructor(private jwtService: JwtService) {}
+    constructor(private jwtService: JwtService, private readonly userService: UserService) {}
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
@@ -23,15 +24,21 @@ export class AuthGuard implements CanActivate {
         }
         try {
             const payload = await this.jwtService.verifyAsync(token, {
-                secret: process.env['JWT_SECRET'] || 'secretstring'
+              secret: process.env['JWT_SECRET'] || 'secretstring'
             });
+          
             this.logger.log('payload', payload);
-            // 💡 We're assigning the payload to the request object here
-            // so that we can access it in our route handlers
-            request['user'] = payload;
-        } catch {
+
+            const user = await this.userService.findOne(payload.user_id);
+            
+            request['user'] = {
+              ...payload,
+              id: payload.user_id,
+              role: user?.role 
+            };
+          } catch {
             throw new UnauthorizedException();
-        }
+          }
         return true;
     }
 

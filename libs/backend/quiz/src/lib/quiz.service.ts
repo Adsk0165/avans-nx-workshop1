@@ -1,8 +1,8 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, UnauthorizedException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Quiz , QuizDifficulty, QuizDocument } from './quiz.schema';
+import { Quiz , QuizDifficulty, QuizDocument, QuizModel } from './quiz.schema';
 import { CreateQuizDto } from './quiz.dto';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom } from 'rxjs'; // Import for handling observables
@@ -33,18 +33,19 @@ export class QuizService {
   }
 
   async createQuizWithAPIQuestions(createQuizDto: CreateQuizDto): Promise<Quiz> {
-    const { title, description, difficulty, category } = createQuizDto;
-
+    const { title, description, difficulty, category, creator } = createQuizDto;
+  
     try {
       const questions = await this.fetchQuestionsFromAPI(10, category!, difficulty!);
-
+  
       const quiz = new this.quizModel({
         title,
         description,
         difficulty,
         questions,
+        creatorId: creator, // Save the creator ID
       });
-
+  
       return await quiz.save();
     } catch (error) {
       console.error('Error creating quiz:', error);
@@ -79,34 +80,59 @@ export class QuizService {
   }
 
   // Update a quiz
-  async updateQuiz(id: string, updateQuizDto: Partial<CreateQuizDto>): Promise<Quiz | null> {
+  async updateQuiz(
+    id: string, 
+    userId: string, 
+    userRole: string, 
+    updateQuizDto: Partial<CreateQuizDto>
+  ): Promise<Quiz | null> {
+    // Step 1: Fetch the quiz
+    const quiz = await this.quizModel.findById(id).exec();
+  
+    if (!quiz) {
+      throw new HttpException(`Quiz with ID ${id} not found`, HttpStatus.NOT_FOUND);
+    }
+  
+    // Step 2: Check Authorization (creator or admin)
+    if (quiz.creatorId !== userId && userRole !== 'admin') {
+      throw new UnauthorizedException('You are not authorized to edit this quiz');
+    }
+  
+    // Step 3: Update the quiz if authorized
     try {
-      const updatedQuiz = await this.quizModel
-        .findByIdAndUpdate(id, updateQuizDto, { new: true })
-        .exec();
-
-      if (!updatedQuiz) {
-        throw new HttpException(`Quiz with ID ${id} not found`, HttpStatus.NOT_FOUND);
-      }
-
+      const updatedQuiz = await this.quizModel.findByIdAndUpdate(id, updateQuizDto, { new: true }).exec();
       return updatedQuiz;
     } catch (error) {
-      console.error('Error updating quiz:', error);
+      console.error(`Error updating quiz with ID ${id}:`, error);
       throw new HttpException('Failed to update quiz', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+  
+  
+
 
   // Delete a quiz
-  async deleteQuiz(id: string): Promise<void> {
+  async deleteQuiz(id: string, userId: string, userRole: string): Promise<void> {
     try {
-      const deletedQuiz = await this.quizModel.findByIdAndDelete(id).exec();
-
-      if (!deletedQuiz) {
+      // Find the quiz by ID
+      const quiz = await this.quizModel.findById(id).exec();
+  
+      if (!quiz) {
         throw new HttpException(`Quiz with ID ${id} not found`, HttpStatus.NOT_FOUND);
       }
+      console.log(userRole)
+      // Check if the user is authorized to delete the quiz
+      if (quiz.creatorId !== userId && userRole !== 'admin') {
+        throw new UnauthorizedException('You are not authorized to delete this quiz');
+      }
+  
+      // Delete the quiz
+      await this.quizModel.findByIdAndDelete(id).exec();
     } catch (error) {
-      console.error('Error deleting quiz:', error);
+      console.error(`Error deleting quiz with ID ${id} by user ${userId}:`, error);
       throw new HttpException('Failed to delete quiz', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+  
+  
 }

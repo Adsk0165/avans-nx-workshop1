@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
 import { environment } from '@avans-nx-workshop/shared/util-env';
 import { IQuiz, IQuizIdentity, IQuizInfo } from '@avans-nx-workshop/shared/api';
@@ -50,10 +50,40 @@ export class QuizService {
 
   updateQuiz(quiz: Partial<IQuizInfo>): Observable<IQuizInfo> {
     const quizid = quiz._id;
-    return this.http.put<IQuizInfo>(`${environment.dataApiUrl}/quiz/${quizid}`, quiz);
+    const token = localStorage.getItem('currentuser');
+    
+    const cleanedToken = token ? token.replace(/^"(.+)"$/, '$1') : null;
+
+    if (!token) {
+      throw new Error('No JWT token found');
+    }
+    
+    const headers = new HttpHeaders().set(
+      'Authorization', `Bearer ${cleanedToken}`
+    );
+
+    return this.http.put<IQuizInfo>(`${this.apiUrl}/${quizid}`, quiz, { headers });
   }
   
+
+  
   deleteQuiz(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    const quizid = id;
+    const token = localStorage.getItem('currentuser'); 
+  
+    // Clean the token (remove extra quotes if present)
+    const cleanedToken = token ? token.replace(/^"(.+)"$/, '$1') : null;
+  
+    if (!cleanedToken) {
+      throw new Error('No JWT token found');
+    }
+  
+    // Set Authorization header with Bearer token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${cleanedToken}`);
+  
+    // Send DELETE request to delete the quiz
+    return this.http.delete<void>(`${this.apiUrl}/${quizid}`, { headers });
   }
+  
+  
 }

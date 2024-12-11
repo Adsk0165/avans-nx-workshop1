@@ -9,6 +9,29 @@ import { ActivatedRoute, Router } from '@angular/router';
   styles: []
 })
 export class QuizEditComponent implements OnInit {
+
+   categories = [
+    { label: 'Algemene Kennis', value: 9 },
+    { label: 'Boeken', value: 10 },
+    { label: 'Films', value: 11 },
+    { label: 'Muziek', value: 12 },
+    { label: 'Wetenschap en Natuur', value: 17 }, 
+    { label: 'Musicals en Theaters', value: 13 }, 
+    { label: 'Televisie', value: 14 }, 
+    { label: 'Video Games', value: 15 }, 
+    { label: 'Bord Spellen', value: 16 }, 
+    { label: 'Computer en wetenschap', value: 18 }, 
+    { label: 'Wetenschap en Wiskunde', value: 19 }, 
+    { label: 'Sport', value: 20 }, 
+    { label: 'Sport', value: 21 }, 
+    { label: 'Geographie', value: 22 }, 
+    { label: 'Geschiedenis', value: 23 }, 
+    { label: 'Politiek', value: 24 }, 
+    { label: 'Kunst', value: 25 }, 
+    { label: 'Beroemdheden', value: 26 }, 
+    { label: 'dieren', value: 27 }
+  ];
+
   quizzes: IQuizInfo[] = [];
   quiz: IQuizInfo = {
     title: '',
@@ -17,7 +40,8 @@ export class QuizEditComponent implements OnInit {
     isActive: false,
     _id: '',
     createdAt: undefined,
-    updatedAt: undefined
+    updatedAt: undefined,
+    category: 9
   };
 
   constructor(
@@ -45,6 +69,10 @@ export class QuizEditComponent implements OnInit {
   }
 
   saveChanges(): void {
+    if (typeof this.quiz.category !== 'number') {
+      this.quiz.category = Number(this.quiz.category);  // Force category to be a number
+    }
+
     this.quizservice.updateQuiz(this.quiz).subscribe({
       next: () => {
         alert('User updated successfully!');

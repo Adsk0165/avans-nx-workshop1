@@ -6,19 +6,19 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { QuizListComponent } from '@avans-nx-workshop/features';
 import { UserAddComponent } from '@avans-nx-workshop/features';
-import { LoginComponent, RegisterComponent } from '@avans-nx-workshop/frontend/common';
+import { LoggedInAuthGuard, LoginComponent, RegisterComponent, RoleAuthGuard } from '@avans-nx-workshop/frontend/common'; 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent },
-  {path: 'edit/:id', component: UserEditComponent},
-  { path: 'users', component: UserListComponent },   
-  { path: 'user/:id', component: UserDetailsComponent },
+  {path: 'edit/:id', component: UserEditComponent, canActivate: [LoggedInAuthGuard, RoleAuthGuard]},
+  { path: 'users', component: UserListComponent, canActivate: [LoggedInAuthGuard] },   
+  { path: 'user/:id', component: UserDetailsComponent , canActivate: [LoggedInAuthGuard]},
   { path: 'about', component: AboutComponent },    
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'quiz/new', component: QuizAddComponent},
-  { path: 'quizedit/:id', component: QuizEditComponent},
-  { path: 'quizzes', component: QuizListComponent},
-  {path: 'users/new', component: UserAddComponent},
-  {path: 'quiz/:id', component: QuizDetailsComponent},
+  { path: 'quiz/new', component: QuizAddComponent, canActivate: [LoggedInAuthGuard]},
+  { path: 'quizedit/:id', component: QuizEditComponent, canActivate: [LoggedInAuthGuard,]},
+  { path: 'quizzes', component: QuizListComponent, canActivate: [LoggedInAuthGuard]},
+  {path: 'users/new', component: UserAddComponent, canActivate: [LoggedInAuthGuard, RoleAuthGuard]},
+  {path: 'quiz/:id', component: QuizDetailsComponent, canActivate: [LoggedInAuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent}
 ];

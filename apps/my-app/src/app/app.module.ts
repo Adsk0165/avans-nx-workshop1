@@ -12,7 +12,7 @@ import { NavComponent } from './components/ui/nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule  } from '@angular/forms'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FrontendCommonModule} from '@avans-nx-workshop/frontend/common'
+import {FrontendCommonModule, LoggedInAuthGuard, RoleAuthGuard} from '@avans-nx-workshop/frontend/common'
 @NgModule({
     declarations: [
         AppComponent,
@@ -33,7 +33,7 @@ import {FrontendCommonModule} from '@avans-nx-workshop/frontend/common'
         NgbModule,
         FrontendCommonModule
     ],
-    providers: [],
+    providers: [LoggedInAuthGuard, RoleAuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

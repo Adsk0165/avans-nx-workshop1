@@ -1,29 +1,31 @@
 <h2>Edit Quiz</h2>
 <form>
   <div>
-    <label for="title">title:</label>
+    <label for="title">Title:</label>
     <input id="title" [(ngModel)]="quiz.title" name="title" type="text" />
   </div>
 
   <div>
-    <label for="name">title:</label>
-    <input id="name" [(ngModel)]="quiz.title" name="name" type="text" />
+    <label for="description">Description:</label>
+    <input id="description" [(ngModel)]="quiz.description" name="description" type="text" />
   </div>
   
   <div>
-    <label for="emailAddress">description:</label>
-    <input id="emailAddress" [(ngModel)]="quiz.description" name="emailAddress" type="email" />
-  </div>
-  
-  <div>
-    <label for="role">difficulty:</label>
-    <select id="role" [(ngModel)]="quiz.difficulty" name="role">
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty" [(ngModel)]="quiz.difficulty" name="difficulty">
       <option value="Easy">Easy</option>
       <option value="Medium">Medium</option>
       <option value="Hard">Hard</option>
     </select>
   </div>
 
+  <!-- Category dropdown -->
+  <div>
+    <label for="category">Category:</label>
+    <select id="category" [(ngModel)]="quiz.category" name="category">
+      <option *ngFor="let category of categories" [value]="category.value">{{ category.label }}</option>
+    </select>
+  </div>
 
   <button type="button" (click)="saveChanges()">Save Changes</button>
 </form>

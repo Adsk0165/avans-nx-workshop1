@@ -5,7 +5,8 @@ import { Form } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertComponent } from './shared/shared/alert/alert.component';
 import { LoginComponent } from './auth/auth/login/login.component';
-
+import { LoggedInAuthGuard } from './auth/auth/auth.guards';
+import { RoleAuthGuard } from './auth/auth/role.authguard';
 @NgModule({
   declarations: [RegisterComponent,AlertComponent, LoginComponent], // Add RegisterComponent here
   imports: [CommonModule, ReactiveFormsModule ],

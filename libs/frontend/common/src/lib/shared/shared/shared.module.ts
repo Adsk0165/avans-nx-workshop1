@@ -8,6 +8,8 @@ import { ModalConfirmYesNoComponent } from './modal/modal.confirm-yes-no.compone
 import { ModalLeaveYesNoComponent } from './modal/modal.leave-yes-no.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from '../../auth/auth/register/register.component';
+import { LoggedInAuthGuard } from '../../auth/auth/auth.guards';
+import { RoleAuthGuard } from '../../auth/auth/role.authguard';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,6 @@ import { RegisterComponent } from '../../auth/auth/register/register.component';
     AlertComponent
     
   ],
-  exports: [SpinnerComponent, AlertComponent, RegisterComponent],
+  exports: [SpinnerComponent, AlertComponent, RegisterComponent, LoggedInAuthGuard,RoleAuthGuard],
 })
 export class SharedModule {}

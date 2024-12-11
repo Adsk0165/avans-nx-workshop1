@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IsMongoId } from 'class-validator';
-import { Document, Types } from 'mongoose';
+import { Document, model, Types } from 'mongoose';
 
 export enum QuizDifficulty {
   Easy = 'Easy',
@@ -25,7 +25,11 @@ export class Quiz {
   // Array of references to Question documents
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Question' }] })
   questions: Types.ObjectId[] | undefined;
-
+  
+  @Prop()
+  creatorId: string | undefined
+  static creatorId: any;
+  
   constructor(name: string, difficulty: QuizDifficulty, description: string) {
     this.title = name;
     this.difficulty = difficulty;
@@ -37,3 +41,5 @@ export type QuizDocument = Quiz & Document;
 
 // Exporting QuizSchema as the schema for the model
 export const QuizSchema = SchemaFactory.createForClass(Quiz);
+
+export const QuizModel = model<Quiz>('Quiz', QuizSchema);

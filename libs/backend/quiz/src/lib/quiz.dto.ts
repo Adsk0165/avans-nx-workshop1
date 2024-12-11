@@ -1,4 +1,4 @@
-import { IsEnum, IsNotEmpty, IsNumber, isNumber, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, isNumber, isString, IsString } from 'class-validator';
 import { Quiz, QuizDifficulty } from './quiz.schema';
 
 export class CreateQuizDto {
@@ -15,6 +15,8 @@ export class CreateQuizDto {
 
   @IsNumber()
   category: number | undefined;
+
+  creator: string | undefined
 }
 
 export class UpdateQuizDto {
@@ -26,6 +28,9 @@ export class UpdateQuizDto {
 
   @IsString()
   description?: string;
+
+  @IsNumber()
+  category: number | undefined;
 }
 
 

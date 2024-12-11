@@ -1,15 +1,29 @@
-import { Controller, Post, Body, Get,Put,Delete, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get,Put,Delete, Param, Req, UseGuards, UnauthorizedException, Request, NotFoundException } from '@nestjs/common';
 import { QuizService } from './quiz.service';
 import { CreateQuizDto } from './quiz.dto';
 import { Quiz } from './quiz.schema';
+import { AuthGuard } from '../../../auth/src/lib/auth/auth.guards'
+
 
 @Controller('quiz')
 export class QuizController {
   constructor(private readonly quizService: QuizService) {}
 
   @Post('generate-from-api')
-  async generateQuizFromAPI(@Body() createQuizDto: CreateQuizDto): Promise<Quiz> {
-    return this.quizService.createQuizWithAPIQuestions(createQuizDto);
+  @UseGuards(AuthGuard)
+  async generateQuizFromAPI(
+    @Body() createQuizDto: CreateQuizDto,
+    @Request() req: any, // Use `any` to avoid strict type checks
+  ): Promise<Quiz> {
+    const userId = req.user?.id; // Access the `user` property
+    if (!userId) {
+      throw new UnauthorizedException('User not authenticated');
+    }
+
+    return this.quizService.createQuizWithAPIQuestions({
+      ...createQuizDto,
+      creator: userId,
+    });
   }
 
   @Get()
@@ -23,12 +37,58 @@ export class QuizController {
   }
 
   @Put(':id')
-  async updateQuiz(@Param('id') id: string, @Body() updateQuizDto: Partial<CreateQuizDto>) {
-    return this.quizService.updateQuiz(id, updateQuizDto);
+@UseGuards(AuthGuard)
+async updateQuiz(
+  @Param('id') id: string,
+  @Body() updateQuizDto: CreateQuizDto,
+  @Request() req: any,
+) {
+  console.log('User object from request:', req.user);
+  const userId = req.user?.id; 
+  const userRole = req.user?.role;
+  console.log(userRole)
+  // Ensure the user is authenticated
+  if (!userId || !userRole) {
+    throw new UnauthorizedException('User not authenticated');
   }
 
-  @Delete(':id')
-  async deleteQuiz(@Param('id') id: string) {
-    return this.quizService.deleteQuiz(id);
+  // Attempt to update the quiz
+  const updatedQuiz = await this.quizService.updateQuiz(id, userId, userRole, updateQuizDto);
+
+  // Handle not found
+  if (!updatedQuiz) {
+    throw new NotFoundException(`Quiz with ID ${id} not found`);
   }
+
+  return updatedQuiz;
+}
+
+  
+
+  @Delete(':id')
+  @UseGuards(AuthGuard)
+  async deleteQuiz(
+  @Param('id') id: string,
+  @Request() req: any,
+) {
+  const { id: userId, role } = req.user;
+
+  if (!userId) {
+    throw new UnauthorizedException('User not authenticated');
+  }
+
+  const quiz = await this.quizService.getQuizById(id);
+  if (!quiz) {
+    throw new NotFoundException(`Quiz with ID ${id} not found`);
+  }
+
+  if (quiz.creatorId !== userId && role !== 'admin') {
+    throw new UnauthorizedException('You are not authorized to delete this quiz');
+  }
+
+  await this.quizService.deleteQuiz(id, userId, role);
+  return { message: 'Quiz deleted successfully' };
+}
+
+
 }

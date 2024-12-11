@@ -62,20 +62,37 @@ export class AuthService {
       .post<IUserInfo>(`${environment.dataApiUrl}/auth/register`, userData, { headers: this.headers })
       .pipe(
         map((response: IUserInfo) => {
-          if (!response.token) {
-            throw new Error('No token found in registration response');
-          }
-          localStorage.setItem(this.CURRENT_USER, JSON.stringify(userData))
-          this.currentUser$.next(response);
           this.alertService.success('You have been registered');
-          return response;
+  
+          // Automatically log in the user
+          this.login(userData.emailAddress, userData.password).subscribe({
+            next: (loginResponse) => {
+              if (loginResponse?.token) {
+                this.saveUserToLocalStorage(loginResponse);
+                this.currentUser$.next(loginResponse);
+                this.alertService.success('You are now logged in.');
+              }
+            },
+            error: (error) => {
+              console.error('Login after registration failed:', error);
+              this.alertService.error('Failed to log in after registration.');
+            },
+          });
+  
+          return response; // Return the registration response
         }),
         catchError((error) => {
-          this.alertService.error(error.error.message || error.message);
+          console.error('Register Error:', error);
+          const errorMessage =
+            (error?.error?.message || error?.message || 'An unknown error occurred');
+          this.alertService.error(errorMessage);
           return of(undefined);
         })
       );
   }
+  
+  
+  
 
   private saveUserToLocalStorage(user: IUserInfo ): void {
     localStorage.setItem(this.CURRENT_USER, JSON.stringify(user.token));
@@ -88,6 +105,11 @@ export class AuthService {
     }
     return of(undefined);
   }
+
+  getUserDetails(userId: string): Observable<IUserInfo> {
+    return this.http.get<IUserInfo>(`${environment.dataApiUrl}/user/${userId}`);
+  }
+
 
   logout(): void {
     this.router.navigate(['/']).then(() => {

@@ -21,6 +21,7 @@ export interface IQuizInfo extends IQuizIdentity {
     isActive: boolean;
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
+    category: number;
 }
 
 // Full Quiz Interface (Including Domain Entities)
@@ -34,10 +35,20 @@ export interface IQuestion {
     options: string[];
     correctAnswerIndex: number;
     explanation?: string;
+    
 }
 
+export interface Quiz extends Document {
+    title: string;
+    description: string;
+    difficulty: string;
+    questions: any[];
+    creatorId: string; // Link to the user's ID
+  }
+  
+
 // DTOs for Quiz Operations
-export type ICreateQuiz = Pick<IQuiz, 'title' | 'description' | 'difficulty'> & {
+export type ICreateQuiz = Pick<Quiz, 'title' | 'description' | 'difficulty' | 'creatorId' > & {
     questions: IQuestion[];
 };
 
