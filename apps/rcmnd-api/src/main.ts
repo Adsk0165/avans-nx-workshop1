@@ -19,7 +19,7 @@ async function bootstrap() {
     app.useGlobalInterceptors(new ApiResponseInterceptor());
     app.useGlobalPipes(new ValidationPipe());
 
-    const port = process.env.PORT || 3100;
+    const port = process.env.PORT || 8080;
     await app.listen(port);
     Logger.log(
         `🚀 RCMND server is running on: http://localhost:${port}/${globalPrefix}`
