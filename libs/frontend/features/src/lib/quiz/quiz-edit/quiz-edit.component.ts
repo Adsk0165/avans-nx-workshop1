@@ -67,7 +67,7 @@ export class QuizEditComponent implements OnInit {
       }
     });
   }
-
+dfgdg\
   saveChanges(): void {
     if (typeof this.quiz.category !== 'number') {
       this.quiz.category = Number(this.quiz.category);  // Force category to be a number

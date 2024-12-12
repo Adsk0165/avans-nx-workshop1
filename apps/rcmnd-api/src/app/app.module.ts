@@ -1,15 +1,16 @@
 import { Neo4jBackendModule } from '@avans-nx-workshop/backend/neo4j';
 import { Module } from '@nestjs/common';
 import { Neo4jModule } from 'nest-neo4j/dist';
+import {environment} from '@avans-nx-workshop/shared/util-env'
 
 @Module({
     imports: [
         Neo4jModule.forRoot({
-            scheme: 'bolt+s',
-            host: 'd5e40bc7.databases.neo4j.io',
-            port: 7687,
-            username: process.env.NEO4J_USER,
-            password: process.env.NEO4J_PASSWORD
+            scheme: 'neo4j+s',
+            host: environment.RCMND_NEO4J_DB_HOST,
+            port: environment.RCMND_NEO4J_DB_PORT,
+            username: environment.RCMND_NEO4J_DB_USER,
+            password: environment.RCMND_NEO4J_DB_PASSWORD
         }),
         Neo4jBackendModule
     ],

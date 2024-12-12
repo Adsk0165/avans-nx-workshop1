@@ -7,7 +7,8 @@ import { IUser, IUserInfo } from '@avans-nx-workshop/shared/api';
 import { CreateUserDto, UpdateUserDto } from '@avans-nx-workshop/backend/dto';
 import { promises } from 'dns';
 import { ICreateUser } from '@avans-nx-workshop/shared/api';
-
+import {Neo4JUserService} from '@avans-nx-workshop/backend/neo4j'
+import { IsMongoId } from 'class-validator';
 @Injectable()
 export class UserService {
     private readonly logger: Logger = new Logger(UserService.name);
