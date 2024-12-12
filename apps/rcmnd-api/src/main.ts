@@ -2,7 +2,7 @@
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ApiResponseInterceptor } from '@avans-nx-workshop/backend/dto';
 import { AppModule } from './app/app.module';
@@ -14,11 +14,12 @@ async function bootstrap() {
     app.setGlobalPrefix(globalPrefix);
 
     const corsOptions: CorsOptions = {};
-    app.enableCors(corsOptions);
+    app.enableCors();
 
     app.useGlobalInterceptors(new ApiResponseInterceptor());
+    app.useGlobalPipes(new ValidationPipe());
 
-    const port = process.env.PORT || 8080;
+    const port = process.env.PORT || 3100;
     await app.listen(port);
     Logger.log(
         `🚀 RCMND server is running on: http://localhost:${port}/${globalPrefix}`
