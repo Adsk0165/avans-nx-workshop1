@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'quiz/:id', component: QuizDetailsComponent, canActivate: [LoggedInAuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent}
-];fgh
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -44,6 +44,12 @@ jobs:
               with:
                   name: data-api
                   path: data-api-release.zip
+            
+            - name: Upload rcmnd-api artifact for deployment job
+              uses: actions/upload-artifact@v4
+              with:
+                    name: rcmnd-api
+                    path: rcmnd-api-release.zip      
 
     deploy-my-app:
         runs-on: ubuntu-latest
@@ -100,5 +106,33 @@ jobs:
                   app-name: 'dataAppVoorIndv'
                   slot-name: 'Production'
                   publish-profile: ${{ secrets.NEXTJS_PUBLISHPROFILE }}
-                  package: .  
-      
+                  package: .
+        
+    deploy-rcmnd-api:
+        runs-on: ubuntu-latest
+        name: Deploy NestJs rcmnd-api backend
+        needs: build
+        environment:
+            name: 'Production'
+            url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+        steps:
+            - name: Download artifact from build job
+              uses: actions/download-artifact@v4
+              with:
+                  name: rcmnd-api
+
+            - name: Unzip artifact for deployment
+              run: unzip data-api-release.zip
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: 'Deploy to Azure Web App'
+              id: deploy-to-webapp
+              uses: azure/webapps-deploy@v3
+              with:
+                  app-name: 'RCMND-api'
+                  slot-name: 'Production'
+                  publish-profile: ${{ secrets.RCMND_API_PROFILE }}
+                  package: .
