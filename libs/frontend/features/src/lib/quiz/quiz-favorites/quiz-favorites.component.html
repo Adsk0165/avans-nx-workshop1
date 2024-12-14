@@ -1,0 +1,17 @@
+<div>
+    <h3>Your Favorite Quizzes</h3>
+    <ul *ngIf="favoriteQuizzes.length > 0; else noFavorites">
+      <li *ngFor="let quiz of favoriteQuizzes">
+        <h5>{{ quiz.title }}</h5>
+        <p>{{ quiz.description }}</p>
+        <p>Difficulty: {{ quiz.difficulty }}</p>
+        <button (click)="removeFavorite(quiz._id)" class="btn btn-danger">
+          Remove from Favorites
+        </button>
+      </li>
+    </ul>
+    <ng-template #noFavorites>
+      <p>You have not added any quizzes to favorites yet.</p>
+    </ng-template>
+  </div>
+  

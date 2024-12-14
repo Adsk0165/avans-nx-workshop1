@@ -28,4 +28,20 @@ export class Neo4JUserService {
         )
         return results
     }
+
+    async GetFavouritedQuizzes(userId: string): Promise <any>{
+        this.logger.log('get all favourited quizzes')
+        const results = await this.neo4jService.read(
+            queries.GetAllFavQuizzes, {userId}
+        )
+        return results
+    }
+
+    async DeleteFavourtieAQuiz(userId: string, quizId: string): Promise<any>{
+        this.logger.log('delete favourite relationship')
+        const results = await this.neo4jService.write(
+            queries.DeleteFavouriteRelationship, {userId, quizId}
+        )
+        return results
+    }
 }

@@ -12,6 +12,8 @@ import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
 import { QuizAddComponent } from './quiz/quiz-create/quiz-create.component';
 import { QuizDetailsComponent } from './quiz/quiz-details/quiz-details.component';
+import { FavoritesComponent } from './quiz/quiz-favorites/quiz-favorites.component';
+import { QuizRunnerComponent } from './quiz/quiz-runner/quiz-runner.component';
 
 @NgModule({
   imports: [
@@ -28,13 +30,18 @@ import { QuizDetailsComponent } from './quiz/quiz-details/quiz-details.component
     QuizListComponent, 
     UserAddComponent, 
     QuizDetailsComponent, 
-    QuizAddComponent
+    QuizAddComponent,
+    FavoritesComponent,
+    QuizRunnerComponent
+    
   ],
   exports: [
     UserListComponent, 
     UserDetailsComponent, 
     UserEditComponent, 
     UserAddComponent,
+    FavoritesComponent,
+    QuizRunnerComponent
   ],
   providers: [
     UserService,

@@ -1,0 +1,20 @@
+<div *ngIf="isLoading">Loading quiz...</div>
+<div *ngIf="!isLoading">
+  <h1>{{ quizTitle }}</h1>
+  <p>{{ quizDescription }}</p>
+
+  <div *ngIf="currentQuestion">
+    <p>{{ currentQuestion.question }}</p>
+    <div *ngFor="let answer of currentQuestion.answers">
+      <button (click)="selectAnswer(answer)">{{ answer }}</button>
+    </div>
+  </div>
+
+  <div *ngIf="showFeedback">
+    <p *ngIf="selectedAnswer === currentQuestion?.correct_answer">Correct!</p>
+    <p *ngIf="selectedAnswer !== currentQuestion?.correct_answer">Incorrect. The correct answer is: {{ currentQuestion?.correct_answer }}</p>
+  </div>
+
+  <button *ngIf="currentQuestionIndex < questions.length" (click)="nextQuestion()">Next Question</button>
+  <button *ngIf="currentQuestionIndex >= questions.length" (click)="restartQuiz()">Restart Quiz</button>
+</div>

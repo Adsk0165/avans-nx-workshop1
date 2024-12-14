@@ -1,30 +1,80 @@
 <div class="container">
   <h2>Create Quiz</h2>
-  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #quizForm="ngForm">
+    
+    <!-- Quiz Title -->
     <div class="form-group">
-      <label for="name">title:</label>
+      <label for="title">Title:</label>
       <input
         type="text"
-        id="name"
+        id="title"
         class="form-control"
         [(ngModel)]="quiz.title"
         name="title"
         required
       />
     </div>
+
+    <!-- Quiz Description -->
     <div class="form-group">
-      <label for="email">discription:</label>
-      <input
-        type="email"
-        id="email"
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
         class="form-control"
         [(ngModel)]="quiz.description"
-        name="email"
+        name="description"
+        rows="4"
         required
-      />
+      ></textarea>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
-      Create User
+
+    <!-- Quiz Difficulty -->
+    <div class="form-group">
+      <label for="difficulty">Difficulty:</label>
+      <select
+        id="difficulty"
+        class="form-control"
+        [(ngModel)]="quiz.difficulty"
+        name="difficulty"
+        required
+      >
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+    </div>
+
+    <!-- Quiz Category -->
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select
+        id="category"
+        class="form-control"
+        [(ngModel)]="quiz.category"
+        name="category"
+        required
+      >
+        <option *ngFor="let category of categories" [value]="category.value">
+          {{ category.label }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Quiz Active Status -->
+    <div class="form-group form-check">
+      <input
+        type="checkbox"
+        id="isActive"
+        class="form-check-input"
+        [(ngModel)]="quiz.isActive"
+        name="isActive"
+      />
+      <label class="form-check-label" for="isActive">Is Active</label>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="quizForm.invalid">
+      Create Quiz
     </button>
   </form>
 </div>

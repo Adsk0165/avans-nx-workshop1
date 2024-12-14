@@ -45,7 +45,18 @@ export class QuizService {
 }
 
   createQuiz(quiz: Partial<IQuiz>): Observable<IQuiz> {
-    return this.http.post<IQuiz>(this.apiUrl + "/generate-from-api", quiz);
+    const token = localStorage.getItem('currentuser');
+    
+    const cleanedToken = token ? token.replace(/^"(.+)"$/, '$1') : null;
+
+    if (!token) {
+      throw new Error('No JWT token found');
+    }
+    
+    const headers = new HttpHeaders().set(
+      'Authorization', `Bearer ${cleanedToken}`
+    );
+    return this.http.post<IQuiz>(this.apiUrl + "/generate-from-api", quiz, { headers });
   }
 
   updateQuiz(quiz: Partial<IQuizInfo>): Observable<IQuizInfo> {
@@ -71,19 +82,31 @@ export class QuizService {
     const quizid = id;
     const token = localStorage.getItem('currentuser'); 
   
-    // Clean the token (remove extra quotes if present)
+
     const cleanedToken = token ? token.replace(/^"(.+)"$/, '$1') : null;
   
     if (!cleanedToken) {
       throw new Error('No JWT token found');
     }
   
-    // Set Authorization header with Bearer token
     const headers = new HttpHeaders().set('Authorization', `Bearer ${cleanedToken}`);
   
-    // Send DELETE request to delete the quiz
+   
     return this.http.delete<void>(`${this.apiUrl}/${quizid}`, { headers });
   }
+
+  favoriteQuiz(userId: string, quizId: string): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/users/${userId}/favorite/${quizId}`, {});
+  }
+
+  unfavoriteQuiz(userId: string, quizId: string): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/users/${userId}/unfavorite/${quizId}`, {});
+  }
+
+  getUserFavorites(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/api/users/${userId}/favourites`);
+  }
+
   
   
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { QuizAddComponent, QuizDetailsComponent, QuizEditComponent, UserDetailsComponent, UserEditComponent } from '@avans-nx-workshop/features';
+import { FavoritesComponent, QuizAddComponent, QuizDetailsComponent, QuizEditComponent, QuizRunnerComponent, UserDetailsComponent, UserEditComponent } from '@avans-nx-workshop/features';
 import { UserListComponent } from '@avans-nx-workshop/features'; 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
@@ -20,7 +20,9 @@ const routes: Routes = [
   {path: 'users/new', component: UserAddComponent, canActivate: [LoggedInAuthGuard, RoleAuthGuard]},
   {path: 'quiz/:id', component: QuizDetailsComponent, canActivate: [LoggedInAuthGuard]},
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'favorites', component: FavoritesComponent, canActivate: [LoggedInAuthGuard]},
+  {path: 'runner/:id', component: QuizRunnerComponent, canActivate: [LoggedInAuthGuard]}
 ];
 
 @NgModule({

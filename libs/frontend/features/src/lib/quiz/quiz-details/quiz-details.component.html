@@ -1,7 +1,22 @@
 <h5>{{ quiz?.title }}</h5>
-<p class="proile-rating">DIFFICULTY : <span>{{ quiz?.difficulty}}</span></p>
+<p class="profile-rating">DIFFICULTY : <span>{{ quiz?.difficulty }}</span></p>
 <p>{{ quiz?.description }}</p>
 <p>{{ quiz?.isActive ? 'Active' : 'Inactive' }}</p>
+
 <div class="col-md-2">
-<a [routerLink]="['/quizedit', quiz?._id]"><button type="button" class="btn btn-primary">edit this quiz</button></a>
+  <a [routerLink]="['/quizedit', quiz?._id]">
+    <button type="button" class="btn btn-primary">Edit this quiz</button>
+  </a>
 </div>
+
+<button
+  type="button"
+  class="btn btn-warning"
+  (click)="toggleFavorite()"
+  [innerText]="isFavorited ? 'Unfavorite' : 'Favorite'"
+></button>
+
+<div>
+  <button (click)="startQuiz()">Start Quiz</button>
+</div>
+

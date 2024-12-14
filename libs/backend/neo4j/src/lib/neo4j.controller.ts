@@ -21,4 +21,21 @@ export class Neo4JExampleController {
     const results = await this.neo4jService.FavourtieAQuiz(userId, quizId);
     return results;
   }
+
+  @Get('/:userId/favourites')
+    async GetAllFavouritedQuizzes(@Param('userId', ParseMongoIdPipe) userId: string,): Promise<any> {
+        const results = await this.neo4jService.GetFavouritedQuizzes(userId);
+        return results;
+    }
+
+    @Post('/:userId/unfavorite/:quizId')
+    async deleteQuizRelationship(
+      @Param('userId', ParseMongoIdPipe) userId: string,
+      @Param('quizId', ParseMongoIdPipe) quizId: string,
+    ) {
+      console.log(userId,quizId)
+      const results = await this.neo4jService.DeleteFavourtieAQuiz(userId, quizId);
+      return results;
+    }
+
 }
