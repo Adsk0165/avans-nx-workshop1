@@ -12,6 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
   public currentUser$ = new BehaviorSubject<IUserInfo | undefined>(undefined);
+  public isLoggedIn$ = this.currentUser$.asObservable();
   private readonly CURRENT_USER = 'currentuser';
   private readonly headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -34,15 +35,14 @@ export class AuthService {
       .post<any>(`${environment.dataApiUrl}/auth/login`, { emailAddress, password }, { headers: this.headers })
       .pipe(
         map((response) => {
-          // Log the entire JSON response body
+
           console.log('Login Response Body:', response);
-  
-          // Ensure the response contains 'results' field
+         
           if (!response.results || !response.results.token) {
             throw new Error('No token found in login response');
           }
   
-          const user = response.results as IUserInfo; // Cast the response to IUserInfo
+          const user = response.results as IUserInfo; 
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
           this.alertService.success('You have been logged in');
@@ -64,7 +64,6 @@ export class AuthService {
         map((response: IUserInfo) => {
           this.alertService.success('You have been registered');
   
-          // Automatically log in the user
           this.login(userData.emailAddress, userData.password).subscribe({
             next: (loginResponse) => {
               if (loginResponse?.token) {
@@ -79,7 +78,7 @@ export class AuthService {
             },
           });
   
-          return response; // Return the registration response
+          return response; 
         }),
         catchError((error) => {
           console.error('Register Error:', error);

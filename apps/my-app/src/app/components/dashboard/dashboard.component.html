@@ -1,162 +1,94 @@
 <main>
+  <!-- Hero sectie -->
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Trivia Meester</h1>
+        <p class="lead text-body-secondary">Word jij de volgende Trivia Meester?</p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </section>
 
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">Trivia meester</h1>
-          <p class="lead text-body-secondary">Wordt jij de volgende trivia meester?</p>
-          <p>
-            <a href="#" class="btn btn-primary my-2">log in</a> 
-            of
-            <a href="#" class="btn btn-secondary my-2">meld je aan</a>
-          </p>
+  <!-- Statistieken -->
+  <section class="container my-5">
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="card border-primary shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-primary"><i class="bi bi-people"></i> Gebruikers</h5>
+            <p class="display-4 fw-bold">{{ userCount }}</p>
+            <p class="text-body-secondary">Totaal geregistreerde gebruikers</p>
+          </div>
         </div>
       </div>
-    </section>
-  
-    <div class="album py-5 bg-body-tertiary">
-      <div class="container">
-  
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
+      <div class="col-md-4">
+        <div class="card border-success shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-success"><i class="bi bi-journal"></i> Quizzes</h5>
+            <p class="display-4 fw-bold">Meer dan 100</p>
+            <p class="text-body-secondary">verschillende quizzes</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-warning shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-warning"><i class="bi bi-trophy"></i> Scores</h5>
+            <p class="display-4 fw-bold">89%</p>
+            <p class="text-body-secondary">Gemiddelde score</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Album sectie -->
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <h2 class="text-center mb-4">Populaire Quizzes</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Quiz Thumbnail">
+            <div class="card-body">
+              <h5 class="card-title">Geschiedenis Quiz</h5>
+              <p class="card-text">Test je kennis van belangrijke historische gebeurtenissen.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-sm btn-outline-primary">Bekijk Quiz</button>
+                <small class="text-body-secondary">Nieuw</small>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Quiz Thumbnail">
+            <div class="card-body">
+              <h5 class="card-title">Wetenschap Quiz</h5>
+              <p class="card-text">Hoeveel weet jij over natuurkunde, biologie en chemie?</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-sm btn-outline-primary">Bekijk Quiz</button>
+                <small class="text-body-secondary">Trending</small>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Quiz Thumbnail">
+            <div class="card-body">
+              <h5 class="card-title">Film Trivia</h5>
+              <p class="card-text">Hoe goed ken jij de klassieke en moderne filmsindustrie?</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-sm btn-outline-primary">Bekijk Quiz</button>
+                <small class="text-body-secondary">Populair</small>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
-  </main>
+  </div>
+</main>
