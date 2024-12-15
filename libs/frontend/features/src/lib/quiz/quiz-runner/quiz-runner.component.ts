@@ -24,7 +24,7 @@ export class QuizRunnerComponent implements OnInit {
   selectedAnswer: string | null = null;
   showFeedback: boolean = false;
   correctAnswersCount: number = 0;
-  isLoading: boolean = true;  // Loading state
+  isLoading: boolean = true; 
 
   constructor(
     private quizService: QuizService,
@@ -39,9 +39,7 @@ export class QuizRunnerComponent implements OnInit {
   loadQuiz(): void {
     this.quizService.getQuizById(this.quizId).subscribe(
       (quiz: any) => {
-        // Guard against missing or unexpected properties
         if (quiz && quiz.questions) {
-          // Use the actual properties of the quiz
           this.quizTitle = quiz.title || '';
           this.quizDescription = quiz.description || '';
           this.questions = quiz.questions
@@ -62,7 +60,6 @@ export class QuizRunnerComponent implements OnInit {
         console.error('Error loading quiz:', error);
       },
       () => {
-        // Set isLoading to false after data is loaded or an error occurs
         this.isLoading = false;
       }
     );
@@ -76,7 +73,7 @@ export class QuizRunnerComponent implements OnInit {
       this.correctAnswersCount++;
     }
 
-    setTimeout(() => this.nextQuestion(), 2000); // Move to next question after 2 seconds
+    setTimeout(() => this.nextQuestion(), 2000); 
   }
 
   nextQuestion(): void {
@@ -88,7 +85,7 @@ export class QuizRunnerComponent implements OnInit {
     if (this.currentQuestionIndex < this.questions.length) {
       this.currentQuestion = this.questions[this.currentQuestionIndex];
     } else {
-      this.currentQuestion = null; // End quiz
+      this.currentQuestion = null;
     }
   }
 

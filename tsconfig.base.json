@@ -28,11 +28,15 @@
             "@avans-nx-workshop/backend/user": [
                 "libs/backend/user/src/index.ts"
             ],
+            "@avans-nx-workshop/comment": ["libs/comment/src/index.ts"],
             "@avans-nx-workshop/features": [
                 "libs/frontend/features/src/index.ts"
             ],
             "@avans-nx-workshop/frontend/common": [
                 "libs/frontend/common/src/index.ts"
+            ],
+            "@avans-nx-workshop/libs/backend/comment": [
+                "libs/backend/comment/src/index.ts"
             ],
             "@avans-nx-workshop/libs/backend/question": [
                 "libs/backend/question/src/index.ts"

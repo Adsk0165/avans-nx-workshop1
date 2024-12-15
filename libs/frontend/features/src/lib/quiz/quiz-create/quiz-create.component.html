@@ -1,10 +1,8 @@
 <div class="container">
   <h2>Create Quiz</h2>
   <form (ngSubmit)="onSubmit()" #quizForm="ngForm">
-    
-    <!-- Quiz Title -->
     <div class="form-group">
-      <label for="title">Title:</label>
+      <label for="title">Titel:</label>
       <input
         type="text"
         id="title"
@@ -14,10 +12,8 @@
         required
       />
     </div>
-
-    <!-- Quiz Description -->
     <div class="form-group">
-      <label for="description">Description:</label>
+      <label for="description">Beschrijving:</label>
       <textarea
         id="description"
         class="form-control"
@@ -27,10 +23,8 @@
         required
       ></textarea>
     </div>
-
-    <!-- Quiz Difficulty -->
     <div class="form-group">
-      <label for="difficulty">Difficulty:</label>
+      <label for="difficulty">Moeilijkheid:</label>
       <select
         id="difficulty"
         class="form-control"
@@ -38,15 +32,13 @@
         name="difficulty"
         required
       >
-        <option value="Easy">Easy</option>
-        <option value="Medium">Medium</option>
-        <option value="Hard">Hard</option>
+        <option value="Easy">Makkelijk</option>
+        <option value="Medium">Midelmatig</option>
+        <option value="Hard">Moeilijk</option>
       </select>
     </div>
-
-    <!-- Quiz Category -->
     <div class="form-group">
-      <label for="category">Category:</label>
+      <label for="category">Categorie:</label>
       <select
         id="category"
         class="form-control"
@@ -59,8 +51,6 @@
         </option>
       </select>
     </div>
-
-    <!-- Quiz Active Status -->
     <div class="form-group form-check">
       <input
         type="checkbox"
@@ -69,10 +59,8 @@
         [(ngModel)]="quiz.isActive"
         name="isActive"
       />
-      <label class="form-check-label" for="isActive">Is Active</label>
+      <label class="form-check-label" for="isActive">Is actief</label>
     </div>
-
-    <!-- Submit Button -->
     <button type="submit" class="btn btn-primary" [disabled]="quizForm.invalid">
       Create Quiz
     </button>

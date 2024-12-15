@@ -70,7 +70,7 @@ return this.http.delete<void>(`${environment.dataApiUrl}/user/${userId}`);
   }
 
   updateUser(user: Partial<IUserInfo>): Observable<IUserInfo> {
-    const userId = user._id; // Use the user's ID to construct the endpoint
+    const userId = user._id; 
     return this.http.put<IUserInfo>(`${environment.dataApiUrl}/user/${userId}`, user);
   }
 

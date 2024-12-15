@@ -14,10 +14,10 @@ export class UserEditComponent implements OnInit {
     _id: '',
     name: '',
     emailAddress: '',
-    role: UserRole.Guest,  // default role
+    role: UserRole.Guest, 
     isActive: false,
     profileImgUrl: '',
-    gender: UserGender.Male,  // default gender
+    gender: UserGender.Male,  
     password: ''
   };
 

@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '@avans-nx-workshop/shared/util-env'; // Adjust path as needed
+import { environment } from '@avans-nx-workshop/shared/util-env'; 
 
 @Injectable()
 export class RoleAuthGuard implements CanActivate {
@@ -19,7 +19,6 @@ export class RoleAuthGuard implements CanActivate {
     const token = localStorage.getItem('currentuser');
     console.log('Retrieved token from localStorage:', token);
 
-    // Clean the token (remove surrounding quotes)
     const cleanedToken = token ? token.replace(/^"(.+)"$/, '$1') : null;
 
     if (!cleanedToken) {
@@ -29,9 +28,9 @@ export class RoleAuthGuard implements CanActivate {
     }
 
     try {
-      // Decode the token payload
+
       const decodedTokenPayload = JSON.parse(atob(cleanedToken.split('.')[1]));
-      const userIdFromToken = decodedTokenPayload?.user_id; // Extract user_id
+      const userIdFromToken = decodedTokenPayload?.user_id;
 
       if (!userIdFromToken) {
         console.log('User ID is missing in the token, redirecting to login');
@@ -42,16 +41,13 @@ export class RoleAuthGuard implements CanActivate {
       console.log('Decoded Token Payload:', decodedTokenPayload);
       console.log('User ID from Token:', userIdFromToken);
 
-      // Use environment variable for the API URL
       const apiUrl = `${environment.dataApiUrl}/user/${userIdFromToken}`;
 
-      // Fetch user details from backend
       return this.http.get<any>(apiUrl).pipe(
         switchMap((response) => {
           console.log('Fetched User Response:', response);
-
-          // Extract the role from the nested structure
-          const user = response.results; // Adjusted for the nested "results" structure
+          
+          const user = response.results; 
           if (!user) {
             console.log('User data is missing in the response, redirecting to login');
             this.router.navigate(['/login']);
@@ -61,14 +57,14 @@ export class RoleAuthGuard implements CanActivate {
           const userRole = user.role;
           console.log('User Role:', userRole);
 
-          // Admins can access any route
+       
           if (userRole === 'admin') {
             console.log('User is an admin, granting access to all resources');
             return of(true);
           }
 
-          // Regular users can only modify their own resources
-          const userIdParam = route.paramMap.get('id'); // Get the `id` from the route (e.g., /edit/:id)
+          
+          const userIdParam = route.paramMap.get('id'); 
           const isOwnResource = userIdFromToken === userIdParam;
           if (isOwnResource) {
             console.log('User can modify their own resource');
@@ -76,7 +72,7 @@ export class RoleAuthGuard implements CanActivate {
           }
 
           console.log('Access denied: User does not have permission to modify this resource');
-          this.router.navigate(['/dashboard']); // Redirect to a safe page
+          this.router.navigate(['/dashboard']);
           return of(false);
         }),
         catchError((error) => {

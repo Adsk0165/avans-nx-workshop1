@@ -10,12 +10,12 @@ import { IQuizInfo } from '@avans-nx-workshop/shared/api';
 export class QuizListComponent implements OnInit {
     quizzes: IQuizInfo[] = [];
   
-    constructor(private quizService: QuizService) {}  // Inject the UserService
+    constructor(private quizService: QuizService) {} 
   
     ngOnInit(): void {
       this.quizService.getAllQuizzes().subscribe((quizzes) => {
         console.log('API Response:', quizzes);
-        this.quizzes = quizzes;  // Assign the fetched users to the component's 'users' property
+        this.quizzes = quizzes;
       });
     }
 
@@ -24,7 +24,7 @@ export class QuizListComponent implements OnInit {
           this.quizService.deleteQuiz(id).subscribe({
               next: () => {
                   alert('Quiz deleted successfully.');
-                   // Reload the quiz list after deletion
+                   
               },
               error: (err) => {
                   console.error('Error deleting quiz:', err);

@@ -1,20 +1,52 @@
-<div *ngIf="isLoading">Loading quiz...</div>
-<div *ngIf="!isLoading">
-  <h1>{{ quizTitle }}</h1>
-  <p>{{ quizDescription }}</p>
-
-  <div *ngIf="currentQuestion">
-    <p>{{ currentQuestion.question }}</p>
-    <div *ngFor="let answer of currentQuestion.answers">
-      <button (click)="selectAnswer(answer)">{{ answer }}</button>
+<div class="container py-5">
+    <div *ngIf="isLoading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Laden...</span>
+      </div>
+      <h3 class="mt-3">Quiz Laden...</h3>
+    </div>
+    <div *ngIf="!isLoading" class="quiz-card mx-auto p-4 shadow-lg rounded text-center d-flex flex-column align-items-center" style="max-width: 600px; border: 1px solid #ddd;">
+      <h1>{{ quizTitle }}</h1>
+      <p class="text-muted">{{ quizDescription }}</p>
+      <div class="mt-3">
+        <p class="badge badge-success p-2" style="font-size: 1.2rem; color: black;">
+          Score: {{ correctAnswersCount }} / 10
+        </p>
+      </div>
+      <div *ngIf="currentQuestion" class="mt-4 w-100">
+        <h4>{{ currentQuestion.question }}</h4>
+        <div class="d-flex flex-wrap justify-content-center mt-3">
+          <div 
+            *ngFor="let answer of currentQuestion.answers" 
+            class="p-2" 
+            style="width: 45%;"
+          >
+            <button 
+              class="btn btn-outline-primary btn-block" 
+              [disabled]="showFeedback" 
+              (click)="selectAnswer(answer)">
+              {{ answer }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showFeedback" class="mt-4 text-center w-100">
+        <div *ngIf="selectedAnswer === currentQuestion?.correct_answer" class="alert alert-success">
+          <strong>Correct!</strong> Goed gedaan!
+        </div>
+        <div *ngIf="selectedAnswer !== currentQuestion?.correct_answer" class="alert alert-danger">
+          <strong>Incorrect.</strong> Het juiste antwoord is: 
+          <span class="font-weight-bold">{{ currentQuestion?.correct_answer }}</span>
+        </div>
+      </div>
+      <div class="mt-4 text-center">
+        <button 
+          *ngIf="currentQuestionIndex >= questions.length - 1" 
+          (click)="restartQuiz()" 
+          class="btn btn-secondary">
+          Restart Quiz
+        </button>
+      </div>
     </div>
   </div>
-
-  <div *ngIf="showFeedback">
-    <p *ngIf="selectedAnswer === currentQuestion?.correct_answer">Correct!</p>
-    <p *ngIf="selectedAnswer !== currentQuestion?.correct_answer">Incorrect. The correct answer is: {{ currentQuestion?.correct_answer }}</p>
-  </div>
-
-  <button *ngIf="currentQuestionIndex < questions.length" (click)="nextQuestion()">Next Question</button>
-  <button *ngIf="currentQuestionIndex >= questions.length" (click)="restartQuiz()">Restart Quiz</button>
-</div>
+  

@@ -1,70 +1,70 @@
-<div class="container">
-    <h2>Create User</h2>
-    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          class="form-control"
-          [(ngModel)]="user.name"
-          name="name"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          [(ngModel)]="user.emailAddress"
-          name="email"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="password">password:</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          [(ngModel)]="user.password"
-          name="email"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="role">Role:</label>
-        <select
-          id="role"
-          class="form-control"
-          [(ngModel)]="user.role"
-          name="role"
-          required
-        >
-          <option value="Admin">Admin</option>
-          <option value="User">User</option>
-          <option value="Guest">Guest</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="gender">Gender:</label>
-        <select
-          id="gender"
-          class="form-control"
-          [(ngModel)]="user.gender"
-          name="gender"
-          required
-        >
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
-        Create User
-      </button>
-    </form>
-  </div>
-  
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Create User</h2>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="name" 
+        [(ngModel)]="user.name" 
+        name="name" 
+        required 
+        placeholder="Vul hier een  geldige gebruikersnaam in"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        id="email" 
+        [(ngModel)]="user.emailAddress" 
+        name="email" 
+        required 
+        placeholder="Vul hier een geldige email in"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Wachtwoord</label>
+      <input 
+        type="password" 
+        class="form-control" 
+        id="password" 
+        [(ngModel)]="user.password" 
+        name="password" 
+        required 
+        placeholder="vul hier een geldige wachtwoord in"
+      />
+    </div>
+    <div class="form-group">
+      <label for="role">Rol</label>
+      <select 
+        class="form-control" 
+        id="role" 
+        [(ngModel)]="user.role" 
+        name="role" 
+        required
+      >
+        <option value="Admin">Admin</option>
+        <option value="User">User</option>
+        <option value="Guest">Guest</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select 
+        class="form-control" 
+        id="gender" 
+        [(ngModel)]="user.gender" 
+        name="gender" 
+        required
+      >
+        <option value="Male">Man</option>
+        <option value="Female">Vrouw</option>
+        <option value="Other">Anders</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="userForm.invalid">User aanmaken</button>
+  </form>
+</div>

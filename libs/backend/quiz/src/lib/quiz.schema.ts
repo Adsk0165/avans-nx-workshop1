@@ -22,7 +22,7 @@ export class Quiz {
   @Prop({ required: true })
   description: string;
 
-  // Array of references to Question documents
+
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Question' }] })
   questions: Types.ObjectId[] | undefined;
   
@@ -39,7 +39,6 @@ export class Quiz {
 
 export type QuizDocument = Quiz & Document;
 
-// Exporting QuizSchema as the schema for the model
 export const QuizSchema = SchemaFactory.createForClass(Quiz);
 
 export const QuizModel = model<Quiz>('Quiz', QuizSchema);

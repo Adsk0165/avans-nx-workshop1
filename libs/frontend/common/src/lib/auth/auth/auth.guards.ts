@@ -20,8 +20,8 @@ export class LoggedInAuthGuard implements CanActivate, CanActivateChild {
         const token = localStorage.getItem('currentuser');
         console.log('Retrieved token from localStorage:', token);
   
-        // Validate token presence and length
-        if (token && token.length > 10) { // Arbitrary length check to ensure token isn't empty or invalid
+       
+        if (token && token.length > 10) { 
           console.log('Token exists and seems valid.');
           return true;
         } else {

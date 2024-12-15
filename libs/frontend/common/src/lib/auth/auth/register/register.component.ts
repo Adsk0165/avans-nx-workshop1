@@ -9,11 +9,11 @@ import { ICreateUser } from '@avans-nx-workshop/shared/api';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../auth.css'],
+ 
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  registerForm!: FormGroup; // Non-null assertion
-  subs!: Subscription; // Non-null assertion
+  registerForm!: FormGroup;
+  subs!: Subscription; 
 
   constructor(private authService: AuthService, private router: Router) {}
 

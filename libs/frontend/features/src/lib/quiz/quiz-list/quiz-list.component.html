@@ -3,9 +3,9 @@
         <tr>
             <th>id</th>
             <th>Title</th>
-            <th>Description</th>
-            <th>Difficulty</th>
-            <th>Actions</th>
+            <th>Beschrijving</th>
+            <th>Moeilijkheid/th>
+            <th>Acties</th>
         </tr>
     </thead>
     <tbody>
@@ -19,12 +19,12 @@
             <td>{{ quiz.description }}</td>
             <td>{{ quiz.difficulty }}</td>
             <td>
-                <button (click)="deleteQuiz(quiz._id)" class="btn btn-danger">Remove</button>
+                <button (click)="deleteQuiz(quiz._id)" class="btn btn-danger">verwijder</button>
             </td>
         </tr>
     </tbody>
 </table>
 
 <button type="button" class="btn btn-secondary" style="margin-top: 10px; text-decoration: none !important;">
-    <a [routerLink]="['/quiz/new']">Add Quiz</a>
+    <a [routerLink]="['/quiz/new']" style="text-decoration: none; color: white;">Quiz aanmaken</a>
 </button>

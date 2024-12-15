@@ -12,7 +12,7 @@ describe('TopicController', () => {
   beforeAll(async () => {
     app = await Test.createTestingModule({
       controllers: [UserController],
-      providers: [{ // mock the service, to avoid providing its dependencies
+      providers: [{ 
         provide: UserService,
         useValue: {
           getAll: jest.fn(),

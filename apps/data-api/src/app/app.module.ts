@@ -7,6 +7,7 @@ import { environment } from '@avans-nx-workshop/shared/util-env';
 import { Logger } from '@nestjs/common';
 import { QuizModule } from '../../../../libs/backend/quiz/src'
 import {QuestionModule} from '@avans-nx-workshop/libs/backend/question'
+import {CommentModule} from '@avans-nx-workshop/libs/backend/comment'
 
 @Module({
     imports: [
@@ -26,7 +27,8 @@ import {QuestionModule} from '@avans-nx-workshop/libs/backend/question'
         }),
         UsersModule,
         QuizModule,
-        QuestionModule
+        QuestionModule,
+        CommentModule
     ],
     controllers: [],
     providers: []

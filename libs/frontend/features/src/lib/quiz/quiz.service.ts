@@ -5,6 +5,7 @@ import { environment } from '@avans-nx-workshop/shared/util-env';
 import { IQuiz, IQuizIdentity, IQuizInfo } from '@avans-nx-workshop/shared/api';
 import { ApiResponse } from '@avans-nx-workshop/shared/api'
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +20,7 @@ export class QuizService {
          map((response) => response.results),
          tap((response) => console.log(response)),
          tap((quizzes) => {
-          quizzes.forEach((quiz) => console.log('Quiz Title:', quiz.title)); // Log only the title
+          quizzes.forEach((quiz) => console.log('Quiz Title:', quiz.title)); 
         })
         );
   }
@@ -28,7 +29,7 @@ export class QuizService {
   //   return this.http.get<ApiResponse<any>>(environment.dataApiUrl + '/user').pipe(
   //    tap((response) => console.log(response)),
   //    map((response) => response.results),
-  //    tap((response) => console.log(response))
+  //    tap((response) => console.log(response))c
   //   );
  //}
 
@@ -96,15 +97,15 @@ export class QuizService {
   }
 
   favoriteQuiz(userId: string, quizId: string): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/users/${userId}/favorite/${quizId}`, {});
+    return this.http.post(`https://rcmnd-api-g4dxdkcqd4fsaghr.westeurope-01.azurewebsites.net/api/users/${userId}/favorite/${quizId}`, {});
   }
 
   unfavoriteQuiz(userId: string, quizId: string): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/users/${userId}/unfavorite/${quizId}`, {});
+    return this.http.post(`https://rcmnd-api-g4dxdkcqd4fsaghr.westeurope-01.azurewebsites.net/api/users/${userId}/unfavorite/${quizId}`, {});
   }
 
   getUserFavorites(userId: string): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/users/${userId}/favourites`);
+    return this.http.get<any[]>(`https://rcmnd-api-g4dxdkcqd4fsaghr.westeurope-01.azurewebsites.net/api/users/${userId}/favourites`);
   }
 
   

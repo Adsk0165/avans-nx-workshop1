@@ -14,6 +14,7 @@ import { ReactiveFormsModule  } from '@angular/forms'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FrontendCommonModule, LoggedInAuthGuard, RoleAuthGuard} from '@avans-nx-workshop/frontend/common'
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -33,6 +34,7 @@ import {FrontendCommonModule, LoggedInAuthGuard, RoleAuthGuard} from '@avans-nx-
         ReactiveFormsModule,
         NgbModule,
         FrontendCommonModule,
+        
        
     ],
     providers: [LoggedInAuthGuard, RoleAuthGuard],

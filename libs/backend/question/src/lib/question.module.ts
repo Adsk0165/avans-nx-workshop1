@@ -6,7 +6,6 @@ import { Question, QuestionSchema } from './question.schema';
 
 @Module({
   imports: [
-    // Import the Mongoose module for the Question schema
     MongooseModule.forFeature([{ name: Question.name, schema: QuestionSchema }]),
   ],
   controllers: [QuestionController],

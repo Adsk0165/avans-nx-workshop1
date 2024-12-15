@@ -1,48 +1,43 @@
 <div class="auth-container">
   <h2 class="auth-header">Login</h2>
 
-  <!-- Form for Login -->
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
-    <!-- Email Field -->
     <div class="form-group">
-      <label for="emailAddress" class="form-label">Email Address</label>
+      <label for="emailAddress" class="form-label">Email addres</label>
       <input
         id="emailAddress"
         formControlName="emailAddress"
-        type="emailAddress"
+        type="email"
         class="form-control"
-        placeholder="Enter your email"
+        placeholder="Vul hier je email in"
         [class.is-invalid]="loginForm.get('emailAddress')?.invalid && submitted"
       />
-      <div *ngIf="loginForm.get('email')?.invalid && submitted" class="invalid-feedback">
-        Please enter a valid email address.
+      <div *ngIf="loginForm.get('emailAddress')?.invalid && submitted" class="invalid-feedback">
+        Vul hier een geldig email addres in.
       </div>
     </div>
 
-    <!-- Password Field -->
     <div class="form-group">
-      <label for="password" class="form-label">Password</label>
+      <label for="password" class="form-label">Wachtwoord</label>
       <input
         id="password"
         formControlName="password"
         type="password"
         class="form-control"
-        placeholder="Enter your password"
+        placeholder="Vul hier je wachtwoord in"
         [class.is-invalid]="loginForm.get('password')?.invalid && submitted"
       />
       <div *ngIf="loginForm.get('password')?.invalid && submitted" class="invalid-feedback">
-        Password must be between 3 and 15 characters long.
+        wachtwoord moet tussen de 3 en 15 characters lang zijn.
       </div>
     </div>
 
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid || submitted">
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid || submitted" style="margin-top: 10px;">
       Login
     </button>
   </form>
 
-  <!-- Optional Redirect Link to Register Page -->
-  <div class="auth-footer">
-    <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+  <div class="auth-footer" style="padding-top: 10px;">
+    <p>Heb je geen account? <a routerLink="/register">Registreer je hier</a></p>
   </div>
 </div>

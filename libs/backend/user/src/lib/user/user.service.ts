@@ -14,7 +14,7 @@ export class UserService {
     private readonly logger: Logger = new Logger(UserService.name);
 
     constructor(
-        @InjectModel(UserModel.name) private userModel: Model<UserDocument> // @InjectModel(Meal.name) private meetupModel: Model<MealDocument>
+        @InjectModel(UserModel.name) private userModel: Model<UserDocument>
     ) {}
 
     async findAll(): Promise<IUserInfo[]> {
@@ -42,17 +42,15 @@ export class UserService {
     }
 
     create1(userData: ICreateUser): Promise<IUserInfo> {
-        // Create a new user document without setting the _id (MongoDB will handle that)
         const user = new this.userModel({
           name: userData.name,
           emailAddress: userData.emailAddress,
           password: userData.password,
-          profileImgUrl: '',  // Optional field (you can set a default or null if not needed)
-           // Default value
-          isActive: true, // Default active status
+          profileImgUrl: '', 
+          isActive: true, 
         });
       
-        return user.save(); // MongoDB will auto-generate the _id field
+        return user.save(); 
       }
       
 

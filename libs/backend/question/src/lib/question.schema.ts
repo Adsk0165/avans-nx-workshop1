@@ -9,7 +9,7 @@ export enum QuestionDifficulty {
 }
 
 
-@Schema({ timestamps: true }) // Automatically adds createdAt and updatedAt
+@Schema({ timestamps: true }) 
 export class Question {
 
   @Prop({ required: true })
@@ -30,11 +30,9 @@ export class Question {
   @Prop({ type: [String], default: [] })
   tags?: string[];
 
-  createdAt: Date | undefined; // These are added automatically by `timestamps`
+  createdAt: Date | undefined;
   updatedAt: Date | undefined;
 }
 
 export type QuestionDocument = Question & Document;
-
-// Exporting the schema for use with Mongoose
 export const QuestionSchema = SchemaFactory.createForClass(Question);

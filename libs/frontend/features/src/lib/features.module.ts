@@ -14,16 +14,17 @@ import { QuizAddComponent } from './quiz/quiz-create/quiz-create.component';
 import { QuizDetailsComponent } from './quiz/quiz-details/quiz-details.component';
 import { FavoritesComponent } from './quiz/quiz-favorites/quiz-favorites.component';
 import { QuizRunnerComponent } from './quiz/quiz-runner/quiz-runner.component';
+import { CommentService } from './comments/comments.service';
 
 @NgModule({
   imports: [
     CommonModule, 
     RouterModule, 
     FormsModule, 
-    HttpClientModule // Make sure HttpClientModule is imported for HTTP requests
+    HttpClientModule 
   ],
   declarations: [
-    UserDetailsComponent, // Declare only once
+    UserDetailsComponent,
     UserListComponent, 
     UserEditComponent, 
     QuizEditComponent, 
@@ -41,10 +42,12 @@ import { QuizRunnerComponent } from './quiz/quiz-runner/quiz-runner.component';
     UserEditComponent, 
     UserAddComponent,
     FavoritesComponent,
-    QuizRunnerComponent
+    QuizRunnerComponent,
+    
   ],
   providers: [
     UserService,
+    CommentService
   ]
 })
 export class FeaturesModule {}

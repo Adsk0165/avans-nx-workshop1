@@ -36,7 +36,7 @@ export class QuizEditComponent implements OnInit {
   quiz: IQuizInfo = {
     title: '',
     description: '',
-    difficulty: QuizDifficulty.Easy, // default role
+    difficulty: QuizDifficulty.Easy,
     isActive: false,
     _id: '',
     createdAt: undefined,
@@ -70,7 +70,7 @@ export class QuizEditComponent implements OnInit {
   
   saveChanges(): void {
     if (typeof this.quiz.category !== 'number') {
-      this.quiz.category = Number(this.quiz.category);  // Force category to be a number
+      this.quiz.category = Number(this.quiz.category);
     }
 
     this.quizservice.updateQuiz(this.quiz).subscribe({

@@ -35,7 +35,7 @@ export class QuizAddComponent {
     quiz: IQuizInfo = {
       title: '',
       description: '',
-      difficulty: QuizDifficulty.Easy, // default role
+      difficulty: QuizDifficulty.Easy,
       isActive: false,
       _id: '',
       createdAt: undefined,
@@ -51,8 +51,7 @@ constructor(
 
   onSubmit() {
     if (this.quiz) {
-      // Ensure that the category is a number before submission
-      this.quiz.category = +this.quiz.category; // Converts category to a number
+      this.quiz.category = +this.quiz.category; 
       this.quizservice.createQuiz(this.quiz).subscribe({
         next: (response) => {
           console.log('Quiz created successfully:', response);

@@ -1,160 +1,50 @@
-
+<div class="container d-flex justify-content-center align-items-center ">
+    <div class="card p-4 shadow" style="width: 50%; border: 1px solid #ddd;">
+      <div *ngIf="user; else noUser">
+        <div class="text-center">
+          <img 
+            [src]="user.profileImgUrl || 'https://via.placeholder.com/150'" 
+            alt="Profile Image" 
+            class="rounded-circle img-fluid mb-3" 
+            style="max-width: 150px; height: 150px; object-fit: cover;"
+          />
+          <h2>{{ user.name }}</h2>
+          <h6 class="text-muted">{{ user.role }}</h6>
+        
+        </div>
+        <div class="mt-4">
+          <div class="row">
+            <div class="col-6 text-right">
+              <strong>Email:</strong>
+            </div>
+            <div class="col-6">
+              <p>{{ user.emailAddress }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-right">
+              <strong>Gender:</strong>
+            </div>
+            <div class="col-6">
+              <p>{{ user.gender }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-right">
+              <strong>Status:</strong>
+            </div>
+            <div class="col-6">
+              <p>{{ user.isActive ? 'Active' : 'Inactive' }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a [routerLink]="['/edit', user._id]" class="btn btn-primary">User bewerken</a>
+        </div>
+      </div>
+      <ng-template #noUser>
+        <p class="text-danger text-center">User niet gevonden!</p>
+      </ng-template>
+    </div>
+  </div>
   
-  <ng-template #noUser>
-    <p>User not found!</p>
-  </ng-template>
-  
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<div class="container emp-profile">
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                      <div *ngIf="user; else noUser">
-                                        <h1>{{ user.name }}</h1>
-                                      </div>
-                                    </h5>
-                                    <h6>
-                                        
-                                    </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div *ngIf="user; else noUser">
-                      <a [routerLink]="['/edit', user._id]"><button type="button" class="btn btn-primary">edit this user</button></a>
-                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                              <div *ngIf="user; else noUser">
-                                                <p>{{ user.name }}<p>
-                                              </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                              <div *ngIf="user; else noUser">
-                                                <p>{{ user.emailAddress }}<p>
-                                              </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Role</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                              <div *ngIf="user; else noUser">
-                                                <p>{{ user.role }}<p>
-                                              </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>gender</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                              <div *ngIf="user; else noUser">
-                                                <p>{{ user.gender }}<p>
-                                              </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-6">
-                                              <label>status</label>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <div *ngIf="user; else noUser">
-                                              <p>{{ user.isActive }}<p>
-                                            </div>
-                                          </div>
-                                      </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>           
-        </div>  

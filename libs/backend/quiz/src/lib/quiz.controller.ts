@@ -13,9 +13,9 @@ export class QuizController {
   @UseGuards(AuthGuard)
   async generateQuizFromAPI(
     @Body() createQuizDto: CreateQuizDto,
-    @Request() req: any, // Use `any` to avoid strict type checks
+    @Request() req: any, 
   ): Promise<Quiz> {
-    const userId = req.user?.id; // Access the `user` property
+    const userId = req.user?.id;
     if (!userId) {
       throw new UnauthorizedException('User not authenticated');
     }
@@ -47,15 +47,15 @@ async updateQuiz(
   const userId = req.user?.id; 
   const userRole = req.user?.role;
   console.log(userRole)
-  // Ensure the user is authenticated
+ 
   if (!userId || !userRole) {
     throw new UnauthorizedException('User not authenticated');
   }
 
-  // Attempt to update the quiz
+ 
   const updatedQuiz = await this.quizService.updateQuiz(id, userId, userRole, updateQuizDto);
 
-  // Handle not found
+
   if (!updatedQuiz) {
     throw new NotFoundException(`Quiz with ID ${id} not found`);
   }
