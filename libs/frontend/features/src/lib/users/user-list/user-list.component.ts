@@ -11,8 +11,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserListComponent implements OnInit {
   users: IUserInfo[] = [];
-  currentUserId: string = ''; // Store the current user's ID
-  currentUserRole: string = ''; // Store the current user's role
+  currentUserId: string = ''; 
+  currentUserRole: string = ''; 
 
   constructor(
     private userService: UserService,
@@ -56,6 +56,7 @@ export class UserListComponent implements OnInit {
           next: () => {
             this.users.splice(index, 1);  
             alert('Your account has been deleted successfully!');
+            this.authService.logout()
           },
           error: (err) => {
             console.error('Error deleting account:', err);

@@ -13,7 +13,7 @@ export class FavoritesComponent implements OnInit {
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
-    this.decodeToken(); // Decode the user ID from the token
+    this.decodeToken();
     if (this.userId) {
       this.fetchFavorites();
     }
@@ -27,9 +27,9 @@ export class FavoritesComponent implements OnInit {
     }
 
     try {
-      const cleanedToken = token.replace(/^"(.+)"$/, '$1'); // Remove surrounding quotes
+      const cleanedToken = token.replace(/^"(.+)"$/, '$1');
       const decodedPayload = JSON.parse(atob(cleanedToken.split('.')[1]));
-      this.userId = decodedPayload?.user_id; // Replace with your token's user ID key
+      this.userId = decodedPayload?.user_id;
       console.log('Decoded user ID:', this.userId);
     } catch (error) {
       console.error('Failed to decode token:', error);

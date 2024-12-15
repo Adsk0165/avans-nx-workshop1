@@ -1,8 +1,8 @@
 <div class="container mt-5">
-  <h2 class="text-center mb-4">Edit User</h2>
+  <h2 class="text-center mb-4">bewerk User</h2>
   <form>
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">Naam</label>
       <input 
         type="text" 
         class="form-control" 
@@ -26,7 +26,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="role">Role</label>
+      <label for="role">Rol</label>
       <select 
         class="form-control" 
         id="role" 
@@ -46,8 +46,8 @@
         [(ngModel)]="user.isActive" 
         name="isActive" 
       />
-      <label class="form-check-label" for="isActive">Active</label>
+      <label class="form-check-label" for="isActive">ACtief</label>
     </div>
-    <button type="button" class="btn btn-primary btn-block" (click)="saveChanges()">Save Changes</button>
+    <button type="button" class="btn btn-primary btn-block" (click)="saveChanges()">Gegevens Opslaan</button>
   </form>
 </div>
