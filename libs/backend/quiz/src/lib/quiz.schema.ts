@@ -29,6 +29,9 @@ export class Quiz {
   @Prop()
   creatorId: string | undefined
   static creatorId: any;
+
+  @Prop({ type: [String], default: [] })
+  questionIds?: string[];
   
   constructor(name: string, difficulty: QuizDifficulty, description: string) {
     this.title = name;

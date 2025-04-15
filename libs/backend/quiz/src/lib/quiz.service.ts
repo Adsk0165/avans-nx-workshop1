@@ -129,6 +129,17 @@ export class QuizService {
       throw new HttpException('Failed to delete quiz', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  async createQuiz(dto: CreateQuizDto): Promise<Quiz> {
+      const { _id, ...cleanDto } = dto as any;
   
+    const quiz = new this.quizModel({
+      ...cleanDto,
+      questionIds: dto.questionIds ?? [],
+      creatorId: dto.creator
+    });
+  
+    return quiz.save();
+  }
   
 }

@@ -51,6 +51,13 @@ async getQuestionsByUser(@Param('userId') userId: string) {
   return this.questionService.getAllByUser(userId);
 }
 
+@Post('by-ids')
+@UseGuards(AuthGuard)
+async getQuestionsByIds(@Body('ids') ids: string[]): Promise<IQuestion[]> {
+  return this.questionService.getQuestionsByIds(ids);
+}
+
+
 
 }
 function getMyQuestions(arg0: any, req: any, any: any) {

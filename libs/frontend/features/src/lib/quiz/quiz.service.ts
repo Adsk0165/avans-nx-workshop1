@@ -45,7 +45,7 @@ export class QuizService {
   );
 }
 
-  createQuiz(quiz: Partial<IQuiz>): Observable<IQuiz> {
+  createQuizWithAPI(quiz: Partial<IQuiz>): Observable<IQuiz> {
     const token = localStorage.getItem('currentuser');
     
     const cleanedToken = token ? token.replace(/^"(.+)"$/, '$1') : null;
@@ -59,6 +59,17 @@ export class QuizService {
     );
     return this.http.post<IQuiz>(this.apiUrl + "/generate-from-api", quiz, { headers });
   }
+
+  createCustomQuiz(quiz: Partial<IQuiz>): Observable<IQuiz> {
+    const token = localStorage.getItem('currentuser');
+    const cleanedToken = token ? token.replace(/^"(.+)"$/, '$1') : null;
+  
+    if (!token) throw new Error('No JWT token found');
+    
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${cleanedToken}`);
+    return this.http.post<IQuiz>(this.apiUrl, quiz, { headers }); 
+  }
+  
 
   updateQuiz(quiz: Partial<IQuizInfo>): Observable<IQuizInfo> {
     const quizid = quiz._id;

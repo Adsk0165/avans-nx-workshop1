@@ -90,5 +90,19 @@ async updateQuiz(
   return { message: 'Quiz deleted successfully' };
 }
 
+@Post()
+@UseGuards(AuthGuard)
+async createCustomQuiz(@Body() dto: CreateQuizDto, @Request() req: any): Promise<Quiz> {
+  const userId = req.user?.id;
+  if (!userId) {
+    throw new UnauthorizedException('User not authenticated');
+  }
+
+  return this.quizService.createQuiz({
+    ...dto,
+    creator: userId,
+  });
+}
+
 
 }

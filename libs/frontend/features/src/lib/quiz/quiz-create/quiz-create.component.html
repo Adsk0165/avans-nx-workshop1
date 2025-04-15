@@ -1,68 +1,59 @@
 <div class="container">
-  <h2>Create Quiz</h2>
+  <h2>Nieuwe Quiz Aanmaken</h2>
+
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeTab === 'api'" (click)="activeTab = 'api'">Vragen via API</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeTab === 'custom'" (click)="activeTab = 'custom'">Eigen vragen</a>
+    </li>
+  </ul>
+
   <form (ngSubmit)="onSubmit()" #quizForm="ngForm">
-    <div class="form-group">
-      <label for="title">Titel:</label>
-      <input
-        type="text"
-        id="title"
-        class="form-control"
-        [(ngModel)]="quiz.title"
-        name="title"
-        required
-      />
+       <div class="form-group">
+      <label>Titel:</label>
+      <input type="text" [(ngModel)]="quiz.title" name="title" required class="form-control" />
     </div>
     <div class="form-group">
-      <label for="description">Beschrijving:</label>
-      <textarea
-        id="description"
-        class="form-control"
-        [(ngModel)]="quiz.description"
-        name="description"
-        rows="4"
-        required
-      ></textarea>
+      <label>Beschrijving:</label>
+      <textarea [(ngModel)]="quiz.description" name="description" required class="form-control"></textarea>
     </div>
     <div class="form-group">
-      <label for="difficulty">Moeilijkheid:</label>
-      <select
-        id="difficulty"
-        class="form-control"
-        [(ngModel)]="quiz.difficulty"
-        name="difficulty"
-        required
-      >
+      <label>Moeilijkheid:</label>
+      <select [(ngModel)]="quiz.difficulty" name="difficulty" required class="form-control">
         <option value="Easy">Makkelijk</option>
-        <option value="Medium">Midelmatig</option>
+        <option value="Medium">Gemiddeld</option>
         <option value="Hard">Moeilijk</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="category">Categorie:</label>
-      <select
-        id="category"
-        class="form-control"
-        [(ngModel)]="quiz.category"
-        name="category"
-        required
-      >
-        <option *ngFor="let category of categories" [value]="category.value">
-          {{ category.label }}
-        </option>
+      <label>Categorie:</label>
+      <select [(ngModel)]="quiz.category" name="category" required class="form-control">
+        <option *ngFor="let category of categories" [value]="category.value">{{ category.label }}</option>
       </select>
     </div>
-    <div class="form-group form-check">
-      <input
-        type="checkbox"
-        id="isActive"
-        class="form-check-input"
-        [(ngModel)]="quiz.isActive"
-        name="isActive"
-      />
-      <label class="form-check-label" for="isActive">Is actief</label>
+
+    <div *ngIf="activeTab === 'custom'" class="form-group">
+      <h4>Selecteer je eigen vragen</h4>
+      <div *ngFor="let question of allOwnQuestions" class="custom-question">
+        <label>
+          <input
+            type="checkbox"
+            [checked]="isSelected(question)"
+            (change)="toggleQuestionSelection(question)"
+          />
+          {{ question.title }} – {{ question.difficulty }}
+        </label>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="quizForm.invalid">
-      Create Quiz
+   
+    <div *ngIf="activeTab === 'api'">
+      <p>Laat hier jouw bestaande API-quiz functionaliteit staan (zoals random genereren).</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3" [disabled]="quizForm.invalid">
+      Quiz opslaan
     </button>
   </form>
 </div>

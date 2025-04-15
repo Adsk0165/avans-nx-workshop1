@@ -17,6 +17,7 @@ export class CreateQuizDto {
   category: number | undefined;
 
   creator: string | undefined
+  questionIds?: string[];
 }
 
 export class UpdateQuizDto {

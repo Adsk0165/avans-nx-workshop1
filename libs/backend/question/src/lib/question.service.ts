@@ -22,6 +22,12 @@ export class QuestionService {
     }
   }
 
+  async getQuestionsByIds(ids: string[]): Promise<IQuestion[]> {
+    const questions = await this.questionModel.find({ _id: { $in: ids } }).exec();
+    return questions.map((question) => question.toObject() as IQuestion);
+  }
+  
+
   async getAllByUser(userId: string): Promise<Question[]> {
     return this.questionModel.find({ userId }).exec();
   }

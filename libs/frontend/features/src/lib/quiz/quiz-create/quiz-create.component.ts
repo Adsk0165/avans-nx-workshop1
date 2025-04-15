@@ -1,13 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../quiz.service'; // Adjust the path to your service
 import { IUserInfo, UserRole, UserGender, IQuizInfo, QuizDifficulty } from '@avans-nx-workshop/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  IQuestionFromQuestionInterface,
+  Diff,
+  Iupdatequestion
+} from '@avans-nx-workshop/shared/api';
+import { QuestionService } from '../../questions/questions.service';
+
 
 @Component({
   selector: 'avans-nx-workshop-quiz-add',
   templateUrl: './quiz-create.component.html',
 })
-export class QuizAddComponent {
+export class QuizAddComponent implements OnInit{
   categories = [
     { label: 'Algemene Kennis', value: 9 },
     { label: 'Boeken', value: 10 },
@@ -30,6 +37,7 @@ export class QuizAddComponent {
     { label: 'dieren', value: 27 }
   ];
 
+  activeTab: 'api' | 'custom' = 'api';
 
   quizzes: IQuizInfo[] = [];
     quiz: IQuizInfo = {
@@ -43,25 +51,93 @@ export class QuizAddComponent {
       category: 9
     };
 
+    allOwnQuestions: IQuestionFromQuestionInterface[] = [];
+    selectedQuestions: IQuestionFromQuestionInterface[] = [];
+
 constructor(
     private quizservice: QuizService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private questionservice: QuestionService
   ) {}
 
+  ngOnInit(): void {
+    this.loadOwnQuestions()
+  }
+
+  loadOwnQuestions(): void {
+    this.questionservice.getMyQuestions().subscribe((questions) => {
+      this.allOwnQuestions = questions;
+    });
+  }
+
+  toggleQuestionSelection(question: IQuestionFromQuestionInterface): void {
+    const index = this.selectedQuestions.findIndex((q) => q._id === question._id);
+    if (index >= 0) {
+      this.selectedQuestions.splice(index, 1);
+    } else {
+      this.selectedQuestions.push(question);
+    }
+  }
+
+  isSelected(question: IQuestionFromQuestionInterface): boolean {
+    return this.selectedQuestions.some((q) => q._id === question._id);
+  }
+
   onSubmit() {
-    if (this.quiz) {
-      this.quiz.category = +this.quiz.category; 
-      this.quizservice.createQuiz(this.quiz).subscribe({
+    this.quiz.category = +this.quiz.category;
+  
+    if (this.activeTab === 'custom') {
+      const payload = {
+        ...this.quiz,
+        questionIds: this.selectedQuestions.map((q) => q._id),
+      };
+  
+      this.quizservice.createCustomQuiz(payload).subscribe({
         next: (response) => {
-          console.log('Quiz created successfully:', response);
-          alert('Quiz created successfully!');
+          console.log('Quiz met eigen vragen aangemaakt:', response);
+          alert('Quiz succesvol aangemaakt met eigen vragen!');
+          this.router.navigate(['/quizzes']);
         },
         error: (error) => {
-          console.error('Error creating quiz:', error);
-          alert('Error creating quiz!');
+          console.error('Fout bij aanmaken quiz:', error);
+          alert('Er ging iets mis bij het aanmaken van de quiz.');
+        },
+      });
+    } else {
+     
+      const payload = {
+        ...this.quiz,
+        creator: this.getUserIdFromToken(),
+      };
+  
+      this.quizservice.createQuizWithAPI(payload).subscribe({
+        next: (response) => {
+          console.log('Quiz met API-vragen aangemaakt:', response);
+          alert('Quiz succesvol aangemaakt met API-vragen!');
+          this.router.navigate(['/quizzes']);
+        },
+        error: (error) => {
+          console.error('Fout bij aanmaken API-quiz:', error);
+          alert('Er ging iets mis bij het aanmaken van de quiz.');
         },
       });
     }
   }
+
+  getUserIdFromToken(): string | undefined {
+    const token = localStorage.getItem('currentuser');
+    if (!token) return undefined;
+  
+    try {
+      const cleanedToken = token.replace(/^"(.+)"$/, '$1');
+      const decoded = JSON.parse(atob(cleanedToken.split('.')[1]));
+      return decoded?.user_id;
+    } catch (err) {
+      console.error('Token decode failed:', err);
+      return undefined;
+    }
+  }
+  
+  
 }

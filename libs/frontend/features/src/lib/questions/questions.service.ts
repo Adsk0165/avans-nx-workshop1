@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '@avans-nx-workshop/shared/util-env';
 import { IQuestion } from '../../../../../shared/api/src/lib/models/question.interface' ;
+import { IQuestionFromQuestionInterface } from '@avans-nx-workshop/shared/api';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class QuestionService {
 
   getAllQuestions(): Observable<IQuestion[]> {
     return this.http.get<{ results: IQuestion[] }>(this.apiUrl).pipe(
-      map(response => response.results) // Pak alleen de `results` array
+      map(response => response.results) 
     );
   }
 
@@ -69,7 +70,21 @@ export class QuestionService {
   
     const headers = new HttpHeaders().set('Authorization', `Bearer ${cleanedToken}`);
     return this.http.get<{ results: IQuestion[] }>(`${this.apiUrl}/me`, { headers }).pipe(
-      map(response => response.results) // 👈 hier pak je het juiste veld eruit
+      map(response => response.results) 
     );
   }
+
+  getMultipleQuestionsByIds(ids: string[]): Observable<IQuestionFromQuestionInterface[]> {
+    const token = localStorage.getItem('currentuser')?.replace(/^"(.+)"$/, '$1');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+    return this.http.post<{ results: IQuestionFromQuestionInterface[] }>(
+      `${environment.dataApiUrl}/questions/by-ids`,
+      { ids },
+      { headers }
+    ).pipe(
+      map((response) => response.results)
+    );
+  }
+  
 }
