@@ -30,6 +30,9 @@ export class Question {
   @Prop({ type: [String], default: [] })
   tags?: string[];
 
+  @Prop({ required: true })
+  userId: string | undefined;
+
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
 }

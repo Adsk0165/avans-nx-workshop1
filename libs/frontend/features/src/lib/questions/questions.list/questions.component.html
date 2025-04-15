@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Mijn Vragen</h1>
+
+  <button class="btn btn-primary" routerLink="/questions/new">
+    ➕ Nieuwe Vraag Aanmaken
+  </button>
+
+  <div *ngIf="questions.length > 0; else geenVragen" class="vraag-kaarten">
+    <div *ngFor="let question of questions" class="vraag-kaart">
+      <h3>{{ question.title }}</h3>
+      <p><strong>Omschrijving:</strong> {{ question.description }}</p>
+      <p><strong>Moeilijkheid:</strong> {{ question.difficulty }}</p>
+      <p><strong>Opties:</strong> {{ question.options.join(', ') }}</p>
+      <p><strong>Correct antwoord:</strong> {{ question.correctAnswer }}</p>
+      <p *ngIf="question.tags?.length"><strong>Tags:</strong> {{ question.tags?.join(', ') }}</p>
+
+      <div class="knoppen">
+        <button class="btn btn-secondary" (click)="editQuestion(question._id)">
+          Bewerken
+        </button>
+        <button class="btn btn-danger" (click)="deleteQuestion(question._id)">
+          Verwijderen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #geenVragen>
+    <p>Je hebt nog geen vragen aangemaakt.</p>
+  </ng-template>
+</div>

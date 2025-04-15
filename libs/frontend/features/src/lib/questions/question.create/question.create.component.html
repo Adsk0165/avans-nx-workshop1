@@ -1,0 +1,48 @@
+<div class="vraag-container">
+    <h1>Nieuwe Vraag Aanmaken</h1>
+  
+    <form (ngSubmit)="onSubmit()" #form="ngForm" class="vraag-form">
+      <div class="form-group">
+        <label for="title">Titel</label>
+        <input type="text" id="title" [(ngModel)]="newQuestion.title" name="title" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Omschrijving</label>
+        <input type="text" id="description" [(ngModel)]="newQuestion.description" name="description" required />
+      </div>
+  
+      <div class="form-group" *ngFor="let option of newQuestion.options; let i = index">
+        <label for="option{{ i }}">Optie {{ i + 1 }}</label>
+        <input type="text" id="option{{ i }}" [(ngModel)]="newQuestion.options[i]" name="option{{ i }}" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="correctAnswer">Correct Antwoord</label>
+        <select id="correctAnswer" [(ngModel)]="newQuestion.correctAnswer" name="correctAnswer" required>
+          <option *ngFor="let option of newQuestion.options" [value]="option">
+            {{ option || '(leeg)' }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="difficulty">Moeilijkheidsgraad</label>
+        <select id="difficulty" [(ngModel)]="newQuestion.difficulty" name="difficulty" required>
+          <option value="Easy">Makkelijk</option>
+          <option value="Medium">Gemiddeld</option>
+          <option value="Hard">Moeilijk</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="tags">Tags (optioneel, gescheiden met komma’s)</label>
+        <input type="text" id="tags" [(ngModel)]="newTags" name="tags" />
+      </div>
+  
+      <button type="submit" class="btn-submit">Vraag Aanmaken</button>
+    </form>
+  
+    <p class="feedback" *ngIf="feedback">{{ feedback }}</p>
+  </div>
+  

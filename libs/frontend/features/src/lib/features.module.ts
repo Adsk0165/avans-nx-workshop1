@@ -15,6 +15,9 @@ import { QuizDetailsComponent } from './quiz/quiz-details/quiz-details.component
 import { FavoritesComponent } from './quiz/quiz-favorites/quiz-favorites.component';
 import { QuizRunnerComponent } from './quiz/quiz-runner/quiz-runner.component';
 import { CommentService } from './comments/comments.service';
+import { QuestionsComponent } from './questions/questions.list/questions.component';
+import { QuestionCreateComponent } from './questions/question.create/question.create.component';
+import { QuestionEditComponent } from './questions/question-edit/question-edit.component';
 
 @NgModule({
   imports: [
@@ -33,7 +36,10 @@ import { CommentService } from './comments/comments.service';
     QuizDetailsComponent, 
     QuizAddComponent,
     FavoritesComponent,
-    QuizRunnerComponent
+    QuizRunnerComponent,
+    QuestionsComponent,
+    QuestionCreateComponent,
+    QuestionEditComponent
     
   ],
   exports: [
@@ -43,6 +49,9 @@ import { CommentService } from './comments/comments.service';
     UserAddComponent,
     FavoritesComponent,
     QuizRunnerComponent,
+    QuestionsComponent,
+    QuestionCreateComponent,
+    QuestionEditComponent
     
   ],
   providers: [

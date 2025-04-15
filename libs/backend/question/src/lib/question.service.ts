@@ -22,6 +22,10 @@ export class QuestionService {
     }
   }
 
+  async getAllByUser(userId: string): Promise<Question[]> {
+    return this.questionModel.find({ userId }).exec();
+  }
+
   async getQuestionById(id: string): Promise<Question | null> {
     try {
       const quiz = await this.questionModel.findById(id).exec();
@@ -37,11 +41,13 @@ export class QuestionService {
     }
   }
 
-  async create(user: CreateQuestionDto): Promise<Question | null> {
-    this.logger.log(`Create user ${user.title}`);
-    const createdItem = this.questionModel.create(user);
+  async create(questionData: CreateQuestionDto, userId: string): Promise<Question | null> {
+    const createdItem = await this.questionModel.create({
+      ...questionData,
+      userId,
+    });
     return createdItem;
-}
+  }
 
 async updateQuiz(id: string, updateQuizDto: Partial<CreateQuestionDto>): Promise<Question | null> {
   try {

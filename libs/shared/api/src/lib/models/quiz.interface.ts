@@ -1,4 +1,3 @@
-// Difficulty Enum
 import { Id } from './id.type';
 
 export enum QuizDifficulty {
@@ -8,14 +7,14 @@ export enum QuizDifficulty {
     Unknown = 'Unknown'
 }
 
-// Minimal Quiz Info
+
 export interface IQuizIdentity {
     title: string;
     description: string;
     difficulty: QuizDifficulty;
 }
 
-// Quiz Info (Excluding Domain Entities)
+
 export interface IQuizInfo extends IQuizIdentity {
     _id: Id;
     isActive: boolean;
@@ -24,12 +23,12 @@ export interface IQuizInfo extends IQuizIdentity {
     category: number;
 }
 
-// Full Quiz Interface (Including Domain Entities)
+
 export interface IQuiz extends IQuizInfo {
     questions: IQuestion[];
 }
 
-// Associated Question Entity
+
 export interface IQuestion {
     questionText: string;
     options: string[];
@@ -43,11 +42,11 @@ export interface Quiz extends Document {
     description: string;
     difficulty: string;
     questions: any[];
-    creatorId: string; // Link to the user's ID
+    creatorId: string;
   }
   
 
-// DTOs for Quiz Operations
+
 export type ICreateQuiz = Pick<Quiz, 'title' | 'description' | 'difficulty' | 'creatorId' > & {
     questions: IQuestion[];
 };

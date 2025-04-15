@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FavoritesComponent, QuizAddComponent, QuizDetailsComponent, QuizEditComponent, QuizRunnerComponent, UserDetailsComponent, UserEditComponent } from '@avans-nx-workshop/features';
+import { FavoritesComponent, QuestionCreateComponent, QuizAddComponent, QuizDetailsComponent, QuizEditComponent, QuizRunnerComponent, UserDetailsComponent, UserEditComponent } from '@avans-nx-workshop/features';
 import { UserListComponent } from '@avans-nx-workshop/features'; 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { QuizListComponent } from '@avans-nx-workshop/features';
 import { UserAddComponent } from '@avans-nx-workshop/features';
 import { LoggedInAuthGuard, LoginComponent, RegisterComponent, RoleAuthGuard } from '@avans-nx-workshop/frontend/common'; 
+import { QuestionsComponent } from 'libs/frontend/features/src/lib/questions/questions.list/questions.component';
+import { QuestionEditComponent } from 'libs/frontend/features/src/lib/questions/question-edit/question-edit.component';
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent },
   {path: 'edit/:id', component: UserEditComponent, canActivate: [LoggedInAuthGuard, RoleAuthGuard]},
@@ -22,7 +24,10 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'favorites', component: FavoritesComponent, canActivate: [LoggedInAuthGuard]},
-  {path: 'runner/:id', component: QuizRunnerComponent, canActivate: [LoggedInAuthGuard]}
+  {path: 'runner/:id', component: QuizRunnerComponent, canActivate: [LoggedInAuthGuard]},
+  {path: 'questions', component: QuestionsComponent, canActivate: [LoggedInAuthGuard]},
+  {path: 'questions/new', component: QuestionCreateComponent, canActivate: [LoggedInAuthGuard]},
+  {path: 'questionedit/:id', component: QuestionEditComponent, canActivate: [LoggedInAuthGuard]}
 ];
 
 @NgModule({

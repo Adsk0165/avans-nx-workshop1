@@ -1,17 +1,30 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, Req, HttpException, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { IQuestion } from '@avans-nx-workshop/shared/api';
 import { CreateQuestionDto, UpdateQuestionDto } from './question.dto';
 import { Question } from './question.schema';
+import { AuthGuard } from '../../../auth/src/lib/auth/auth.guards';
+
+
+
 
 @Controller('questions')
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
   @Post()
-  async createQuestion(@Body() question: CreateQuestionDto): Promise<Question| null> {
-    return this.questionService.create(question);
+  @UseGuards(AuthGuard)
+  async createQuestion(@Body() question: CreateQuestionDto, @Req() req: any): Promise<Question | null> {
+    const userId = req.user?.id;
+    return this.questionService.create(question, userId);
   }
+
+  @Get('me')
+@UseGuards(AuthGuard)
+async getMyQuestions(@Req() req: any) {
+  const userId = req.user?.id;
+  return this.questionService.getAllByUser(userId);
+}
 
   @Get()
   async getAllQuestions() {
@@ -32,4 +45,15 @@ export class QuestionController {
   async deleteQuestion(@Param('id') id: string) {
     return this.questionService.deleteQuestion(id);
   }
+
+  @Get('user/:userId')
+async getQuestionsByUser(@Param('userId') userId: string) {
+  return this.questionService.getAllByUser(userId);
 }
+
+
+}
+function getMyQuestions(arg0: any, req: any, any: any) {
+  throw new Error('Function not implemented.');
+}
+

@@ -1,12 +1,12 @@
 import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
 
 export class CreateQuestionDto {
-  @IsNotEmpty()
-  @IsString()
-  question: string | undefined;
+  
+  
+  question?: string | undefined;
 
   @IsString()
-  title?: string | undefined;
+  title: string | undefined;
 }
 
 export class DeleteQuestionDto {
