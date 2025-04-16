@@ -13,6 +13,7 @@ export interface IComment {
   rating?: number;
   createdAt: string;
   updatedAt: string;
+  userName?: String;
 }
 
 export interface CreateCommentDto {

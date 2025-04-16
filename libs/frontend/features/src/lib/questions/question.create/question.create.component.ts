@@ -39,6 +39,15 @@ export class QuestionCreateComponent {
     });
   }
 
+  trackByIndex(index: number, item: any): number {
+    return index;
+  }
+
+  get validAnswerCount(): number {
+    return this.newQuestion.options.filter(opt => opt && opt.trim().length >= 1).length;
+  }
+  
+
   resetForm(): void {
     this.newQuestion = {
       title: '',

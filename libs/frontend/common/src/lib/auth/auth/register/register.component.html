@@ -1,29 +1,98 @@
 <div class="auth-container">
   <h2 class="auth-header">Registreer</h2>
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+  <div *ngIf="registerError" class="alert alert-danger">
+    {{ registerError }}
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form" novalidate>
     <div class="form-group">
       <label for="firstname" class="form-label">Voornaam</label>
-      <input id="firstname" formControlName="firstname" type="text" class="form-control" placeholder="Vul hier je voornaam in" />
+      <input
+        id="firstname"
+        formControlName="firstname"
+        type="text"
+        class="form-control"
+        placeholder="Vul hier je voornaam in"
+        [class.is-invalid]="registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched"
+      />
+      <div *ngIf="registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched" class="invalid-feedback">
+        <small *ngIf="registerForm.get('firstname')?.errors?.['required']">Voornaam is verplicht.</small>
+        <small *ngIf="registerForm.get('firstname')?.errors?.['minlength']">Minimaal 3 tekens.</small>
+        <small *ngIf="registerForm.get('firstname')?.errors?.['maxlength']">Maximaal 100 tekens.</small>
+        <small *ngIf="registerForm.get('firstname')?.errors?.['pattern']">Geen cijfers of rare tekens toegestaan.</small>
+      </div>
     </div>
 
+    <div *ngIf="registerForm.get('firstname')?.touched && registerForm.get('firstname')?.invalid" class="text-danger">
+      <small *ngIf="registerForm.get('firstname')?.errors?.['required']">Voornaam is verplicht.</small>
+    </div>
+    
     <div class="form-group">
       <label for="lastname" class="form-label">Achternaam</label>
-      <input id="lastname" formControlName="lastname" type="text" class="form-control" placeholder="Vul hier je achternaam in" />
+      <input
+        id="lastname"
+        formControlName="lastname"
+        type="text"
+        class="form-control"
+        placeholder="Vul hier je achternaam in"
+        [class.is-invalid]="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched"
+      />
+      <div *ngIf="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched" class="invalid-feedback">
+        <small *ngIf="registerForm.get('lastname')?.errors?.['required']">Achternaam is verplicht.</small>
+        <small *ngIf="registerForm.get('lastname')?.errors?.['minlength']">Minimaal 3 tekens.</small>
+        <small *ngIf="registerForm.get('lastname')?.errors?.['maxlength']">Maximaal 100 tekens.</small>
+        <small *ngIf="registerForm.get('lastname')?.errors?.['pattern']">Geen cijfers of rare tekens toegestaan.</small>
+      </div>
     </div>
+
+    <div *ngIf="registerForm.get('lastname')?.touched && registerForm.get('lastname')?.invalid" class="text-danger">
+      <small *ngIf="registerForm.get('lastname')?.errors?.['required']">Achternaam is verplicht.</small>
+    </div>
+    
 
     <div class="form-group">
       <label for="email" class="form-label">Email Address</label>
-      <input id="email" formControlName="email" type="email" class="form-control" placeholder="Vul hier je email in" />
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        class="form-control"
+        placeholder="Vul hier je email in"
+        [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+      />
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="invalid-feedback">
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is verplicht.</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Vul een geldig e-mailadres in.</small>
+      </div>
     </div>
+
+  
+    
 
     <div class="form-group">
       <label for="password" class="form-label">Wachtwoord</label>
-      <input id="password" formControlName="password" type="password" class="form-control" placeholder="Vul hier je wachtwoord in" />
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        class="form-control"
+        placeholder="Vul hier je wachtwoord in"
+        [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+      />
+      
     </div>
 
+    <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger">
+      
+      <small *ngIf="registerForm.get('password')?.errors?.['invalidPassword']">
+        Wachtwoord moet minimaal 8 tekens zijn, een hoofdletter en een speciaal teken bevatten.
+      </small>
+    </div>
+    
+
     <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid">
-      registreer
+      Registreer
     </button>
   </form>
 </div>

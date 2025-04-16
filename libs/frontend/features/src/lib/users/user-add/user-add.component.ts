@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { UserService } from '../user.service'; // Adjust the path to your service
+import { UserService } from '../user.service';
 import { IUserInfo, UserRole, UserGender } from '@avans-nx-workshop/shared/api';
 
 @Component({
   selector: 'avans-nx-workshop-user-add',
   templateUrl: './user-add.component.html',
+  styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent {
   user: Partial<IUserInfo> = {

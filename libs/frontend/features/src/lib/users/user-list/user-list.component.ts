@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'avans-nx-workshop-user-list',
   templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
   users: IUserInfo[] = [];
@@ -38,7 +39,7 @@ export class UserListComponent implements OnInit {
           this.currentUserRole = response?.results?.role || ''; 
         },
         (error) => {
-          console.error('Failed to fetch user role:', error);
+          console.error('user rol kon niet gekoppeld worden:', error);
         }
       );
     }
@@ -46,21 +47,21 @@ export class UserListComponent implements OnInit {
 
   deleteUser(userId: string, index: number): void {
     if (!this.currentUserId) {
-      alert('You are not logged in!');
+      alert('je bent niet ingelogd!');
       return;
     }
 
     if (userId === this.currentUserId) {
-      if (confirm('Are you sure you want to delete your own account?')) {
+      if (confirm('Weet je zeker dat je je eigen account wilt verwijderen?')) {
         this.userService.deleteUser(userId).subscribe({
           next: () => {
             this.users.splice(index, 1);  
-            alert('Your account has been deleted successfully!');
+            alert('Je account is succesbol verwijderd u wordt direct uitgelogd!');
             this.authService.logout()
           },
           error: (err) => {
             console.error('Error deleting account:', err);
-            alert('Failed to delete your account.');
+            alert('Het verwijderen van je account is niet gelukt.');
           },
         });
       }
@@ -68,19 +69,19 @@ export class UserListComponent implements OnInit {
     }
 
     if (this.currentUserRole !== 'admin') {
-      alert('You do not have permission to delete other users.');
+      alert('Je hebt niet het recht om deze user te verwijderen.');
       return;
     }
 
-    if (confirm('Are you sure you want to delete this user?')) {
+    if (confirm('Weet je zeker dat je deze user wilt verwijderen?')) {
       this.userService.deleteUser(userId).subscribe({
         next: () => {
           this.users.splice(index, 1);
-          alert('User deleted successfully!');
+          alert('User succesvol verwijderd!');
         },
         error: (err) => {
-          console.error('Error deleting user:', err);
-          alert('Failed to delete user.');
+          console.error('Error met het verwijderen van de uder:', err);
+          alert('User kon niet gedelete worden.');
         },
       });
     }

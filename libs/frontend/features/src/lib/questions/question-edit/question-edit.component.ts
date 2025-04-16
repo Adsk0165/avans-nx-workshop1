@@ -72,5 +72,10 @@ export class QuestionEditComponent implements OnInit {
   trackByIndex(index: number, _: any): number {
     return index;
   }
+
+  hasMinimumOptions(): boolean {
+    return (this.updatedQuestion?.options ?? []).filter(opt => opt && opt.trim()).length >= 2;
+  }
+  
   
 }

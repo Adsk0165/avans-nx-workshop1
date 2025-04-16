@@ -1,53 +1,61 @@
-<div class="container mt-5">
-  <h2 class="text-center mb-4">bewerk User</h2>
-  <form>
+<div class="vraag-container">
+  <h1>User Bewerken</h1>
+  <form (ngSubmit)="saveChanges()" #userForm="ngForm" class="vraag-form" novalidate>
     <div class="form-group">
-      <label for="name">Naam</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="name" 
-        [(ngModel)]="user.name" 
-        name="name" 
-        required 
-        placeholder="Vul hier een gebruikersnaam in"
+      <label for="name">Voornaam</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        [(ngModel)]="user.name"
+        name="name"
+        required
+        pattern="^[A-Za-zÀ-ÿ\s'-]{3,100}$"
+        #nameRef="ngModel"
+        placeholder="Vul hier een geldige gebruikersnaam in"
       />
+      <div *ngIf="nameRef.invalid && nameRef.touched" class="text-danger">
+        <small *ngIf="nameRef.errors?.['required']">Naam is verplicht.</small>
+        <small *ngIf="nameRef.errors?.['pattern']">
+          Naam moet tussen 3 en 100 tekens bevatten, en mag geen cijfers of symbolen zoals @ en & bevatten.
+        </small>
+      </div>
     </div>
+
     <div class="form-group">
-      <label for="emailAddress">Email</label>
-      <input 
-        type="email" 
-        class="form-control" 
-        id="emailAddress" 
-        [(ngModel)]="user.emailAddress" 
-        name="emailAddress" 
-        required 
-        placeholder="Vul hier een geldig emailAddress in"
+      <label for="emailAddress">E-mailadres</label>
+      <input
+        type="email"
+        id="emailAddress"
+        class="form-control"
+        [(ngModel)]="user.emailAddress"
+        name="emailAddress"
+        required
+        email
+        #emailRef="ngModel"
+        placeholder="Vul hier een geldig e-mailadres in"
       />
+      <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger">
+        <small *ngIf="emailRef.errors?.['required']">E-mailadres is verplicht.</small>
+        <small *ngIf="emailRef.errors?.['email']">Vul een geldig e-mailadres in.</small>
+      </div>
     </div>
     <div class="form-group">
       <label for="role">Rol</label>
-      <select 
-        class="form-control" 
-        id="role" 
-        [(ngModel)]="user.role" 
-        name="role" 
+      <select
+        id="role"
+        class="form-control"
+        [(ngModel)]="user.role"
+        name="role"
         required
       >
         <option value="admin">Admin</option>
         <option value="user">User</option>
       </select>
     </div>
-    <div class="form-check mb-3">
-      <input 
-        type="checkbox" 
-        class="form-check-input" 
-        id="isActive" 
-        [(ngModel)]="user.isActive" 
-        name="isActive" 
-      />
-      <label class="form-check-label" for="isActive">ACtief</label>
-    </div>
-    <button type="button" class="btn btn-primary btn-block" (click)="saveChanges()">Gegevens Opslaan</button>
+
+    <button type="submit" class="btn-submit" [disabled]="userForm.invalid">
+      Gegevens Opslaan
+    </button>
   </form>
 </div>

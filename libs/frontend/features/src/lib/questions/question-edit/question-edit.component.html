@@ -6,26 +6,43 @@
       *ngIf="updatedQuestion?.options?.length"
       (ngSubmit)="onSubmit()"
     >
-      <div class="form-group">
+    <div class="form-group">
         <label for="title">Titel</label>
         <input
           type="text"
           id="title"
-          [(ngModel)]="updatedQuestion.title"
           name="title"
-          required
+          [(ngModel)]="updatedQuestion.title"
+          #titleField="ngModel"
+          [required]="true"
+          minlength="5"
+          maxlength="150"
         />
+        <div class="text-danger" *ngIf="titleField.invalid && titleField.touched">
+          <small *ngIf="titleField.errors?.['required']">Titel is verplicht.</small>
+          <small *ngIf="titleField.errors?.['minlength']">Minimaal 5 tekens.</small>
+          <small *ngIf="titleField.errors?.['maxlength']">Maximaal 150 tekens.</small>
+        </div>
       </div>
+  
   
       <div class="form-group">
         <label for="description">Omschrijving</label>
         <input
           type="text"
           id="description"
-          [(ngModel)]="updatedQuestion.description"
           name="description"
-          required
+          [(ngModel)]="updatedQuestion.description"
+          #descField="ngModel"
+          [required]="true"
+          minlength="5"
+          maxlength="150"
         />
+        <div class="text-danger" *ngIf="descField.invalid && descField.touched">
+          <small *ngIf="descField.errors?.['required']">Omschrijving is verplicht.</small>
+          <small *ngIf="descField.errors?.['minlength']">Minimaal 5 tekens.</small>
+          <small *ngIf="descField.errors?.['maxlength']">Maximaal 150 tekens.</small>
+        </div>
       </div>
   
       <div
@@ -41,6 +58,11 @@
           required
         />
       </div>
+
+      <div class="text-danger" *ngIf="!hasMinimumOptions()">
+        Minimaal 2 antwoordopties zijn verplicht.
+      </div>
+      
   
       <div class="form-group">
         <label for="correctAnswer">Correct Antwoord</label>
@@ -79,11 +101,14 @@
           name="tags"
         />
       </div>
+
+
+      
   
       <div class="button-group">
-        <button type="submit" class="btn-submit">💾 Opslaan</button>
+        <button type="submit"  class="btn-submit">Opslaan</button>
         <button type="button" class="btn-submit btn-cancel" (click)="navigateBack()">
-          ❌ Annuleren
+          Annuleren
         </button>
       </div>
     </form>

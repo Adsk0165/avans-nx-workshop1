@@ -22,7 +22,7 @@ export class FavoritesComponent implements OnInit {
   decodeToken(): void {
     const token = localStorage.getItem('currentuser');
     if (!token) {
-      console.error('No token found in localStorage');
+      console.error('geen token in localstorage');
       return;
     }
 
@@ -30,25 +30,25 @@ export class FavoritesComponent implements OnInit {
       const cleanedToken = token.replace(/^"(.+)"$/, '$1');
       const decodedPayload = JSON.parse(atob(cleanedToken.split('.')[1]));
       this.userId = decodedPayload?.user_id;
-      console.log('Decoded user ID:', this.userId);
+      console.log('Decoded user ID', this.userId);
     } catch (error) {
-      console.error('Failed to decode token:', error);
+      console.error('Failed to decode token', error);
     }
   }
 
   fetchFavorites(): void {
     this.quizService.getUserFavorites(this.userId).subscribe(
       (favoritesResponse: any) => {
-        console.log('Raw favorite quizzes response:', favoritesResponse);
+        console.log('raw favorite quizzes response', favoritesResponse);
         if (favoritesResponse && favoritesResponse.results && Array.isArray(favoritesResponse.results.records)) {
           const quizzes = favoritesResponse.results.records.map(async (record: any) => {
             const quizId = record._fields[1]?.properties?.id;
   
             if (quizId) {
-              console.log('Fetching details for quiz ID:', quizId);
+              console.log('fetch details for quiz ID:', quizId);
               return this.quizService.getQuizById(quizId).toPromise(); 
             } else {
-              console.log('Quiz ID not found for record:', record);
+              console.log('quiz ID not found for record:', record);
               return undefined; 
             }
           });

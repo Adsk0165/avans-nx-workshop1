@@ -1,30 +1,24 @@
-<table class="table table-border table-hover">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>Titel</th>
-            <th>Beschrijving</th>
-            <th>Moeilijkheid/th>
-            <th>Acties</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let quiz of quizzes">
-            <td>{{ quiz._id }}</td>
-            <td>
-                <a [routerLink]="['/quiz', quiz._id]">
-                    {{ quiz.title }}
-                </a>
-            </td>
-            <td>{{ quiz.description }}</td>
-            <td>{{ quiz.difficulty }}</td>
-            <td>
-                <button (click)="deleteQuiz(quiz._id)" class="btn btn-danger">verwijder</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<button type="button" class="btn btn-secondary" style="margin-top: 10px; text-decoration: none !important;">
-    <a [routerLink]="['/quiz/new']" style="text-decoration: none; color: white;">Quiz aanmaken</a>
-</button>
+<div class="container mt-4">
+    <h2 class="mb-4">Quiz Overzicht</h2>
+  
+    <ul class="list-group shadow-sm">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let quiz of quizzes">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">
+            <a [routerLink]="['/quiz', quiz._id]" class="text-decoration-none text-dark">
+              {{ quiz.title }}
+            </a>
+          </div>
+          <small class="text-muted">{{ quiz.description }}</small>
+          <br />
+          <span class="badge bg-info text-dark mt-2">Moeilijkheid: {{ quiz.difficulty }}</span>
+        </div>
+        <button (click)="deleteQuiz(quiz._id)" class="btn btn-sm btn-danger">Verwijder</button>
+      </li>
+    </ul>
+  
+    <div class="text-end mt-3">
+      <a [routerLink]="['/quiz/new']" class="btn btn-secondary">Quiz aanmaken</a>
+    </div>
+  </div>
+  

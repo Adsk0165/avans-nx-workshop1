@@ -14,7 +14,6 @@ export class QuestionsComponent implements OnInit {
    
 
   constructor(private questionService: QuestionService,private router: Router) {}
-  // Removed duplicate router declaration
 
   ngOnInit(): void {
     this.loadOwnQuestions();

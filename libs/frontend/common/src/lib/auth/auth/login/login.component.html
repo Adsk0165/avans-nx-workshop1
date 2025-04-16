@@ -1,7 +1,7 @@
 <div class="auth-container">
   <h2 class="auth-header">Login</h2>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form" novalidate>
     <div class="form-group">
       <label for="emailAddress" class="form-label">Email addres</label>
       <input
@@ -10,9 +10,9 @@
         type="email"
         class="form-control"
         placeholder="Vul hier je email in"
-        [class.is-invalid]="loginForm.get('emailAddress')?.invalid && submitted"
+        [class.is-invalid]="loginForm.get('emailAddress')?.invalid && loginForm.get('emailAddress')?.touched"
       />
-      <div *ngIf="loginForm.get('emailAddress')?.invalid && submitted" class="invalid-feedback">
+      <div *ngIf="loginForm.get('emailAddress')?.invalid && loginForm.get('emailAddress')?.touched" class="invalid-feedback">
         Vul hier een geldig email addres in.
       </div>
     </div>
@@ -25,14 +25,18 @@
         type="password"
         class="form-control"
         placeholder="Vul hier je wachtwoord in"
-        [class.is-invalid]="loginForm.get('password')?.invalid && submitted"
+        [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
       />
-      <div *ngIf="loginForm.get('password')?.invalid && submitted" class="invalid-feedback">
-        wachtwoord moet tussen de 3 en 15 characters lang zijn.
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="invalid-feedback">
+        Wachtwoord moet tussen de 3 en 15 characters lang zijn.
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid || submitted" style="margin-top: 10px;">
+    <div *ngIf="loginError" class="alert alert-danger">
+      {{ loginError }}
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid" style="margin-top: 10px;">
       Login
     </button>
   </form>

@@ -1,43 +1,42 @@
-<div class="container mt-4">
-  <h2>Gebruikers lijst</h2>
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Naam</th>
-        <th>Email</th>
-        <th>IsActief</th>
-        <th>Image URL</th>
-        <th>Acties</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users; let i = index">
-        <td>{{ user._id }}</td>
-        <td>
-          <a [routerLink]="['/user', user._id]">
-            {{ user.name }}
-          </a>
-        </td>
-        <td>{{ user.emailAddress }}</td>
-        <td>{{ user.isActive }}</td>
-        <td>
-          <img [src]="user.profileImgUrl" alt="Profile Image" class="img-fluid" 
-               style="width: 50px; height: 50px; object-fit: cover;">
-        </td>
-        <td>
-          <button *ngIf="currentUserRole === 'admin' || user._id === currentUserId"
-                  (click)="deleteUser(user._id, i)"
-                  class="btn btn-danger" style="margin-top: 5px;">
-            verwijder
+<div class="container py-5">
+  <h2 class="text-center mb-4 text-black">Users overzicht</h2>
+
+  <div class="row">
+    <div
+      class="col-md-6 col-lg-4 mb-4"
+      *ngFor="let user of users; let i = index"
+    >
+      <div class="card text-center h-100 shadow user-card">
+        <img
+          [src]="user.profileImgUrl || 'https://via.placeholder.com/100'"
+          alt="Profielfoto"
+          class="rounded-circle mx-auto mt-3"
+          style="width: 100px; height: 100px; object-fit: cover;"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            <a [routerLink]="['/user', user._id]" class="text-dark text-decoration-none">
+              {{ user.name }}
+            </a>
+          </h5>
+          <p class="text-muted mb-1">{{ user.emailAddress }}</p>
+          <p class="text-muted mb-2">Rol: {{ user.role }} | {{ user.gender }}</p>
+
+          <button
+            *ngIf="currentUserRole === 'admin' || user._id === currentUserId"
+            (click)="deleteUser(user._id, i)"
+            class="btn btn-danger btn-sm mt-2"
+          >
+            Verwijder
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button *ngIf="currentUserRole === 'admin'" 
-          type="button" 
-          class="btn btn-secondary mt-3">
-    <a [routerLink]="['/users/new']" class="text-white" style="text-decoration: none;">Voeg een user toe</a>
-  </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4" *ngIf="currentUserRole === 'admin'">
+    <a [routerLink]="['/users/new']" class="btn btn-secondary">
+      Voeg een User toe
+    </a>
+  </div>
 </div>

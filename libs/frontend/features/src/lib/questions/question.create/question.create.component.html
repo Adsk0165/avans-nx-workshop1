@@ -2,24 +2,73 @@
     <h1>Nieuwe Vraag Aanmaken</h1>
   
     <form (ngSubmit)="onSubmit()" #form="ngForm" class="vraag-form">
-      <div class="form-group">
-        <label for="title">Titel</label>
-        <input type="text" id="title" [(ngModel)]="newQuestion.title" name="title" required />
-      </div>
+        <div class="form-group">
+            <label for="title">Titel</label>
+            <input
+              type="text"
+              id="title"
+              class="form-control"
+              [(ngModel)]="newQuestion.title"
+              name="title"
+              required
+              minlength="5"
+              maxlength="100"
+              #titleField="ngModel"
+            />
+            <div class="text-danger" *ngIf="titleField.invalid && titleField.touched">
+              <small *ngIf="titleField.errors?.['required']">Titel is verplicht.</small>
+              <small *ngIf="titleField.errors?.['minlength']">Minimaal 5 tekens.</small>
+              <small *ngIf="titleField.errors?.['maxlength']">Maximaal 100 tekens.</small>
+            </div>
+          </div>
   
-      <div class="form-group">
-        <label for="description">Omschrijving</label>
-        <input type="text" id="description" [(ngModel)]="newQuestion.description" name="description" required />
-      </div>
+          <div class="form-group">
+            <label for="description">Omschrijving</label>
+            <input
+              type="text"
+              id="description"
+              class="form-control"
+              [(ngModel)]="newQuestion.description"
+              name="description"
+              required
+              minlength="5"
+              maxlength="150"
+              #descField="ngModel"
+            />
+            <div class="text-danger" *ngIf="descField.invalid && descField.touched">
+              <small *ngIf="descField.errors?.['required']">Omschrijving is verplicht.</small>
+              <small *ngIf="descField.errors?.['minlength']">Minimaal 5 tekens.</small>
+              <small *ngIf="descField.errors?.['maxlength']">Maximaal 150 tekens.</small>
+            </div>
+          </div>
   
-      <div class="form-group" *ngFor="let option of newQuestion.options; let i = index">
+      <div
+        class="form-group"
+        *ngFor="let option of newQuestion.options; let i = index; trackBy: trackByIndex"
+      >
         <label for="option{{ i }}">Optie {{ i + 1 }}</label>
-        <input type="text" id="option{{ i }}" [(ngModel)]="newQuestion.options[i]" name="option{{ i }}" required />
+        <input
+          type="text"
+          id="option{{ i }}"
+          [(ngModel)]="newQuestion.options[i]"
+          name="option{{ i }}"
+          minlength="1"
+          maxlength="100"
+        />
+      </div>
+  
+      <div *ngIf="validAnswerCount < 2" class="text-danger mb-2">
+        Je moet minimaal 2 geldige antwoorden invoeren.
       </div>
   
       <div class="form-group">
         <label for="correctAnswer">Correct Antwoord</label>
-        <select id="correctAnswer" [(ngModel)]="newQuestion.correctAnswer" name="correctAnswer" required>
+        <select
+          id="correctAnswer"
+          [(ngModel)]="newQuestion.correctAnswer"
+          name="correctAnswer"
+          required
+        >
           <option *ngFor="let option of newQuestion.options" [value]="option">
             {{ option || '(leeg)' }}
           </option>
@@ -28,7 +77,12 @@
   
       <div class="form-group">
         <label for="difficulty">Moeilijkheidsgraad</label>
-        <select id="difficulty" [(ngModel)]="newQuestion.difficulty" name="difficulty" required>
+        <select
+          id="difficulty"
+          [(ngModel)]="newQuestion.difficulty"
+          name="difficulty"
+          required
+        >
           <option value="Easy">Makkelijk</option>
           <option value="Medium">Gemiddeld</option>
           <option value="Hard">Moeilijk</option>
@@ -37,10 +91,22 @@
   
       <div class="form-group">
         <label for="tags">Tags (optioneel, gescheiden met komma’s)</label>
-        <input type="text" id="tags" [(ngModel)]="newTags" name="tags" />
+        <input
+          type="text"
+          id="tags"
+          [(ngModel)]="newTags"
+          name="tags"
+          maxlength="100"
+        />
       </div>
   
-      <button type="submit" class="btn-submit">Vraag Aanmaken</button>
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="form.invalid || validAnswerCount < 2"
+      >
+        Vraag Aanmaken
+      </button>
     </form>
   
     <p class="feedback" *ngIf="feedback">{{ feedback }}</p>

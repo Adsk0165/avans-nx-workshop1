@@ -75,12 +75,12 @@ export class QuizEditComponent implements OnInit {
 
     this.quizservice.updateQuiz(this.quiz).subscribe({
       next: () => {
-        alert('User updated successfully!');
+        alert('User succesvol geupdate');
         this.router.navigate(['/quizzes']);  
       },
       error: (err) => {
         console.error("Error updating user:", err);
-        alert('Could not update user.');
+        alert('user kon niet geupdate worden.');
       },
     });
   }

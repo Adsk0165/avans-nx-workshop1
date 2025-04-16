@@ -1,63 +1,86 @@
-<div class="container mt-5">
-  <h2 class="text-center mb-4">Maak een User</h2>
-  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+<div class="vraag-container">
+  <h1>Nieuwe User Aanmaken</h1>
+
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="vraag-form" novalidate>
+
     <div class="form-group">
-      <label for="name">Naam</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="name" 
-        [(ngModel)]="user.name" 
-        name="name" 
-        required 
-        placeholder="Vul hier een  geldige gebruikersnaam in"
+      <label for="name">Voornaam</label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="user.name"
+        name="name"
+        required
+        pattern="^[A-Za-zÀ-ÿ\s'-]{3,100}$"
+        #nameRef="ngModel"
+        placeholder="Bijv. Adam"
       />
+      <div class="text-danger" *ngIf="nameRef.invalid && nameRef.touched">
+        <small *ngIf="nameRef.errors?.['required']">Naam is verplicht.</small>
+        <small *ngIf="nameRef.errors?.['pattern']">
+          Minimaal 3 letters, geen cijfers of symbolen.
+        </small>
+      </div>
     </div>
+
     <div class="form-group">
-      <label for="email">Email</label>
-      <input 
-        type="email" 
-        class="form-control" 
-        id="email" 
-        [(ngModel)]="user.emailAddress" 
-        name="email" 
-        required 
-        placeholder="Vul hier een geldige email in"
+      <label for="email">E-mailadres</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="user.emailAddress"
+        name="email"
+        required
+        email
+        #emailRef="ngModel"
+        placeholder="Bijv. adam@mail.com"
       />
+      <div class="text-danger" *ngIf="emailRef.invalid && emailRef.touched">
+        <small *ngIf="emailRef.errors?.['required']">E-mailadres is verplicht.</small>
+        <small *ngIf="emailRef.errors?.['email']">Geen geldig e-mailadres.</small>
+      </div>
     </div>
+
     <div class="form-group">
       <label for="password">Wachtwoord</label>
-      <input 
-        type="password" 
-        class="form-control" 
-        id="password" 
-        [(ngModel)]="user.password" 
-        name="password" 
-        required 
-        placeholder="vul hier een geldige wachtwoord in"
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="user.password"
+        name="password"
+        required
+        minlength="8"
+        #passwordRef="ngModel"
+        placeholder="Minimaal 8 tekens"
       />
+      <div class="text-danger" *ngIf="passwordRef.invalid && passwordRef.touched">
+        <small *ngIf="passwordRef.errors?.['required']">Wachtwoord is verplicht.</small>
+        <small *ngIf="passwordRef.errors?.['minlength']">
+          Wachtwoord moet minstens 8 tekens zijn.
+        </small>
+      </div>
     </div>
+
     <div class="form-group">
       <label for="role">Rol</label>
-      <select 
-        class="form-control" 
-        id="role" 
-        [(ngModel)]="user.role" 
-        name="role" 
+      <select
+        id="role"
+        [(ngModel)]="user.role"
+        name="role"
         required
       >
         <option value="Admin">Admin</option>
         <option value="User">User</option>
-        <option value="Guest">Guest</option>
+        <option value="Guest">Gast</option>
       </select>
     </div>
+
     <div class="form-group">
-      <label for="gender">Gender</label>
-      <select 
-        class="form-control" 
-        id="gender" 
-        [(ngModel)]="user.gender" 
-        name="gender" 
+      <label for="gender">Geslacht</label>
+      <select
+        id="gender"
+        [(ngModel)]="user.gender"
+        name="gender"
         required
       >
         <option value="Male">Man</option>
@@ -65,6 +88,13 @@
         <option value="Other">Anders</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary btn-block" [disabled]="userForm.invalid">User aanmaken</button>
+
+    <button
+      type="submit"
+      class="btn-submit"
+      [disabled]="userForm.invalid"
+    >
+      User Aanmaken
+    </button>
   </form>
 </div>

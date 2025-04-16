@@ -14,23 +14,39 @@ import { ICreateUser } from '@avans-nx-workshop/shared/api';
 export class RegisterComponent implements OnInit, OnDestroy {
   registerForm!: FormGroup;
   subs!: Subscription; 
+  registerError: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      firstname: new FormControl(null, [Validators.required]),
-      lastname: new FormControl(null, [Validators.required]),
+      firstname: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+        Validators.pattern(/^[a-zA-Z\s\-]+$/)
+      ]),
+      lastname: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+        Validators.pattern(/^[a-zA-Z\s\-]+$/)
+      ]),
       email: new FormControl(null, [
         Validators.required,
-        this.validEmail.bind(this),
+        Validators.email,
       ]),
       password: new FormControl(null, [
         Validators.required,
-        this.validPassword.bind(this),
+        Validators.minLength(8),
+        Validators.maxLength(100),
+        this.validPassword
       ]),
     });
   }
+
+ 
+  
   
 
   ngOnDestroy(): void {
@@ -43,26 +59,28 @@ export class RegisterComponent implements OnInit, OnDestroy {
   // Handle form submission
   onSubmit(): void {
     if (this.registerForm.valid) {
-      // Ensure you check what is actually in the form
       const formData = this.registerForm.value;
-      console.log('Form Data:', formData);  // Check what data you are sending
-      
+  
       const userData: ICreateUser = {
-        name: formData.firstname + ' ' + formData.lastname,  // Combine first and last name
-        emailAddress: formData.email,  // Ensure email is being passed correctly
+        name: formData.firstname + ' ' + formData.lastname,
+        emailAddress: formData.email,
         password: formData.password,
       };
   
-      this.authService.register(userData).subscribe((user) => {
-        if (user) {
-          console.log('User created successfully:', user);
-          this.router.navigate(['/']);
+      this.authService.register(userData).subscribe({
+        next: (user) => {
+          if (user) {
+            this.router.navigate(['/']);
+          }
+        },
+        error: (err) => {
+          console.error('Registratiefout:', err);
+          this.registerError = 'Registratie mislukt. Controleer of het e-mailadres al bestaat.';
         }
       });
-    } else {
-      console.error('Form is invalid');
     }
   }
+  
   
   
   // Custom email validation
@@ -76,12 +94,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   // Custom password validation
-  validPassword(control: FormControl): { [s: string]: boolean } | null {
+  validPassword(control: FormControl): { [key: string]: boolean } | null {
     const password = control.value;
-    const regexp = /^[a-zA-Z]([a-zA-Z0-9]){2,14}$/;
-    if (!regexp.test(password)) {
-      return { password: true }; // Invalid password
+    const regex = /^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$/; // min 1 hoofdletter, 1 speciaal teken, 8 karakters
+  
+    if (password && !regex.test(password)) {
+      return { invalidPassword: true }; // ← dit moet je gebruiken
     }
-    return null; // Valid password
+    return null;
   }
+  
 }

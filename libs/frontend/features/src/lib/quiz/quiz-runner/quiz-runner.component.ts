@@ -45,7 +45,6 @@ export class QuizRunnerComponent implements OnInit {
         this.quizDescription = quiz.description || '';
 
         if (quiz.questions && quiz.questions.length > 0) {
-          // API quiz
           this.questions = quiz.questions.map((q: any) => ({
             question: q.question,
             correct_answer: q.correct_answer,
@@ -55,7 +54,6 @@ export class QuizRunnerComponent implements OnInit {
           this.currentQuestion = this.questions[this.currentQuestionIndex];
           this.isLoading = false;
         } else if (quiz.questionIds?.length > 0) {
-          // Custom quiz → haal vragen op via de question service
           this.questionService.getMultipleQuestionsByIds(quiz.questionIds).subscribe(
             (customQuestions: IQuestionFromQuestionInterface[]) => {
               this.questions = customQuestions.map((q) => ({
@@ -68,7 +66,7 @@ export class QuizRunnerComponent implements OnInit {
               this.isLoading = false;
             },
             (error) => {
-              console.error('Error loading custom questions:', error);
+              console.error('Error laden custom questions:', error);
               this.isLoading = false;
             }
           );
@@ -78,7 +76,7 @@ export class QuizRunnerComponent implements OnInit {
         }
       },
       (error) => {
-        console.error('Error loading quiz:', error);
+        console.error('Error laden van quiz:', error);
         this.isLoading = false;
       }
     );

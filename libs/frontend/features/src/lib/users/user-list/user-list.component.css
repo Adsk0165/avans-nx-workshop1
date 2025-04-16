@@ -1,0 +1,18 @@
+body {
+    background: linear-gradient(to right, #c04848, #480048);
+    min-height: 100vh;
+  }
+  
+  .user-card {
+    border-radius: 15px;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .user-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .h2{
+    color: black;
+  }

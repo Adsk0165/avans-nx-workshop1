@@ -99,10 +99,22 @@ export class QuizDetailsComponent implements OnInit {
     this.commentService.getCommentsByQuizId(quizId).subscribe(
       (comments) => {
         this.comments = comments;
+        this.comments.forEach((comment) => {
+          const apiUrl = `${environment.dataApiUrl}/user/${comment.userId}`;
+          this.http.get<any>(apiUrl).subscribe({
+            next: (response) => {
+              comment.userName = response?.results?.name || 'Onbekende gebruiker';
+            },
+            error: () => {
+              comment.userName = 'Onbekende gebruiker';
+            },
+          });
+        });
       },
       (error) => console.error('Failed to load comments:', error)
     );
   }
+  
 
   addComment(): void {
     if (!this.newComment.trim()) return;
@@ -111,13 +123,14 @@ export class QuizDetailsComponent implements OnInit {
       quizId: this.quiz!._id,
       userId: this.userId,
       comment: this.newComment,
-      rating: this.rating,
+      rating: this.rating
     };
 
     this.commentService.createComment(commentData).subscribe({
       next: (response) => {
         this.comments.push(response); 
         this.newComment = '';
+        this.loadComments(this.quiz!._id);
       },
       error: (err) => console.error('Error adding comment:', err),
     });
@@ -147,6 +160,7 @@ export class QuizDetailsComponent implements OnInit {
           this.comments[index] = updatedComment;
         }
         this.editingComment = null;
+        this.loadComments(this.quiz!._id);
       },
       (error) => console.error('Failed to save edited comment:', error)
     );

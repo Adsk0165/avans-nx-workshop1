@@ -34,16 +34,25 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
+  loginError: string | null = null;
+
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.submitted = true;
       const { emailAddress, password } = this.loginForm.value;
-
-      this.authService.login(emailAddress, password).subscribe((user) => {
-        if (user) {
-          this.router.navigate(['/']);
+  
+      this.authService.login(emailAddress, password).subscribe({
+        next: (user) => {
+          if (user) {
+            this.loginError = null;
+            this.router.navigate(['/']);
+          }
+          this.submitted = false;
+        },
+        error: (err) => {
+          this.loginError = 'Inloggen mislukt. Controleer je e-mailadres en wachtwoord.';
+          this.submitted = false;
         }
-        this.submitted = false;
       });
     } else {
       this.submitted = false;

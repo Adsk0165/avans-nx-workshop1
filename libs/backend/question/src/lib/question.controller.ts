@@ -19,7 +19,7 @@ export class QuestionController {
     return this.questionService.create(question, userId);
   }
 
-  @Get('me')
+@Get('me')
 @UseGuards(AuthGuard)
 async getMyQuestions(@Req() req: any) {
   const userId = req.user?.id;
@@ -60,6 +60,7 @@ async getQuestionsByIds(@Body('ids') ids: string[]): Promise<IQuestion[]> {
 
 
 }
+
 function getMyQuestions(arg0: any, req: any, any: any) {
   throw new Error('Function not implemented.');
 }

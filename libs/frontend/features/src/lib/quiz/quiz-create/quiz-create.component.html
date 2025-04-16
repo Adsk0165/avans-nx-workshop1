@@ -11,14 +11,43 @@
   </ul>
 
   <form (ngSubmit)="onSubmit()" #quizForm="ngForm">
-       <div class="form-group">
-      <label>Titel:</label>
-      <input type="text" [(ngModel)]="quiz.title" name="title" required class="form-control" />
-    </div>
     <div class="form-group">
-      <label>Beschrijving:</label>
-      <textarea [(ngModel)]="quiz.description" name="description" required class="form-control"></textarea>
+      <label for="title">Titel:</label>
+      <input
+        id="title"
+        type="text"
+        name="title"
+        class="form-control"
+        [(ngModel)]="quiz.title"
+        required
+        minlength="3"
+        #title="ngModel"
+      />
+      <div *ngIf="title.invalid && title.touched" class="text-danger">
+        <small *ngIf="title.errors?.['required']">Titel is verplicht.</small>
+        <small *ngIf="title.errors?.['minlength']">Minimaal 5 tekens vereist.</small>
+      </div>
     </div>
+
+    <div class="form-group">
+      <label for="description">Beschrijving:</label>
+      <textarea
+        id="description"
+        name="description"
+        class="form-control"
+        [(ngModel)]="quiz.description"
+        required
+        minlength="5"
+        maxlength="150"
+        #description="ngModel"
+      ></textarea>
+      <div *ngIf="description.invalid && description.touched" class="text-danger">
+        <small *ngIf="description.errors?.['required']">Beschrijving is verplicht.</small>
+        <small *ngIf="description.errors?.['minlength']">Minimaal 5 tekens vereist.</small>
+        <small *ngIf="description.errors?.['maxlength']">Maximaal 150 tekens toegestaan.</small>
+      </div>
+    </div>
+
     <div class="form-group">
       <label>Moeilijkheid:</label>
       <select [(ngModel)]="quiz.difficulty" name="difficulty" required class="form-control">
@@ -49,7 +78,7 @@
     </div>
    
     <div *ngIf="activeTab === 'api'">
-      <p>Laat hier jouw bestaande API-quiz functionaliteit staan (zoals random genereren).</p>
+      <p>Je vragen zijn hier gegenereerd vanuit een externe bron op basis van de gekozen Categorie en moeilijkheidsgraad.</p>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3" [disabled]="quizForm.invalid">

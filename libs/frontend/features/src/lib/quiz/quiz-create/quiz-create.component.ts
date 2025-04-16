@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from '../quiz.service'; // Adjust the path to your service
+import { QuizService } from '../quiz.service';
 import { IUserInfo, UserRole, UserGender, IQuizInfo, QuizDifficulty } from '@avans-nx-workshop/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -96,12 +96,12 @@ constructor(
       this.quizservice.createCustomQuiz(payload).subscribe({
         next: (response) => {
           console.log('Quiz met eigen vragen aangemaakt:', response);
-          alert('Quiz succesvol aangemaakt met eigen vragen!');
+          alert('quiz succesvol aangemaakt met eigen vragen');
           this.router.navigate(['/quizzes']);
         },
         error: (error) => {
           console.error('Fout bij aanmaken quiz:', error);
-          alert('Er ging iets mis bij het aanmaken van de quiz.');
+          alert('er ging iets fout bij het aanmaken van de quiz' + error);
         },
       });
     } else {
@@ -114,12 +114,12 @@ constructor(
       this.quizservice.createQuizWithAPI(payload).subscribe({
         next: (response) => {
           console.log('Quiz met API-vragen aangemaakt:', response);
-          alert('Quiz succesvol aangemaakt met API-vragen!');
+          alert('quiz met api vragen succesvol aangemaakt');
           this.router.navigate(['/quizzes']);
         },
         error: (error) => {
           console.error('Fout bij aanmaken API-quiz:', error);
-          alert('Er ging iets mis bij het aanmaken van de quiz.');
+          alert('Er ging iets fout bij het aanmaken van de quiz.' + error);
         },
       });
     }
